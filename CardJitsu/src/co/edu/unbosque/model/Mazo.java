@@ -16,6 +16,9 @@ public class Mazo {
 		randomN = barajaN[rand.nextInt(barajaN.length)];
 		randomC = barajaC[rand.nextInt(barajaC.length)];
 		randomE = barajaE[rand.nextInt(barajaE.length)];
+		
+		//1111
+		
 	}
 	
 }
