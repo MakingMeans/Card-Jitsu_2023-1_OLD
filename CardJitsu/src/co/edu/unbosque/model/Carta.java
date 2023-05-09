@@ -7,6 +7,10 @@ public class Carta {
 
 	public Carta(String barajaC, String barajaE, byte barajaN) {
 	
+		this.numero = numero;
+		this.color = color;
+		this.elemento = elemento;
+		
 	}
 
 	public byte getNumero() {
