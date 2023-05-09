@@ -5,12 +5,10 @@ public class Carta {
 	private byte numero;
 	private String elemento, color;
 
-	public Carta(String barajaC, String barajaE, byte barajaN) {
-	
+	public Carta(String elemento, byte numero, String color) {
 		this.numero = numero;
 		this.color = color;
 		this.elemento = elemento;
-		
 	}
 
 	public byte getNumero() {

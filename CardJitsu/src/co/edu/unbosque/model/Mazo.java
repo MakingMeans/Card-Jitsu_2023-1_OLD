@@ -8,17 +8,25 @@ public class Mazo {
 	private String[] barajaC = {"Amaraillo","Azul","Verde","Rojo","Violeta","Naranja"};
 	private String[] barajaE = {"Fuego","Nieve","Agua"};
 	private byte randomN;
-	String randomE,randomC;
+	private String randomE,randomC;
+	String elemento, color;
+	byte numero;
 	
-	public void crearCarta(byte id) {
+	public void crearMazo() {
 		
+		for(int i=0;i<30;i++) {
 		Random rand = new Random();
 		randomN = barajaN[rand.nextInt(barajaN.length)];
 		randomC = barajaC[rand.nextInt(barajaC.length)];
 		randomE = barajaE[rand.nextInt(barajaE.length)];
+		card[i]=new Carta(elemento, numero, color);
+		}
 		
-		//1111
-		
+	}
+	public void test() {
+		for(int i=0;i<30;i++) {
+		System.out.println(card[i]);
+		}
 	}
 	
 }
