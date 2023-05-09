@@ -2,4 +2,33 @@ package co.edu.unbosque.model;
 
 public class Carta {
 
+	private byte numero;
+	private String elemento, color;
+
+	public Carta(String barajaC, String barajaE, byte barajaN) {
+	
+	}
+
+	public byte getNumero() {
+		return numero;
+	}
+	public void setNumero(byte numero) {
+		this.numero = numero;
+	}
+	public String getElemento() {
+		return elemento;
+	}
+	public void setElemento(String elemento) {
+		this.elemento = elemento;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	
+	
+	
 }
