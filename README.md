@@ -1,5 +1,5 @@
 # Card-Jitsu-PRF_FUNDPGR_20231
-![icon](https://github.com/MakingMeans/Card-Jitsu-PRF_FUNDPGR_20231/assets/117835098/3dda7d55-2585-4ada-ac4e-47eb783c55c3)
+![icon](https://github.com/MakingMeans/Card-Jitsu-PRF_FUNDPGR_20231/assets/117835098/dc698324-2281-4bd6-b62c-d41a5626bb75)
 
 > El juego mas epico de la historia.
 
