@@ -6,7 +6,7 @@ public class Controller {
 	public Controller() {
 		
 	}
-	public void ejecutar() {
+	public void ejecutarPrincipal() {
 	    boolean seguirEjecutando = true;
 	    while(seguirEjecutando) {
 	    	 System.out.println("---!Card-Jitsu!---");
@@ -14,17 +14,16 @@ public class Controller {
 	         System.out.println("1. Crear usuario");
 	         System.out.println("2. Log in");
 	         System.out.println("3. Salir");
-	        byte x = sc.nextByte();
-	        switch(x) {
+	        byte seleccionPrincipal = sc.nextByte();
+	        switch(seleccionPrincipal) {
 	            case 1:
 	                crearUsuario();
 	                break;
 	            case 2:
 	                ingresarUsuario();
-	                ejecutar1();
+	                ejecutarSecundaria();
 	                System.out.println("Digite la opcion deseada: ");
 	                break;
-	                
 	            case 3:
 	                seguirEjecutando = false;
 	                break;
@@ -35,40 +34,42 @@ public class Controller {
 	    }
 	}
 
-	public void ejecutar1() {
+	public void ejecutarSecundaria() {
 		
 		boolean seguirEjecutando = true;
 	    while(seguirEjecutando) {
-		System.out.println("Digite la opcion deseada: ");
-       	System.out.println("1. Estatus");
-        System.out.println("2. Asignar mazo aleatorio");
-        System.out.println("3. Mostrar mazo aleatorio");
-        System.out.println("4. Log out");
-        	byte y = sc.nextByte();
-
-        switch(y) {
-        
-        case 1:
-            datosUsuario();
-            ejecutar1();
-            break;
-        case 2:
-        	asignarMazoAleatorio();
-        	ejecutar1();
-        	break;
-        case 3:
-        	mostrarMazo();
-        	ejecutar1();
-        	break;
-        case 4:
-        	ejecutar();
-        	
-        }
-		
-	}
+			System.out.println("Digite la opcion deseada: ");
+	       	System.out.println("1. Estatus");
+	        System.out.println("2. Asignar mazo aleatorio");
+	        System.out.println("3. Mostrar mazo aleatorio");
+	        System.out.println("4. Log out");
+	        byte seleccionSecundaria = sc.nextByte();
+	
+	        switch(seleccionSecundaria) {
+		        case 1:
+		            datosUsuario();
+		            ejecutarSecundaria();
+		            break;
+		        case 2:
+		        	asignarMazoAleatorio();
+		        	ejecutarSecundaria();
+		        	break;
+		        case 3:
+		        	mostrarMazo();
+		        	ejecutarSecundaria();
+		        	break;
+		        case 4:
+		        	ejecutarPrincipal();
+		        	break;
+		        default:
+		        	System.out.println("Opcion invalida. Por favor, seleccione una opcion valida.");
+		        	ejecutarSecundaria();
+	                break;
+		    }
+	    }
 	}
 	
-	
+	//funciones y variables de usuario
 	byte id;
 	String name,cinturon;
     int puntaje;
@@ -77,7 +78,6 @@ public class Controller {
 	
 	Scanner sc = new Scanner(System.in);
 	private User usuarios[] = new User[5];
-	
 	
 	
 	public void crearUsuario(){
@@ -99,9 +99,8 @@ public class Controller {
     }
 	public void ingresarUsuario(){
 		if(usuarios[id]==null) {
-			
 			System.out.println("No hay usuarios registrados");
-			ejecutar();
+			ejecutarPrincipal();
 		}
 		System.out.print("Digite su nombre de usuario --> ");
 		System.out.println("");
@@ -119,11 +118,10 @@ public class Controller {
         }
     }
 	public void datosUsuario(){
-		if(usuarios[id]==null) {
-			
+		/*if(usuarios[id]==null) {
 			System.out.println("No hay usuarios regristrados");
-			ejecutar();
-		}
+			ejecutarPrincipal();
+		}*/
 		
 		System.out.println("");
 		System.out.println("Su usuario: "+usuarios[id].getName());
@@ -134,24 +132,16 @@ public class Controller {
 		   
 	}
 	public void asignarMazoAleatorio() {
-		if(usuarios[id]==null) {			
-			System.out.println("No hay usuarios regristrados");
-			ejecutar();
-		}
 		Mazo mazo = new Mazo();
 		mazo.crearMazo();
 		usuarios[id].setMazo(mazo);
 		System.out.println("Se ha asignado un mazo aleatorio al usuario " + usuarios[id].getName()); 
 		System.out.println(""); 
 	}
-	public void mostrarMazo() {
-		if(usuarios[id]==null) {			
-			System.out.println("No hay usuarios regristrados");
-			ejecutar();
-		}		
+	public void mostrarMazo() {	
 		if(usuarios[id].getMazo()==null) {			
 			System.out.println("No se ha asignado mazo");
-			ejecutar();
+			ejecutarSecundaria();
 		}        
         baraja = usuarios[id].getMazo();
     	baraja.test();
