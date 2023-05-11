@@ -5,13 +5,19 @@ public class User {
     private String name,cinturon;
     private int puntaje, nextLv;
     private byte id;
-
+    private Mazo mazo;
+    
     public User(String name, int puntaje, byte id) {
 		this.name = name;
 		this.puntaje = puntaje;
         this.id = id;
 	}
-
+    public void setMazo(Mazo mazo) {
+    	this.mazo = mazo;
+    }
+    public Mazo getMazo() {
+    	return mazo;
+    }
     public void setName(String name){
         this.name = name;
     }
@@ -54,4 +60,3 @@ public class User {
         return this.id;
     }
 }
-
