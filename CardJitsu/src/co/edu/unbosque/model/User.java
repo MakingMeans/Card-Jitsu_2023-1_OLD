@@ -16,7 +16,7 @@ public class User {
     	this.mazo = mazo;
     }
     public Mazo getMazo() {
-    	return mazo;
+    	return this.mazo;
     }
     public void setName(String name){
         this.name = name;

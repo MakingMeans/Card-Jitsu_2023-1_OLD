@@ -40,9 +40,10 @@ public class Controller {
 	    while(seguirEjecutando) {
 			System.out.println("Digite la opcion deseada: ");
 	       	System.out.println("1. Estatus");
-	        System.out.println("2. Asignar mazo aleatorio");
-	        System.out.println("3. Mostrar mazo aleatorio");
-	        System.out.println("4. Log out");
+	        System.out.println("2. Asignar mazo custom");
+			System.out.println("3. Asignar mazo aleatorio");
+	        System.out.println("4. Mostrar mazo");
+	        System.out.println("5. Log out");
 	        byte seleccionSecundaria = sc.nextByte();
 	
 	        switch(seleccionSecundaria) {
@@ -51,14 +52,18 @@ public class Controller {
 		            ejecutarSecundaria();
 		            break;
 		        case 2:
+		        	asignarMazoCustom();
+		        	ejecutarSecundaria();
+		        	break;
+				case 3:
 		        	asignarMazoAleatorio();
 		        	ejecutarSecundaria();
 		        	break;
-		        case 3:
+		        case 4:
 		        	mostrarMazo();
 		        	ejecutarSecundaria();
 		        	break;
-		        case 4:
+		        case 5:
 		        	ejecutarPrincipal();
 		        	break;
 		        default:
@@ -82,15 +87,13 @@ public class Controller {
 	
 	public void crearUsuario(){
         System.out.print("Digite el nombre de usuario --> ");
-        System.out.println("");
         name = sc.next();
         puntaje=0;
         for(byte i=0;i<5;i++){
             if(usuarios[i]==null) {
                 usuarios[i]=new User(name, puntaje, i);
                 stock=true;
-                System.out.println("Se ha creado un usuario con exito");
-                System.out.println("");
+                System.out.println("Se ha creado un usuario con exito\n");
                 break;
             } else stock=false;
         }
@@ -103,14 +106,12 @@ public class Controller {
 			ejecutarPrincipal();
 		}
 		System.out.print("Digite su nombre de usuario --> ");
-		System.out.println("");
         name = sc.next();
         
         for(byte i=0;i<5;i++){
         	if(usuarios[i]!=null) {
 	            if(usuarios[i].getName().equals(name)) {
-	            	System.out.println("Bienvenido "+name);
-	            	System.out.println("");
+	            	System.out.println("Bienvenido "+name+"\n");
 	            	id=i;
 	            }
 				else System.out.println("Su usuario es incorrecto");
@@ -133,10 +134,15 @@ public class Controller {
 	}
 	public void asignarMazoAleatorio() {
 		Mazo mazo = new Mazo();
-		mazo.crearMazo();
+		mazo.crearMazoAl();
 		usuarios[id].setMazo(mazo);
-		System.out.println("Se ha asignado un mazo aleatorio al usuario " + usuarios[id].getName()); 
-		System.out.println(""); 
+		System.out.println("Se ha asignado un mazo aleatorio al usuario " + usuarios[id].getName()+"\n"); 
+	}
+	public void asignarMazoCustom() {
+		Mazo mazo = new Mazo();
+		mazo.crearMazoCus();
+		usuarios[id].setMazo(mazo);
+		System.out.println("Se ha asignado un mazo custom al usuario " + usuarios[id].getName()+"\n"); 
 	}
 	public void mostrarMazo() {	
 		if(usuarios[id].getMazo()==null) {			
@@ -144,7 +150,7 @@ public class Controller {
 			ejecutarSecundaria();
 		}        
         baraja = usuarios[id].getMazo();
-    	baraja.test();
+    	baraja.mostrarMazo();
     	System.out.println("");
 	}	
 }

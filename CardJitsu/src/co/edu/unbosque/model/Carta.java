@@ -11,6 +11,10 @@ public class Carta {
 		this.elemento = elemento;
 	}
 
+	/*public Triple<String, Integer, String> getAtributos() {
+        return new Triple<String, Integer, String>(elemento, numero, color);
+    }*/
+
 	public byte getNumero() {
 		return numero;
 	}
