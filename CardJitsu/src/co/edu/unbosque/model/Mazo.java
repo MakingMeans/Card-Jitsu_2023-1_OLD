@@ -19,14 +19,13 @@ public class Mazo {
 		randomN = barajaN[rand.nextInt(barajaN.length)];
 		randomC = barajaC[rand.nextInt(barajaC.length)];
 		randomE = barajaE[rand.nextInt(barajaE.length)];
-		card[i]=new Carta(elemento, numero, color);
+		card[i]=new Carta(randomE, randomN, randomC);
 		}
 		
 	}
 	public void test() {
 		for(int i=0;i<30;i++) {
-		System.out.println(card[i]);
+		System.out.println(card[i].getElemento()+" - "+card[i].getColor()+" - "+card[i].getNumero());
 		}
 	}
-	
 }
