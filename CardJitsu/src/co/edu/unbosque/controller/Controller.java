@@ -43,7 +43,8 @@ public class Controller {
 	        System.out.println("2. Asignar mazo custom");
 			System.out.println("3. Asignar mazo aleatorio");
 	        System.out.println("4. Mostrar mazo");
-	        System.out.println("5. Log out");
+	        System.out.println("5. Partida CPU");
+	        System.out.println("6. Log out");
 	        byte seleccionSecundaria = sc.nextByte();
 	
 	        switch(seleccionSecundaria) {
@@ -64,6 +65,10 @@ public class Controller {
 		        	ejecutarSecundaria();
 		        	break;
 		        case 5:
+		        	jugarCPU();
+		        	ejecutarSecundaria();
+		        	break;
+		        case 6:
 		        	ejecutarPrincipal();
 		        	break;
 		        default:
@@ -119,10 +124,6 @@ public class Controller {
         }
     }
 	public void datosUsuario(){
-		/*if(usuarios[id]==null) {
-			System.out.println("No hay usuarios regristrados");
-			ejecutarPrincipal();
-		}*/
 		
 		System.out.println("");
 		System.out.println("Su usuario: "+usuarios[id].getName());
@@ -153,4 +154,20 @@ public class Controller {
     	baraja.mostrarMazo();
     	System.out.println("");
 	}	
+	
+	// Edit Jorge: Aqui se ejecuta la funcion partidaCPU()//
+	
+	public void jugarCPU() {
+		if(usuarios[id].getMazo()==null) {			
+			System.out.println("No se ha asignado mazo");
+			ejecutarSecundaria();
+		}        
+        baraja = usuarios[id].getMazo();
+    	baraja.partidaCPU();
+    	System.out.println("");
+		
+	}
+	
+	
+	
 }
