@@ -9,6 +9,7 @@ Trabajen :) *los azota fuertemente*
 + Sistema de puntaje y cinturon.
 + Probablemente agregar el mazo del usuario como uno de sus parametros
   + Es decir usuarios[i]=new User(String, int, byte, Carta[]);
+  + NO ES NECESARIO, SOLO UNA POSIBILIDAD (por ahora)
 + Data de usuario despues de cierre.
 
 **Lista de Contenidos**
