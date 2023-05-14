@@ -6,7 +6,7 @@
 Trabajen :) *los azota fuertemente*
 **COSAS POR HACER**
 + Sistema de victoria usando color y elemento.
-+ Sistemad e puntaje y cinturon.
++ Sistema de puntaje y cinturon.
 + Data de usuario despues de cierre.
 
 **Lista de Contenidos**
