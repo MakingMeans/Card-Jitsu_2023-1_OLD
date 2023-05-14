@@ -7,6 +7,8 @@ Trabajen :) *los azota fuertemente*
 **COSAS POR HACER**
 + Sistema de victoria usando color y elemento.
 + Sistema de puntaje y cinturon.
++ Probablemente agregar el mazo del usuario como uno de sus parametros
+  + Es decir usuarios[i]=new User(String, int, byte, Carta[]);
 + Data de usuario despues de cierre.
 
 **Lista de Contenidos**
