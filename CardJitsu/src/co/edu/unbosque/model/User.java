@@ -1,7 +1,7 @@
 package co.edu.unbosque.model;
 
 public class User {
-
+    //user solo recibe nombre, puntaje e id, pero se almacenan mas cosas en este
     private String name,cinturon;
     private int puntaje, nextLv;
     private byte id;

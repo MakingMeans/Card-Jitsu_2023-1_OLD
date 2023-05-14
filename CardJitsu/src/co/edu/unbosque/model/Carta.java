@@ -1,7 +1,7 @@
 package co.edu.unbosque.model;
 
 public class Carta {
-
+	//no tocar, corazon del codigo
 	private byte numero;
 	private String elemento, color;
 

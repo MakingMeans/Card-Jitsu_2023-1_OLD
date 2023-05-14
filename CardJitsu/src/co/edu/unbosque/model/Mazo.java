@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Mazo {
+	//mazo como tal solo crea la lista de cartas SIN REPETIR y las maneja
 	private Carta card[] = new Carta[30];
 	Scanner sc = new Scanner(System.in);
 	Random rand = new Random();

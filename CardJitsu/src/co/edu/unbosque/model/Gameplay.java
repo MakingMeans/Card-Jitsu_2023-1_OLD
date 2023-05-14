@@ -3,7 +3,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Gameplay {
-    private User usuario;
+    //hay que separar distintas caracteristicas del gameplay por funciones
+	private User usuario;
 	private int seleccion;
 
     public Gameplay(User usuario) {
