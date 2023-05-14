@@ -1,11 +1,13 @@
 package co.edu.unbosque.controller;
 import co.edu.unbosque.model.Mazo;
 import co.edu.unbosque.model.User;
+import co.edu.unbosque.model.Carta;
+import co.edu.unbosque.model.Gameplay;
 import java.util.Scanner;
 public class Controller {
 	public Controller() {
-		
 	}
+
 	public void ejecutarPrincipal() {
 	    boolean seguirEjecutando = true;
 	    while(seguirEjecutando) {
@@ -83,12 +85,11 @@ public class Controller {
 	byte id;
 	String name,cinturon;
     int puntaje;
-	boolean stock = true;
-	Mazo baraja;
+	boolean stock = true; 
 	
 	Scanner sc = new Scanner(System.in);
+	Carta baraja[]=new Carta[30];
 	private User usuarios[] = new User[5];
-	
 	
 	public void crearUsuario(){
         System.out.print("Digite el nombre de usuario --> ");
@@ -97,7 +98,9 @@ public class Controller {
         for(byte i=0;i<5;i++){
             if(usuarios[i]==null) {
                 usuarios[i]=new User(name, puntaje, i);
-                stock=true;
+				Mazo mazo = new Mazo();
+				usuarios[id].setMazo(mazo.crearMazoAl());
+				stock=true;
                 System.out.println("Se ha creado un usuario con exito\n");
                 break;
             } else stock=false;
@@ -135,14 +138,12 @@ public class Controller {
 	}
 	public void asignarMazoAleatorio() {
 		Mazo mazo = new Mazo();
-		mazo.crearMazoAl();
-		usuarios[id].setMazo(mazo);
+		usuarios[id].setMazo(mazo.crearMazoAl());
 		System.out.println("Se ha asignado un mazo aleatorio al usuario " + usuarios[id].getName()+"\n"); 
 	}
 	public void asignarMazoCustom() {
 		Mazo mazo = new Mazo();
-		mazo.crearMazoCus();
-		usuarios[id].setMazo(mazo);
+		usuarios[id].setMazo(mazo.crearMazoCus());
 		System.out.println("Se ha asignado un mazo custom al usuario " + usuarios[id].getName()+"\n"); 
 	}
 	public void mostrarMazo() {	
@@ -151,23 +152,19 @@ public class Controller {
 			ejecutarSecundaria();
 		}        
         baraja = usuarios[id].getMazo();
-    	baraja.mostrarMazo();
-    	System.out.println("");
+		for(int i=0;i<30;i++){
+			System.out.println(baraja[i].getElemento()+" - "+baraja[i].getColor()+" - "+baraja[i].getNumero());
+		}
 	}	
-	
-	// Edit Jorge: Aqui se ejecuta la funcion partidaCPU()//
 	
 	public void jugarCPU() {
 		if(usuarios[id].getMazo()==null) {			
 			System.out.println("No se ha asignado mazo");
 			ejecutarSecundaria();
-		}        
-        baraja = usuarios[id].getMazo();
-    	baraja.partidaCPU();
-    	System.out.println("");
-		
+		}
+		User usuario = usuarios[id];
+	    Gameplay match = new Gameplay(usuario); 
+		match.partidaTEST();       
+		match.partidaCPU();
 	}
-	
-	
-	
 }
