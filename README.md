@@ -4,6 +4,7 @@
 > [2023-1 Proyecto Final FP.pdf](https://github.com/MakingMeans/Card-Jitsu-PRF_FUNDPGR_20231/files/11438667/2023-1.Proyecto.Final.FP.pdf).
 
 Trabajen :) *los azota fuertemente*
+
 **COSAS POR HACER**
 + Sistema de victoria usando color y elemento.
 + Sistema de puntaje y cinturon.
