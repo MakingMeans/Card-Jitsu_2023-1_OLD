@@ -2,6 +2,7 @@ package co.edu.unbosque.model;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+
 import java.util.HashSet;
 
 public class Gameplay {
@@ -9,14 +10,19 @@ public class Gameplay {
 	private User usuario;
 	private int seleccion;
 	//HashSet son listas que no pueden tener elementos repetidas
-	Set<String> fuegoWin = new HashSet<>();
-	Set<String> aguaWin = new HashSet<>();
-	Set<String> nieveWin = new HashSet<>();
-	Set<String> allWin = new HashSet<>();
-	Set<String> fuegoWinS = new HashSet<>();
-	Set<String> aguaWinS = new HashSet<>();
-	Set<String> nieveWinS = new HashSet<>();
-	Set<String> allWinS = new HashSet<>();
+	Set<String> fuegoWinP = new HashSet<>();
+	Set<String> aguaWinP = new HashSet<>();
+	Set<String> nieveWinP = new HashSet<>();
+	Set<String> allWinP = new HashSet<>();
+	String[] allWinPlayerDD = new String[3];
+	String[] allWinPlayerSD = new String[3];
+
+	Set<String> fuegoWinR = new HashSet<>();
+	Set<String> aguaWinR = new HashSet<>();
+	Set<String> nieveWinR = new HashSet<>();
+	Set<String> allWinR = new HashSet<>();
+	String[] allWinRivalDD = new String[3];
+	String[] allWinRivalSD = new String[3];
 
     public Gameplay(User usuario) {
 		this.usuario = usuario;
@@ -73,11 +79,13 @@ public class Gameplay {
 			System.out.println("Carta del sensei: "+cartaRival.getElemento()+" - "+cartaRival.getColor()+" - "+cartaRival.getNumero()+"\n");
 
 			cartaGanadora(cartaJugador,cartaRival);
-			System.out.println("Fuego: -> Jugador: "+fuegoWin+" <-  ---------------  -> Sensei: "+fuegoWinS);
-			System.out.println("Agua: -> Jugador: "+aguaWin+" <-  ---------------  -> Sensei: "+aguaWinS);
-			System.out.println("Nieve: -> Jugador: "+nieveWin+" <-  ---------------  -> Sensei: "+nieveWinS);
-			System.out.println("ALLWIN PLAYER="+allWin);
-			System.out.println("ALLWIN SENSEI="+allWinS);
+			System.out.println("Fuego: -> Jugador: "+fuegoWinP+" <-  ---------------  -> Sensei: "+fuegoWinR);
+			System.out.println("Agua: -> Jugador: "+aguaWinP+" <-  ---------------  -> Sensei: "+aguaWinR);
+			System.out.println("Nieve: -> Jugador: "+nieveWinP+" <-  ---------------  -> Sensei: "+nieveWinR);
+			System.out.println("ALLWIN PLAYER="+allWinP);
+			System.out.println("ALLWIN SENSEI="+allWinR);
+			System.out.println("DD FINAL ALLWIN PLAYER="+allWinPlayerDD[0]+allWinPlayerDD[1]+allWinPlayerDD[2]);
+			System.out.println("SD FINAL ALLWIN PLAYER="+allWinPlayerSD[0]+allWinPlayerSD[1]+allWinPlayerSD[2]);
 			System.out.println();
 			hayGanador=terminarPartida(hayGanador);
 		}
@@ -92,24 +100,24 @@ public class Gameplay {
 			if (playerNumber > rivalNumber) {
 				System.out.println("Ganaste la ronda!");
 			    if(playerElement.equals("Fuego")) {
-					fuegoWin.add(playerColor);
+					fuegoWinP.add(playerColor);
 				}
 				if(playerElement.equals("Agua")) {
-					aguaWin.add(playerColor);
+					aguaWinP.add(playerColor);
 				}
 				if(playerElement.equals("Nieve")) {
-					nieveWin.add(playerColor);
+					nieveWinP.add(playerColor);
 				}
 			} else if (playerNumber < rivalNumber) {
 				System.out.println("Perdiste la ronda!");
 				if(rivalElement.equals("Fuego")) {
-					fuegoWinS.add(rivalColor);
+					fuegoWinR.add(rivalColor);
 				}
 				if(rivalElement.equals("Agua")) {
-					aguaWinS.add(rivalColor);
+					aguaWinR.add(rivalColor);
 				}
 				if(rivalElement.equals("Nieve")) {
-					nieveWinS.add(rivalColor);
+					nieveWinR.add(rivalColor);
 				}
 			} else {
 				System.out.println("Empate!");
@@ -120,79 +128,115 @@ public class Gameplay {
 			System.out.println("Ganaste la ronda!");
 			System.out.println();
 			if(playerElement.equals("Fuego")) {
-				fuegoWin.add(playerColor);
+				fuegoWinP.add(playerColor);
 			}
 			if(playerElement.equals("Agua")) {
-				aguaWin.add(playerColor);
+				aguaWinP.add(playerColor);
 			}
 			if(playerElement.equals("Nieve")) {
-				nieveWin.add(playerColor);
+				nieveWinP.add(playerColor);
 			}
 		} else {
 			System.out.println("Perdiste la ronda!");
 			System.out.println();
 			if(rivalElement.equals("Fuego")) {
-				fuegoWinS.add(rivalColor);
+				fuegoWinR.add(rivalColor);
 			}
 			if(rivalElement.equals("Agua")) {
-				aguaWinS.add(rivalColor);
+				aguaWinR.add(rivalColor);
 			}
 			if(rivalElement.equals("Nieve")) {
-				nieveWinS.add(rivalColor);
+				nieveWinR.add(rivalColor);
 			}
 		}
 		boolean victory = false;
-		for (String colorF : fuegoWin) {
-			for (String colorA : aguaWin) {
-				for (String colorN : nieveWin) {
-					allWin.add(colorF); 
-					System.out.println("FIRE FOR="+allWin);
-					allWin.add(colorA);
-					System.out.println("WATER FOR="+allWin); 
-					allWin.add(colorN); 
-					System.out.println("WINTER FOR="+allWin);
-					if(allWin.size()>=3) victory = true;
+		for (String colorF : fuegoWinP) {
+			for (String colorA : aguaWinP) {
+				for (String colorN : nieveWinP) {
+					if (allWinP.add(colorF)){
+						allWinPlayerDD[0]=colorF;
+						allWinP.add(colorF);
+					}
+					System.out.println("FIRE FOR="+allWinP+allWinPlayerDD[0]); 
+					if (allWinP.add(colorA)){
+						allWinPlayerDD[1]=colorA;
+						allWinP.add(colorA);
+					}
+					System.out.println("WATER FOR="+allWinP+allWinPlayerDD[1]); 
+					if (allWinP.add(colorN)){
+						allWinPlayerDD[2]=colorN;
+						allWinP.add(colorN);
+					}
+					System.out.println("WINTER FOR="+allWinP+allWinPlayerDD[2]); 
+					if(allWinP.size()>=3) victory = true;
 					if(victory)break;
-					else allWin.remove(colorN);
+					else allWinP.remove(colorN);
 				}
 				if(victory)break;
-				else allWin.remove(colorA);
+				else allWinP.remove(colorA);
 			}
 			if(victory)break;
 			else {
-				allWin.remove(colorF); 
-				allWin.clear();
+				allWinP.remove(colorF); 
+				allWinP.clear();
 			}
 		}
-		for (String colorF : fuegoWinS) {
-			for (String colorA : aguaWinS) {
-				for (String colorN : nieveWinS) {
-					allWinS.add(colorF); 
-					allWinS.add(colorA);
-					allWinS.add(colorN); 
-					if(allWinS.size()>=3) victory = true;
+		for (String colorF : fuegoWinR) {
+			for (String colorA : aguaWinR) {
+				for (String colorN : nieveWinR) {
+					if (allWinR.add(colorF)){
+						allWinRivalDD[0]=colorF;
+						allWinR.add(colorF);
+					}
+					if (allWinR.add(colorA)){
+						allWinRivalDD[1]=colorA;
+						allWinR.add(colorA);
+					}
+					if (allWinR.add(colorN)){
+						allWinRivalDD[2]=colorN;
+						allWinR.add(colorN);
+					}
+					if(allWinR.size()>=3) victory = true;
 					if(victory)break;
-					else allWinS.remove(colorN);
+					else allWinR.remove(colorN);
 				}
 				if(victory)break;
-				else allWinS.remove(colorA);
+				else allWinR.remove(colorA);
 			}
 			if(victory)break;
 			else {
-				allWin.remove(colorF); 
-				allWinS.clear();
+				allWinR.remove(colorF); 
+				allWinR.clear();
 			}
+		}
+		if(fuegoWinP.size()>=3){
+			fuegoWinP.toArray(allWinPlayerSD);
+		}
+		if(aguaWinP.size()>=3){
+			aguaWinP.toArray(allWinPlayerSD);
+		}
+		if(allWinP.size()>=3){
+			nieveWinP.toArray(allWinPlayerSD);
+		}
+		if(fuegoWinR.size()>=3){
+			fuegoWinR.toArray(allWinRivalSD);
+		}
+		if(aguaWinR.size()>=3){
+			aguaWinR.toArray(allWinRivalSD);
+		}
+		if(allWinR.size()>=3){
+			nieveWinR.toArray(allWinRivalSD);
 		}
 	}
 	public boolean terminarPartida(boolean hayGanador){
-		if(fuegoWin.size()>=3 ||aguaWin.size()>=3 || nieveWin.size()>=3 || allWin.size()>=3) {
+		if(fuegoWinP.size()>=3 ||aguaWinP.size()>=3 || nieveWinP.size()>=3 || allWinP.size()>=3) {
 			System.out.println("¡Felicidades, ganaste el juego!");
 			System.out.println();
 			int puntaje = usuario.getPuntaje()+5;
 			usuario.setPuntaje(puntaje);
 			hayGanador = true;
 		}
-		if(fuegoWinS.size()>=3 ||aguaWinS.size()>=3 || nieveWinS.size()>=3 || allWinS.size()>=3) {
+		if(fuegoWinR.size()>=3 ||aguaWinR.size()>=3 || nieveWinR.size()>=3 || allWinR.size()>=3) {
 			System.out.println("¡Lo sentimos, perdiste el juego!");
 			System.out.println();
 			int puntaje = usuario.getPuntaje()-2;
