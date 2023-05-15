@@ -3,6 +3,8 @@ import co.edu.unbosque.model.Mazo;
 import co.edu.unbosque.model.User;
 import co.edu.unbosque.model.Carta;
 import co.edu.unbosque.model.Gameplay;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Controller {
 	public Controller() {
@@ -37,7 +39,6 @@ public class Controller {
 	}
 
 	public void ejecutarSecundaria() {
-		
 		boolean seguirEjecutando = true;
 	    while(seguirEjecutando) {
 			System.out.println("Digite la opcion deseada: ");
@@ -85,84 +86,73 @@ public class Controller {
 	byte id;
 	String name,cinturon;
     int puntaje;
-	boolean stock = true; 
 	
 	Scanner sc = new Scanner(System.in);
 	Carta baraja[]=new Carta[30];
-	private User usuarios[] = new User[5];
+	ArrayList<User> usuarios = new ArrayList<User>();
 	
 	public void crearUsuario(){
         System.out.print("Digite el nombre de usuario --> ");
         name = sc.next();
         puntaje=0;
-        for(byte i=0;i<5;i++){
-            if(usuarios[i]==null) {
-                usuarios[i]=new User(name, puntaje, i);
-				Mazo mazo = new Mazo();
-				usuarios[id].setMazo(mazo.crearMazoAl());
-				stock=true;
-                System.out.println("Se ha creado un usuario con exito\n");
-                break;
-            } else stock=false;
-        }
-		if(stock==false) System.out.println("ERROR --> No ha espacio para mas usuarios.");
-		
+		byte i= (byte)usuarios.size();
+		usuarios.add(new User(name, puntaje, i));
+		Mazo mazo = new Mazo();
+		usuarios.get(i).setMazo(mazo.crearMazoAl());
+        System.out.println("Se ha creado un usuario con exito\n");
+		//BORRAR DESPUES
+		System.out.println("----LISTA USUARIOS----");
+		for(int j=0;j<usuarios.size();j++){
+			System.out.println(usuarios.get(j).getName());
+		}
     }
 	public void ingresarUsuario(){
-		if(usuarios[id]==null) {
+		if(usuarios.size()==0) {
 			System.out.println("No hay usuarios registrados");
 			ejecutarPrincipal();
 		}
 		System.out.print("Digite su nombre de usuario --> ");
         name = sc.next();
+		boolean success = false;
         
-        for(byte i=0;i<5;i++){
-        	if(usuarios[i]!=null) {
-	            if(usuarios[i].getName().equals(name)) {
-	            	System.out.println("Bienvenido "+name+"\n");
-	            	id=i;
-	            }
-				else System.out.println("Su usuario es incorrecto");
-        	}
+        for(byte i=0;i<usuarios.size();i++){
+	        if(usuarios.get(i).getName().equals(name)) {
+	        	System.out.println("Bienvenido "+name+"\n");
+	        	id=i;
+				success = true;
+				break;
+	        }
         }
+		if(!success){
+			System.out.println("Su usuario es incorrecto");
+			ejecutarPrincipal();
+		}
     }
 	public void datosUsuario(){
-		
-		System.out.println("");
-		System.out.println("Su usuario: "+usuarios[id].getName());
-		System.out.println("Su cinturon: "+usuarios[id].getCinturon());
-		System.out.println("Su puntaje: "+usuarios[id].getPuntaje());
-		System.out.println("Puntos necesarios para siguiente cinturon: "+usuarios[id].getNextLv());
-		System.out.println("");
-		   
+		System.out.println("\nSu usuario: "+usuarios.get(id).getName());
+		System.out.println("Su ID: "+usuarios.get(id).getId());
+		System.out.println("Su cinturon: "+usuarios.get(id).getCinturon());
+		System.out.println("Su puntaje: "+usuarios.get(id).getPuntaje());
+		System.out.println("Puntos necesarios para siguiente cinturon: "+usuarios.get(id).getNextLv()+"\n");
 	}
 	public void asignarMazoAleatorio() {
 		Mazo mazo = new Mazo();
-		usuarios[id].setMazo(mazo.crearMazoAl());
-		System.out.println("Se ha asignado un mazo aleatorio al usuario " + usuarios[id].getName()+"\n"); 
+		usuarios.get(id).setMazo(mazo.crearMazoAl());
+		System.out.println("Se ha asignado un mazo aleatorio al usuario " + usuarios.get(id).getName()+"\n"); 
 	}
 	public void asignarMazoCustom() {
 		Mazo mazo = new Mazo();
-		usuarios[id].setMazo(mazo.crearMazoCus());
-		System.out.println("Se ha asignado un mazo custom al usuario " + usuarios[id].getName()+"\n"); 
+		usuarios.get(id).setMazo(mazo.crearMazoCus());
+		System.out.println("Se ha asignado un mazo custom al usuario " + usuarios.get(id).getName()+"\n"); 
 	}
 	public void mostrarMazo() {	
-		if(usuarios[id].getMazo()==null) {			
-			System.out.println("No se ha asignado mazo");
-			ejecutarSecundaria();
-		}        
-        baraja = usuarios[id].getMazo();
+        baraja = usuarios.get(id).getMazo();
 		for(int i=0;i<30;i++){
 			System.out.println(baraja[i].getElemento()+" - "+baraja[i].getColor()+" - "+baraja[i].getNumero());
 		}
 	}	
-	
 	public void jugarCPU() {
-		if(usuarios[id].getMazo()==null) {			
-			System.out.println("No se ha asignado mazo");
-			ejecutarSecundaria();
-		}
-		User usuario = usuarios[id];
+		User usuario = usuarios.get(id);
 	    Gameplay match = new Gameplay(usuario); 
 		match.partidaTEST();       
 		match.partidaCPU();

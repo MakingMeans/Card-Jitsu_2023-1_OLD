@@ -6,11 +6,10 @@
 Trabajen :) *los azota fuertemente*
 
 **COSAS POR HACER**
-+ Sistema de victoria usando color y elemento.
-+ Sistema de puntaje y cinturon.
-+ Probablemente agregar el mazo del usuario como uno de sus parametros
-  + Es decir usuarios[i]=new User(String, int, byte, Carta[]);
-  + NO ES NECESARIO, SOLO UNA POSIBILIDAD (por ahora)
++ Seprar cosas del Gameplay por funciones.
++ Verificar metodo de ganar con 3 elementos y cartas diferentes.
++ Crear modo USER vs USER.
++ No se puede crear un User ya creado.
 + Data de usuario despues de cierre.
 
 **Lista de Contenidos**
@@ -20,6 +19,8 @@ Trabajen :) *los azota fuertemente*
 + MODELOS
   + Carta: Contine 3 atributos (elemento, numero, color).
   + Mazo: Contiene 30 cartas.
+  + User: Contine 3 atributos (nombre, puntaje, id).
+  + Gameplay: Mecanicas principales de juego.
 + VISTA
   + Interfaz (Aun no): Ambiente gráfico.
 
