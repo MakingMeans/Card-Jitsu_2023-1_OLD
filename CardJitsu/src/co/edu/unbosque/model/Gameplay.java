@@ -14,15 +14,17 @@ public class Gameplay {
 	Set<String> aguaWinP = new HashSet<>();
 	Set<String> nieveWinP = new HashSet<>();
 	Set<String> allWinP = new HashSet<>();
-	String[] allWinPlayerDD = new String[3];
-	String[] allWinPlayerSD = new String[3];
 
 	Set<String> fuegoWinR = new HashSet<>();
 	Set<String> aguaWinR = new HashSet<>();
 	Set<String> nieveWinR = new HashSet<>();
 	Set<String> allWinR = new HashSet<>();
-	String[] allWinRivalDD = new String[3];
-	String[] allWinRivalSD = new String[3];
+	
+	String[][] allWins = new String[4][3];
+	/*fila 1: playerDD
+	fila 2: playerSD
+	fila 3: rivalDD
+	fila 4: rivalSD*/
 
     public Gameplay(User usuario) {
 		this.usuario = usuario;
@@ -84,8 +86,10 @@ public class Gameplay {
 			System.out.println("Nieve: -> Jugador: "+nieveWinP+" <-  ---------------  -> Sensei: "+nieveWinR);
 			System.out.println("ALLWIN PLAYER="+allWinP);
 			System.out.println("ALLWIN SENSEI="+allWinR);
-			System.out.println("DD FINAL ALLWIN PLAYER="+allWinPlayerDD[0]+allWinPlayerDD[1]+allWinPlayerDD[2]);
-			System.out.println("SD FINAL ALLWIN PLAYER="+allWinPlayerSD[0]+allWinPlayerSD[1]+allWinPlayerSD[2]);
+			System.out.println("DD FINAL ALLWIN PLAYER="+allWins[0][0]+allWins[0][1]+allWins[0][2]);
+			System.out.println("SD FINAL ALLWIN PLAYER="+allWins[1][0]+allWins[1][1]+allWins[1][2]);
+			System.out.println("DD FINAL ALLWIN PLAYER="+allWins[2][0]+allWins[2][1]+allWins[2][2]);
+			System.out.println("SD FINAL ALLWIN PLAYER="+allWins[3][0]+allWins[3][1]+allWins[3][2]);
 			System.out.println();
 			hayGanador=terminarPartida(hayGanador);
 		}
@@ -154,20 +158,20 @@ public class Gameplay {
 			for (String colorA : aguaWinP) {
 				for (String colorN : nieveWinP) {
 					if (allWinP.add(colorF)){
-						allWinPlayerDD[0]=colorF;
+						allWins[0][0]=colorF;
 						allWinP.add(colorF);
 					}
-					System.out.println("FIRE FOR="+allWinP+allWinPlayerDD[0]); 
+					System.out.println("FIRE FOR="+allWinP+allWins[0][0]); 
 					if (allWinP.add(colorA)){
-						allWinPlayerDD[1]=colorA;
+						allWins[0][1]=colorA;
 						allWinP.add(colorA);
 					}
-					System.out.println("WATER FOR="+allWinP+allWinPlayerDD[1]); 
+					System.out.println("WATER FOR="+allWinP+allWins[0][1]); 
 					if (allWinP.add(colorN)){
-						allWinPlayerDD[2]=colorN;
+						allWins[0][2]=colorN;
 						allWinP.add(colorN);
 					}
-					System.out.println("WINTER FOR="+allWinP+allWinPlayerDD[2]); 
+					System.out.println("WINTER FOR="+allWinP+allWins[0][2]); 
 					if(allWinP.size()>=3) victory = true;
 					if(victory)break;
 					else allWinP.remove(colorN);
@@ -185,15 +189,15 @@ public class Gameplay {
 			for (String colorA : aguaWinR) {
 				for (String colorN : nieveWinR) {
 					if (allWinR.add(colorF)){
-						allWinRivalDD[0]=colorF;
+						allWins[2][0]=colorF;
 						allWinR.add(colorF);
 					}
 					if (allWinR.add(colorA)){
-						allWinRivalDD[1]=colorA;
+						allWins[2][1]=colorA;
 						allWinR.add(colorA);
 					}
 					if (allWinR.add(colorN)){
-						allWinRivalDD[2]=colorN;
+						allWins[2][2]=colorN;
 						allWinR.add(colorN);
 					}
 					if(allWinR.size()>=3) victory = true;
@@ -210,22 +214,22 @@ public class Gameplay {
 			}
 		}
 		if(fuegoWinP.size()>=3){
-			fuegoWinP.toArray(allWinPlayerSD);
+			fuegoWinP.toArray(allWins[1]);
 		}
 		if(aguaWinP.size()>=3){
-			aguaWinP.toArray(allWinPlayerSD);
+			aguaWinP.toArray(allWins[1]);
 		}
 		if(allWinP.size()>=3){
-			nieveWinP.toArray(allWinPlayerSD);
+			nieveWinP.toArray(allWins[1]);
 		}
 		if(fuegoWinR.size()>=3){
-			fuegoWinR.toArray(allWinRivalSD);
+			fuegoWinR.toArray(allWins[3]);
 		}
 		if(aguaWinR.size()>=3){
-			aguaWinR.toArray(allWinRivalSD);
+			aguaWinR.toArray(allWins[3]);
 		}
 		if(allWinR.size()>=3){
-			nieveWinR.toArray(allWinRivalSD);
+			nieveWinR.toArray(allWins[3]);
 		}
 	}
 	public boolean terminarPartida(boolean hayGanador){
@@ -243,6 +247,10 @@ public class Gameplay {
 			usuario.setPuntaje(puntaje);
 			hayGanador = true;
 		}
+		/*
+		si <elemento>Win.size()>=3 entonces se gano con cartas del mismo elemento
+		si allWin.size()>=3 entonces se gano con cartas de diferentes elementos
+		 */
 		return hayGanador;
 	}
 }

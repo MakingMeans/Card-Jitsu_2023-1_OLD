@@ -1,6 +1,9 @@
 package co.edu.unbosque.model;
 
-public class User {
+//usuarios shit
+import java.io.Serializable;
+
+public class User implements Serializable{
     //user solo recibe nombre, puntaje e id, pero se almacenan mas cosas en este
     private String name,cinturon;
     private int puntaje, nextLv;
@@ -41,9 +44,11 @@ public class User {
     	return this.cinturon;
     }
     public void setPuntaje(int puntaje){
+        if(puntaje<0) puntaje = 0;
         this.puntaje = puntaje;
     }
     public int getPuntaje(){
+        if(this.puntaje<0) this.puntaje = 0;
         return this.puntaje;
     }
     public void setNextLv(int nextLv){

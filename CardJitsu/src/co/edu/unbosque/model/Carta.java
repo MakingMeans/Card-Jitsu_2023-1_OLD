@@ -1,6 +1,9 @@
 package co.edu.unbosque.model;
 
-public class Carta {
+//usuarios shit
+import java.io.Serializable;
+
+public class Carta implements Serializable{
 	//no tocar, corazon del codigo
 	private byte numero;
 	private String elemento, color;

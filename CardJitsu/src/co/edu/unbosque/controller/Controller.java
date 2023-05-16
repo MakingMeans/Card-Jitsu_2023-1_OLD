@@ -4,14 +4,52 @@ import co.edu.unbosque.model.User;
 import co.edu.unbosque.model.Carta;
 import co.edu.unbosque.model.Gameplay;
 
+//usuarios shit
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Controller {
 	public Controller() {
 	}
-
+	//funciones y variables de usuario
+	byte id;
+	String name,cinturon;
+    int puntaje;
+	
+	Scanner sc = new Scanner(System.in);
+	Carta baraja[]=new Carta[30];
+	ArrayList<User> usuarios = new ArrayList<User>();
+	//usuarios shit
+	public void saveData(){
+		try {
+			FileOutputStream fileOut = new FileOutputStream("usersData.txt");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(usuarios);
+			out.close();
+			fileOut.close();
+			System.out.println("Los datos de los usuarios se han guardado correctamente.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	public void ejecutarPrincipal() {
 	    boolean seguirEjecutando = true;
+		//usuarios shit
+		try {
+			FileInputStream fileIn = new FileInputStream("usersData.txt");
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			usuarios = (ArrayList<User>) in.readObject();
+			in.close();
+			fileIn.close();
+			System.out.println("Los datos de los usuarios se han cargado correctamente.");
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}		
 	    while(seguirEjecutando) {
 	    	 System.out.println("---!Card-Jitsu!---");
 	         System.out.println("Digite la opcion deseada: ");
@@ -22,6 +60,7 @@ public class Controller {
 	        switch(seleccionPrincipal) {
 	            case 1:
 	                crearUsuario();
+					saveData();
 	                break;
 	            case 2:
 	                ingresarUsuario();
@@ -82,19 +121,18 @@ public class Controller {
 	    }
 	}
 	
-	//funciones y variables de usuario
-	byte id;
-	String name,cinturon;
-    int puntaje;
-	
-	Scanner sc = new Scanner(System.in);
-	Carta baraja[]=new Carta[30];
-	ArrayList<User> usuarios = new ArrayList<User>();
-	
 	public void crearUsuario(){
         System.out.print("Digite el nombre de usuario --> ");
         name = sc.next();
         puntaje=0;
+		if(usuarios.size()>0){
+			for(int j=0;j<usuarios.size();j++){
+				if(usuarios.get(j).getName().equals(name)) {
+					System.out.println("ERROR-->USUARIOS REPETIDOS");
+					ejecutarPrincipal();
+				}
+			}
+		}
 		byte i= (byte)usuarios.size();
 		usuarios.add(new User(name, puntaje, i));
 		Mazo mazo = new Mazo();

@@ -7,12 +7,7 @@ Trabajen :) *los azota fuertemente*
 
 **COSAS POR HACER**
 + Seprar cosas del Gameplay por funciones.
-+ Verificar metodo de ganar con 3 elementos y cartas diferentes.
-+ Evitar la obtencion de puntaje negativo para el Usuario.
-+ Dejar en claro la manera en que gano el jugador/rival.
 + Crear modo USER vs USER.
-+ No se puede crear un User ya creado.
-+ Data de usuario despues de cierre.
 
 **Lista de Contenidos**
 + CONTROLADOR
