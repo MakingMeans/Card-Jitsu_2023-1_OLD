@@ -1,29 +1,41 @@
 package co.edu.unbosque.model;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Gameplay {
     //hay que separar distintas caracteristicas del gameplay por funciones
 	private User usuario;
 	private int seleccion;
-	//HashSet son listas que no pueden tener elementos repetidas
-	Set<String> fuegoWinP = new HashSet<>();
-	Set<String> aguaWinP = new HashSet<>();
-	Set<String> nieveWinP = new HashSet<>();
-	Set<String> allWinP = new HashSet<>();
+	//borrar al borrar los arraylist desde fuegoWinP hasta allWins
+	ArrayList<String> fuegoWinP = new ArrayList<String>();
+	ArrayList<String> aguaWinP = new ArrayList<String>();
+	ArrayList<String> nieveWinP = new ArrayList<String>();
+	ArrayList<String> allWinP = new ArrayList<String>();
 
-	Set<String> fuegoWinR = new HashSet<>();
-	Set<String> aguaWinR = new HashSet<>();
-	Set<String> nieveWinR = new HashSet<>();
-	Set<String> allWinR = new HashSet<>();
+	ArrayList<String> fuegoWinR = new ArrayList<String>();
+	ArrayList<String> aguaWinR = new ArrayList<String>();
+	ArrayList<String> nieveWinR = new ArrayList<String>();
+	ArrayList<String> allWinR = new ArrayList<String>();
 	
 	String[][] allWins = new String[4][3];
 	/*fila 1: playerDD
 	fila 2: playerSD
 	fila 3: rivalDD
 	fila 4: rivalSD*/
+	ArrayList<Carta> winsPlayer = new ArrayList<Carta>();
+	ArrayList<Carta> winsRival = new ArrayList<Carta>();
+
+	ArrayList<String> playerFuego = new ArrayList<String>();
+	ArrayList<String> playerAgua = new ArrayList<String>();
+	ArrayList<String> playerNieve = new ArrayList<String>();
+	ArrayList<String> playerElementoDiferente = new ArrayList<String>();
+
+	ArrayList<String> rivalFuego = new ArrayList<String>();
+	ArrayList<String> rivalAgua = new ArrayList<String>();
+	ArrayList<String> rivalNieve = new ArrayList<String>();
+	ArrayList<String> rivalElementoDiferente = new ArrayList<String>();
+	
 	Scanner sc = new Scanner(System.in);
 
     public Gameplay(User usuario) {
@@ -79,7 +91,7 @@ public class Gameplay {
 			System.out.println("Tu carta: "+cartaJugador.getElemento()+" - "+cartaJugador.getColor()+" - "+cartaJugador.getNumero()+"\n");
 			System.out.println("Carta del sensei: "+cartaRival.getElemento()+" - "+cartaRival.getColor()+" - "+cartaRival.getNumero()+"\n");
 
-			cartaGanadora(cartaJugador,cartaRival);
+			rondaGanador(cartaJugador,cartaRival);
 			System.out.println("Fuego: -> Jugador: "+fuegoWinP+" <-  ---------------  -> Sensei: "+fuegoWinR);
 			System.out.println("Agua: -> Jugador: "+aguaWinP+" <-  ---------------  -> Sensei: "+aguaWinR);
 			System.out.println("Nieve: -> Jugador: "+nieveWinP+" <-  ---------------  -> Sensei: "+nieveWinR);
@@ -90,166 +102,145 @@ public class Gameplay {
 			System.out.println("DD FINAL ALLWIN PLAYER="+allWins[2][0]+allWins[2][1]+allWins[2][2]);
 			System.out.println("SD FINAL ALLWIN PLAYER="+allWins[3][0]+allWins[3][1]+allWins[3][2]);
 			System.out.println();
-			hayGanador=terminarPartida(hayGanador);
+			hayGanador=partidaGanador(hayGanador);
 		}
 		
 	}
-	public void cartaGanadora(Carta cartaJugador, Carta cartaRival){
+	public void rondaGanador(Carta cartaJugador, Carta cartaRival){
 		String playerElement = cartaJugador.getElemento(), playerColor = cartaJugador.getColor();
 		byte playerNumber = cartaJugador.getNumero();
 		String rivalElement = cartaRival.getElemento(), rivalColor = cartaRival.getColor();
 		byte rivalNumber = cartaRival.getNumero();
+		//En caso que ambos jugadores sacaran mismo elemento
 		if (playerElement.equals(rivalElement)) {
 			if (playerNumber > rivalNumber) {
 				System.out.println("Ganaste la ronda!");
 			    if(playerElement.equals("Fuego")) {
+					winsPlayer.add(cartaJugador);
 					fuegoWinP.add(playerColor);
 				}
 				if(playerElement.equals("Agua")) {
+					winsPlayer.add(cartaJugador);
 					aguaWinP.add(playerColor);
 				}
 				if(playerElement.equals("Nieve")) {
+					winsPlayer.add(cartaJugador);
 					nieveWinP.add(playerColor);
 				}
 			} else if (playerNumber < rivalNumber) {
 				System.out.println("Perdiste la ronda!");
 				if(rivalElement.equals("Fuego")) {
+					winsRival.add(cartaRival);
 					fuegoWinR.add(rivalColor);
 				}
 				if(rivalElement.equals("Agua")) {
+					winsRival.add(cartaRival);
 					aguaWinR.add(rivalColor);
 				}
 				if(rivalElement.equals("Nieve")) {
+					winsRival.add(cartaRival);
 					nieveWinR.add(rivalColor);
 				}
 			} else {
 				System.out.println("Empate!");
 			}
+		//En caso que sean elementos diferentes
 		} else if ((playerElement.equals("Fuego") && rivalElement.equals("Nieve"))
 				|| (playerElement.equals("Agua") && rivalElement.equals("Fuego"))
 				|| (playerElement.equals("Nieve") && rivalElement.equals("Agua"))) {
 			System.out.println("Ganaste la ronda!");
 			System.out.println();
 			if(playerElement.equals("Fuego")) {
+				winsPlayer.add(cartaJugador);
 				fuegoWinP.add(playerColor);
 			}
 			if(playerElement.equals("Agua")) {
+				winsPlayer.add(cartaJugador);
 				aguaWinP.add(playerColor);
 			}
 			if(playerElement.equals("Nieve")) {
+				winsPlayer.add(cartaJugador);
 				nieveWinP.add(playerColor);
 			}
 		} else {
 			System.out.println("Perdiste la ronda!");
 			System.out.println();
 			if(rivalElement.equals("Fuego")) {
+				winsRival.add(cartaRival);
 				fuegoWinR.add(rivalColor);
 			}
 			if(rivalElement.equals("Agua")) {
+				winsRival.add(cartaRival);
 				aguaWinR.add(rivalColor);
 			}
 			if(rivalElement.equals("Nieve")) {
+				winsRival.add(cartaRival);
 				nieveWinR.add(rivalColor);
 			}
 		}
-		boolean victory = false;
-		for (String colorF : fuegoWinP) {
-			for (String colorA : aguaWinP) {
-				for (String colorN : nieveWinP) {
-					if (allWinP.add(colorF)){
-						allWins[0][0]=colorF;
-						allWinP.add(colorF);
-					}
-					System.out.println("FIRE FOR="+allWinP+allWins[0][0]); 
-					if (allWinP.add(colorA)){
-						allWins[0][1]=colorA;
-						allWinP.add(colorA);
-					}
-					System.out.println("WATER FOR="+allWinP+allWins[0][1]); 
-					if (allWinP.add(colorN)){
-						allWins[0][2]=colorN;
-						allWinP.add(colorN);
-					}
-					System.out.println("WINTER FOR="+allWinP+allWins[0][2]); 
-					if(allWinP.size()>=3) victory = true;
-					if(victory)break;
-					else allWinP.remove(colorN);
-				}
-				if(victory)break;
-				else allWinP.remove(colorA);
-			}
-			if(victory)break;
-			else {
-				allWinP.remove(colorF); 
-				allWinP.clear();
-			}
-		}
-		for (String colorF : fuegoWinR) {
-			for (String colorA : aguaWinR) {
-				for (String colorN : nieveWinR) {
-					if (allWinR.add(colorF)){
-						allWins[2][0]=colorF;
-						allWinR.add(colorF);
-					}
-					if (allWinR.add(colorA)){
-						allWins[2][1]=colorA;
-						allWinR.add(colorA);
-					}
-					if (allWinR.add(colorN)){
-						allWins[2][2]=colorN;
-						allWinR.add(colorN);
-					}
-					if(allWinR.size()>=3) victory = true;
-					if(victory)break;
-					else allWinR.remove(colorN);
-				}
-				if(victory)break;
-				else allWinR.remove(colorA);
-			}
-			if(victory)break;
-			else {
-				allWinR.remove(colorF); 
-				allWinR.clear();
-			}
-		}
-		if(fuegoWinP.size()>=3){
-			fuegoWinP.toArray(allWins[1]);
-		}
-		if(aguaWinP.size()>=3){
-			aguaWinP.toArray(allWins[1]);
-		}
-		if(allWinP.size()>=3){
-			nieveWinP.toArray(allWins[1]);
-		}
-		if(fuegoWinR.size()>=3){
-			fuegoWinR.toArray(allWins[3]);
-		}
-		if(aguaWinR.size()>=3){
-			aguaWinR.toArray(allWins[3]);
-		}
-		if(allWinR.size()>=3){
-			nieveWinR.toArray(allWins[3]);
-		}
 	}
-	public boolean terminarPartida(boolean hayGanador){
-		if(fuegoWinP.size()>=3 ||aguaWinP.size()>=3 || nieveWinP.size()>=3 || allWinP.size()>=3) {
+	public boolean partidaGanador(boolean hayGanador){
+		//mecanismo de alamacenamiento para victorias de elementos iguales con colores diferentes
+		for(int i = 0; i < winsPlayer.size(); i++) {
+			if (winsPlayer.get(i).getElemento().equals("Fuego") && !playerFuego.contains(winsPlayer.get(i).getColor())){
+				playerFuego.add(winsPlayer.get(i).getColor());
+			}
+			else if (winsPlayer.get(i).getElemento().equals("Agua") && !playerAgua.contains(winsPlayer.get(i).getColor())){
+				playerAgua.add(winsPlayer.get(i).getColor());
+			}
+			else if (winsPlayer.get(i).getElemento().equals("Nieve") && !playerNieve.contains(winsPlayer.get(i).getColor())){
+				playerNieve.add(winsPlayer.get(i).getColor());
+			}
+		}
+		for(int i = 0; i < winsRival.size(); i++) {
+			if (winsRival.get(i).getElemento().equals("Fuego") && !rivalFuego.contains(winsRival.get(i).getColor())){
+				rivalFuego.add(winsRival.get(i).getColor());
+			}
+			else if (winsRival.get(i).getElemento().equals("Agua") && !rivalAgua.contains(winsRival.get(i).getColor())){
+				rivalAgua.add(winsRival.get(i).getColor());
+			}
+			else if (winsRival.get(i).getElemento().equals("Nieve") && !rivalNieve.contains(winsRival.get(i).getColor())){
+				rivalNieve.add(winsRival.get(i).getColor());
+			}
+		}
+		//mecanismo de combinaciones sin repeticion entre las cartas y sus colores, para mecanismo de vicotrias de elementos diferentes con colores diferentes
+		for(int i = 0; i < playerFuego.size(); i++) {
+			for(int j = 0; j < playerAgua.size(); j++) {
+				for(int k = 0; k < playerNieve.size(); k++) {
+					if (!playerFuego.get(i).equals(playerAgua.get(j)) && !playerFuego.get(i).equals(playerNieve.get(k)) && !playerAgua.get(j).equals(playerNieve.get(k))){
+						playerElementoDiferente.add(playerFuego.get(i));
+						playerElementoDiferente.add(playerAgua.get(j));
+						playerElementoDiferente.add(playerNieve.get(k));
+					}
+				}
+			}
+		}
+		for(int i = 0; i < rivalFuego.size(); i++) {
+			for(int j = 0; j < rivalAgua.size(); j++) {
+				for(int k = 0; k < rivalNieve.size(); k++) {
+					if (!rivalFuego.get(i).equals(rivalAgua.get(j)) && !rivalFuego.get(i).equals(rivalNieve.get(k)) && !rivalAgua.get(j).equals(rivalNieve.get(k))){
+						rivalElementoDiferente.add(rivalFuego.get(i));
+						rivalElementoDiferente.add(rivalAgua.get(j));
+						rivalElementoDiferente.add(rivalNieve.get(k));
+					}
+				}
+			}
+		}
+		//verificar si ya hay alguna victoria
+		if(playerFuego.size()>=3 ||playerAgua.size()>=3 || playerNieve.size()>=3 || playerElementoDiferente.size()>=3) {
 			System.out.println("¡Felicidades, ganaste el juego!");
 			System.out.println();
 			int puntaje = usuario.getPuntaje()+5;
 			usuario.setPuntaje(puntaje);
 			hayGanador = true;
 		}
-		if(fuegoWinR.size()>=3 ||aguaWinR.size()>=3 || nieveWinR.size()>=3 || allWinR.size()>=3) {
+		if(rivalFuego.size()>=3 ||rivalAgua.size()>=3 || rivalNieve.size()>=3 || rivalElementoDiferente.size()>=3) {
 			System.out.println("¡Lo sentimos, perdiste el juego!");
 			System.out.println();
 			int puntaje = usuario.getPuntaje()-2;
 			usuario.setPuntaje(puntaje);
 			hayGanador = true;
 		}
-		/*
-		si <elemento>Win.size()>=3 entonces se gano con cartas del mismo elemento
-		si allWin.size()>=3 entonces se gano con cartas de diferentes elementos
-		 */
 		return hayGanador;
 	}
 }

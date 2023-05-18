@@ -8,7 +8,4 @@ public class Controller {
 		VentanaPrincipal v1 = new VentanaPrincipal();
 		v1.ejecutarPrincipal();
 	}
-	public void end(){
-		return;
-	}
 }

@@ -3,8 +3,6 @@ package co.edu.unbosque.model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import co.edu.unbosque.controller.Controller;
-
 public class VentanaPrincipal {
     private byte id;
     private ArrayList<User> usuarios = new ArrayList<User>();
@@ -51,10 +49,6 @@ public class VentanaPrincipal {
 	                System.out.println("Opcion invalida. Por favor, seleccione una opcion valida.");
 	                break;
 	        }
-			if (!seguirEjecutando1) {
-				Controller c = new Controller();
-				c.end();
-			}
 	    }
 	}
     public void crearUsuario(){
