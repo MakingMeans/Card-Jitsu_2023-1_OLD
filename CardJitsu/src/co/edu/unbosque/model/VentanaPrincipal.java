@@ -52,6 +52,8 @@ public class VentanaPrincipal {
 	    }
 	}
     public void crearUsuario(){
+		Data dat = new Data();
+		boolean stop = false;
         System.out.print("Digite el nombre de usuario --> ");
         name = sc.next();
         int puntaje=0;
@@ -59,10 +61,11 @@ public class VentanaPrincipal {
 			for(int j=0;j<this.usuarios.size();j++){
 				if(this.usuarios.get(j).getName().equals(name)) {
 					System.out.println("ERROR-->USUARIOS REPETIDOS");
-					ejecutarPrincipal();
+					stop = true;
 				}
 			}
 		}
+		if(stop==true) return;
 		byte i= (byte)this.usuarios.size();
 		this.usuarios.add(new User(name, puntaje, i));
 		Mazo mazo = new Mazo();
@@ -73,6 +76,7 @@ public class VentanaPrincipal {
 		for(int j=0;j<this.usuarios.size();j++){
 			System.out.println(this.usuarios.get(j).getName());
 		}
+		dat.saveData(usuarios);
     }
 	public void ingresarUsuario(){
 		if(this.usuarios.size()==0) {

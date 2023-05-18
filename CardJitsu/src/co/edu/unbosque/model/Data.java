@@ -9,8 +9,9 @@ import java.util.ArrayList;
 
 public class Data {
     private ArrayList<User> usuarios = new ArrayList<User>();
-    public void saveData(){
+    public void saveData(ArrayList<User> usuarios){
 		try {
+			this.usuarios = usuarios;
 			FileOutputStream fileOut = new FileOutputStream("usersData.txt");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(this.usuarios);
@@ -21,6 +22,7 @@ public class Data {
 			e.printStackTrace();
 		}
 	}
+	@SuppressWarnings("unchecked")
     public ArrayList<User> loadData(){
         try {
 			FileInputStream fileIn = new FileInputStream("usersData.txt");

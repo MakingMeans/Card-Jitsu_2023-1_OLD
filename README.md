@@ -6,9 +6,11 @@
 Trabajen :) *los azota fuertemente*
 
 **COSAS POR HACER**
-+ Seprar cosas del Gameplay por funciones.
 + Llamar el comando save y load Data en donde se necesite.
-+ Corregir error al intentar salirse del programa despues de haber hecho un log-out.
++ Los metodos que devuleven deben devolverse solo mediante breaks; o return; NO CON OTRAS FUNCIONES!
++ Organizar las ventanas como dice Valeria.
++ Aprender a hacer timers.
++ Aprender a explicar la data.
 + Crear modo USER vs USER.
 
 **Lista de Contenidos**
