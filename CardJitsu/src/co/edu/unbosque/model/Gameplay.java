@@ -35,7 +35,7 @@ public class Gameplay {
 	ArrayList<String> rivalAgua = new ArrayList<String>();
 	ArrayList<String> rivalNieve = new ArrayList<String>();
 	ArrayList<String> rivalElementoDiferente = new ArrayList<String>();
-	
+
 	Scanner sc = new Scanner(System.in);
 
     public Gameplay(User usuario) {
@@ -69,6 +69,7 @@ public class Gameplay {
 			System.out.println("Elige tu carta ----->");
 			seleccion = sc.nextInt();
 			int xCarta = seleccion;
+			System.out.println("Seleccionaste: " + seleccion);
 			switch(seleccion) {
 				case 1: cartaJugador=new Carta(card[randomCarta[0]].getElemento(), card[randomCarta[0]].getNumero(), card[randomCarta[0]].getColor());
 				break;
@@ -104,7 +105,6 @@ public class Gameplay {
 			System.out.println();
 			hayGanador=partidaGanador(hayGanador);
 		}
-		
 	}
 	public void rondaGanador(Carta cartaJugador, Carta cartaRival){
 		String playerElement = cartaJugador.getElemento(), playerColor = cartaJugador.getColor();

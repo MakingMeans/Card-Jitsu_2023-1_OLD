@@ -23,7 +23,6 @@ public class VentanaPrincipal {
 
     public void ejecutarPrincipal() {
 	    boolean seguirEjecutando1 = true;
-        VentanaSecundaria v2 = new VentanaSecundaria();
 
         this.usuarios = temporalData();
         System.out.println("DATA USUARIO ENTRA V1= "+usuarios);
@@ -40,7 +39,6 @@ public class VentanaPrincipal {
 	                break;
 	            case 2:
 	                ingresarUsuario();
-	                v2.ejecutarSecundaria();
 	                break;
 	            case 3:
 	                seguirEjecutando1 = false;
@@ -52,7 +50,6 @@ public class VentanaPrincipal {
 	    }
 	}
     public void crearUsuario(){
-		Data dat = new Data();
 		boolean stop = false;
         System.out.print("Digite el nombre de usuario --> ");
         name = sc.next();
@@ -76,17 +73,19 @@ public class VentanaPrincipal {
 		for(int j=0;j<this.usuarios.size();j++){
 			System.out.println(this.usuarios.get(j).getName());
 		}
+		Data dat = new Data();
 		dat.saveData(usuarios);
     }
 	public void ingresarUsuario(){
+		VentanaSecundaria v2 = new VentanaSecundaria();
 		if(this.usuarios.size()==0) {
 			System.out.println("No hay usuarios registrados");
 			ejecutarPrincipal();
 		}
 		System.out.print("Digite su nombre de usuario --> ");
         name = sc.next();
+
 		boolean success = false;
-        
         for(byte i=0;i<this.usuarios.size();i++){
 	        if(this.usuarios.get(i).getName().equals(name)) {
 	        	System.out.println("Bienvenido "+name+"\n");
@@ -98,6 +97,6 @@ public class VentanaPrincipal {
 		if(!success){
 			System.out.println("Su usuario es incorrecto");
 			ejecutarPrincipal();
-		}
+		}else v2.ejecutarSecundaria();
     }
 }

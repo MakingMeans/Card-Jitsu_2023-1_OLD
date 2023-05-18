@@ -30,30 +30,24 @@ public class VentanaSecundaria {
 	        switch(seleccionSecundaria) {
 		        case 1:
 		            datosUsuario();
-		            ejecutarSecundaria();
 		            break;
 		        case 2:
 		        	asignarMazoCustom();
-		        	ejecutarSecundaria();
 		        	break;
 				case 3:
 		        	asignarMazoAleatorio();
-		        	ejecutarSecundaria();
 		        	break;
 		        case 4:
 		        	mostrarMazo();
-		        	ejecutarSecundaria();
 		        	break;
 		        case 5:
 		        	jugarCPU();
-		        	ejecutarSecundaria();
 		        	break;
 		        case 6:
 					seguirEjecutando2 = false;
 		        	break;
 		        default:
 		        	System.out.println("Opcion invalida. Por favor, seleccione una opcion valida.");
-		        	ejecutarSecundaria();
 	                break;
 		    }
 	    }
@@ -69,11 +63,15 @@ public class VentanaSecundaria {
 		Mazo mazo = new Mazo();
 		usuarios.get(id).setMazo(mazo.crearMazoAl());
 		System.out.println("Se ha asignado un mazo aleatorio al usuario " + usuarios.get(id).getName()+"\n"); 
+		Data dat = new Data();
+		dat.saveData(usuarios);
 	}
 	public void asignarMazoCustom() {
 		Mazo mazo = new Mazo();
 		usuarios.get(id).setMazo(mazo.crearMazoCus());
 		System.out.println("Se ha asignado un mazo custom al usuario " + usuarios.get(id).getName()+"\n"); 
+		Data dat = new Data();
+		dat.saveData(usuarios);
 	}
 	public void mostrarMazo() {	
         Carta baraja[]=new Carta[30];
@@ -87,5 +85,7 @@ public class VentanaSecundaria {
 	    Gameplay match = new Gameplay(usuario); 
 		match.partidaTEST();       
 		match.partidaCPU();
+		Data dat = new Data();
+		dat.saveData(usuarios);
 	}
 }
