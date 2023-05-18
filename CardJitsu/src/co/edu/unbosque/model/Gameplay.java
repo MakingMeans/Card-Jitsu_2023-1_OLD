@@ -2,7 +2,6 @@ package co.edu.unbosque.model;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
-
 import java.util.HashSet;
 
 public class Gameplay {
@@ -25,6 +24,7 @@ public class Gameplay {
 	fila 2: playerSD
 	fila 3: rivalDD
 	fila 4: rivalSD*/
+	Scanner sc = new Scanner(System.in);
 
     public Gameplay(User usuario) {
 		this.usuario = usuario;
@@ -33,7 +33,6 @@ public class Gameplay {
         System.out.println("Usuario: " + usuario.getName());
     }
     public void partidaCPU() {
-		Scanner sc = new Scanner(System.in);
         Random rand = new Random();
 
         Mazo mazo = new Mazo();

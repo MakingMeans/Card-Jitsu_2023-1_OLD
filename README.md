@@ -7,6 +7,8 @@ Trabajen :) *los azota fuertemente*
 
 **COSAS POR HACER**
 + Seprar cosas del Gameplay por funciones.
++ Llamar el comando save y load Data en donde se necesite.
++ Corregir error al intentar salirse del programa despues de haber hecho un log-out.
 + Crear modo USER vs USER.
 
 **Lista de Contenidos**
@@ -18,6 +20,9 @@ Trabajen :) *los azota fuertemente*
   + Mazo: Contiene 30 cartas.
   + User: Contine 3 atributos (nombre, puntaje, id).
   + Gameplay: Mecanicas principales de juego.
+  + Data: Ejecuta y controla los mecanismos de carga y guardado de la data de usuario.
+  + VentanaPrincipal: Contiene las funciones primarias.
+  + VentanaSecundaria: Contiene las funciones secundarias.
 + VISTA
   + Interfaz (Aun no): Ambiente gráfico.
 
