@@ -18,42 +18,42 @@ public class MenuPrincipal extends JFrame {
         InterfazPanel panel = new InterfazPanel();
         
         //Declaracion de boton de musica
-        ImageIcon iMus = new ImageIcon("/co/edu/unbosque/view/imagenesInterfaz/Transparente.png");
+        ImageIcon iMus = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         JButton btnMus = new JButton(iMus);
         btnMus.setBounds(0, 0, 70, 75);
         btnMus.setContentAreaFilled(false); //Contenido
         btnMus.setBorderPainted(true); //Borde
         add(btnMus);
         
-        ImageIcon iJug = new ImageIcon("/co/edu/unbosque/view/imagenesInterfaz/Transparente.png");
+        ImageIcon iJug = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         JButton btnJug = new JButton(iJug);
         btnJug.setBounds(850, 50, 195, 52);
         btnJug.setContentAreaFilled(false);
         btnJug.setBorderPainted(true);
         add(btnJug);
         
-        ImageIcon iMaz = new ImageIcon("/co/edu/unbosque/view/imagenesInterfaz/Transparente.png");
+        ImageIcon iMaz = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         JButton btnMaz = new JButton(iMaz);
         btnMaz.setBounds(838, 112, 195, 52);
         btnMaz.setContentAreaFilled(false);
         btnMaz.setBorderPainted(true);
         add(btnMaz);
         
-        ImageIcon iTut = new ImageIcon("/co/edu/unbosque/view/imagenesInterfaz/Transparente.png");
+        ImageIcon iTut = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         JButton btnTut = new JButton(iTut);
         btnTut.setBounds(850, 174, 195, 52);
         btnTut.setContentAreaFilled(false);
         btnTut.setBorderPainted(true);
         add(btnTut);
         
-        ImageIcon iCue = new ImageIcon("/co/edu/unbosque/view/imagenesInterfaz/Transparente.png");
+        ImageIcon iCue = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         JButton btnCue = new JButton(iCue);
         btnCue.setBounds(838, 237, 195, 52);
         btnCue.setContentAreaFilled(false);
         btnCue.setBorderPainted(true);
         add(btnCue);
         
-        ImageIcon iSal = new ImageIcon("/co/edu/unbosque/view/imagenesInterfaz/Transparente.png");
+        ImageIcon iSal = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         JButton btnSal = new JButton(iSal);
         btnSal.setBounds(850, 300, 195, 52);
         btnSal.setContentAreaFilled(false);
@@ -85,10 +85,10 @@ public class MenuPrincipal extends JFrame {
         private ImageIcon iMaeNie;
 
         public InterfazPanel() {
-            iMenu = new ImageIcon(getClass().getResource("/co/edu/unbosque/view/imagenesInterfaz/Menu.png"));
-            iMaeFue = new ImageIcon(getClass().getResource("/co/edu/unbosque/view/imagenesInterfaz/MaestroFuego.png"));
-            iMaeAgu = new ImageIcon(getClass().getResource("/co/edu/unbosque/view/imagenesInterfaz/MaestroAgua.png"));
-            iMaeNie = new ImageIcon(getClass().getResource("/co/edu/unbosque/view/imagenesInterfaz/MaestroNieve.png"));
+            iMenu = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/Menu.png"));
+            iMaeFue = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/MaestroFuego.png"));
+            iMaeAgu = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/MaestroAgua.png"));
+            iMaeNie = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/MaestroNieve.png"));
         }
 
         @Override

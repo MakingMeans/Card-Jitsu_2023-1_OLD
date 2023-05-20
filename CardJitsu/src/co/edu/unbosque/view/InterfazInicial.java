@@ -18,17 +18,17 @@ public class InterfazInicial extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         InterfazInicialPanel panel = new InterfazInicialPanel();
-        ImageIcon iNueU = new ImageIcon("/co/edu/unbosque/view/imagenesInterfaz/Transparente.png");
+        ImageIcon iNueU = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnNueU = new JButton(iNueU);
         btnNueU.setBounds(22, 168, 643, 98);
         btnNueU.setContentAreaFilled(false);
         btnNueU.setBorderPainted(true);
-        ImageIcon iIniS = new ImageIcon("/co/edu/unbosque/view/imagenesInterfaz/Transparente.png");
+        ImageIcon iIniS = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnIniS = new JButton(iIniS);
         btnIniS.setBounds(22, 280, 643, 98);
         btnIniS.setContentAreaFilled(false);
         btnIniS.setBorderPainted(true);
-        ImageIcon iSal = new ImageIcon("/co/edu/unbosque/view/imagenesInterfaz/Transparente.png");
+        ImageIcon iSal = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnSal = new JButton(iSal);
         btnSal.setBounds(22, 392, 643, 98);
         btnSal.setContentAreaFilled(false);
@@ -42,7 +42,7 @@ public class InterfazInicial extends JFrame {
         private static final long serialVersionUID = 1L;
         private ImageIcon iVenIniSes;
         public InterfazInicialPanel() {
-            iVenIniSes = new ImageIcon(getClass().getResource("/co/edu/unbosque/view/imagenesInterfaz/VentanaIS.png"));
+            iVenIniSes = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/VentanaIS.png"));
         }
         @Override
         protected void paintComponent(Graphics g) {

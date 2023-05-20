@@ -30,12 +30,12 @@ public class UserLogin extends JFrame {
         digD.setBackground(new Color(159, 108, 63));
         digD.setForeground(Color.white);
         digD.setHorizontalAlignment(JTextField.CENTER);
-        ImageIcon iConf = new ImageIcon("/co/edu/unbosque/view/imagenesInterfaz/Transparente.png");
+        ImageIcon iConf = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnConf = new JButton(iConf);
         btnConf.setBounds(10, 100, 158, 71);
         btnConf.setContentAreaFilled(false);
         btnConf.setBorderPainted(true);
-        ImageIcon iVol = new ImageIcon("/co/edu/unbosque/view/imagenesInterfaz/Transparente.png");
+        ImageIcon iVol = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnVol = new JButton(iVol);
         btnVol.setBounds(168, 100, 158, 71);
         btnVol.setContentAreaFilled(false);
@@ -49,7 +49,7 @@ public class UserLogin extends JFrame {
         private static final long serialVersionUID = 1L;
         private ImageIcon iVenIniSes;
         public InterfazDigitacionPanel() {
-            iVenIniSes = new ImageIcon(getClass().getResource("/co/edu/unbosque/view/imagenesInterfaz/DigitacionU.png"));
+            iVenIniSes = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/DigitacionU.png"));
         }
         @Override
         protected void paintComponent(Graphics g) {
