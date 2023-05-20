@@ -6,10 +6,7 @@
 Trabajen :) *los azota fuertemente*
 
 **COSAS POR HACER**
-+ Organizar las ventanas como dice Valeria.
-+ Aprender a explicar la data.
-+ Poner dificultades al bot.
-+ DESPUES DE ESTO EMPEZAR INTERFAZ!
++ Interfaz Grafica xdddd
 
 **Lista de Contenidos**
 + CONTROLADOR
