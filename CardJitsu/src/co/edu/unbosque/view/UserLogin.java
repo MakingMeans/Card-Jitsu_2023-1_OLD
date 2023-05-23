@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,14 +23,14 @@ public class UserLogin extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         InterfazDigitacionPanel panel = new InterfazDigitacionPanel();
-        digD = new JTextFieldConTextoDeFondo("Digite su usuario.");
+        digD = new JTextFieldConTextoDeFondo("    Usuario");
         digD.setBounds(16, 18, 304, 58);
         digD.setEditable(true);
         digD.setEnabled(true);
         Font customFont= new Font("Arial", Font.PLAIN, 50);
         try {
         	customFont = Font.createFont(Font.TRUETYPE_FONT, 
-            		new File("src/co/edu/unbosque/assets/fonts/Pixels.ttf")).deriveFont(Font.PLAIN, 50);
+            		new File("src/co/edu/unbosque/assets/fonts/Pixellari.ttf")).deriveFont(Font.PLAIN, 50);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }
