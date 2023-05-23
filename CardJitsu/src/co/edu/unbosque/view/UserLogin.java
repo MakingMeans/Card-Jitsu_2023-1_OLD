@@ -1,8 +1,12 @@
 package co.edu.unbosque.view;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,20 +28,25 @@ public class UserLogin extends JFrame {
         digD.setBounds(16, 18, 304, 58);
         digD.setEditable(true);
         digD.setEnabled(true);
-        digD.setFont(new Font("Arial", Font.PLAIN, 50));
-        /*Font pixelsFont = Font.createFont(Font.TRUETYPE_FONT, new File("Pixels.ttf")).deriveFont(Font.PLAIN, 50);
-        digD.setFont(pixelsFont);*/
+        Font customFont= new Font("Arial", Font.PLAIN, 50);
+        try {
+        	customFont = Font.createFont(Font.TRUETYPE_FONT, 
+            		new File("src/co/edu/unbosque/assets/fonts/Pixels.ttf")).deriveFont(Font.PLAIN, 50);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+        digD.setFont(customFont);
         digD.setBackground(new Color(159, 108, 63));
         digD.setForeground(Color.white);
         digD.setHorizontalAlignment(JTextField.CENTER);
         ImageIcon iConf = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnConf = new JButton(iConf);
-        btnConf.setBounds(10, 100, 158, 71);
+        btnConf.setBounds(168, 100, 158, 71);
         btnConf.setContentAreaFilled(false);
         btnConf.setBorderPainted(true);
         ImageIcon iVol = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnVol = new JButton(iVol);
-        btnVol.setBounds(168, 100, 158, 71);
+        btnVol.setBounds(10, 100, 158, 71);
         btnVol.setContentAreaFilled(false);
         btnVol.setBorderPainted(true);
         add(digD);

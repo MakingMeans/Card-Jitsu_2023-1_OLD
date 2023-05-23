@@ -2,28 +2,35 @@ package co.edu.unbosque.controller;
 import co.edu.unbosque.model.FuncionesPrincipales;
 import co.edu.unbosque.view.*;
 
-import java.awt.Color;
+//import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JOptionPane; 
 
 public class Controller implements ActionListener{
 	private InterfazInicial inicial;
-	private UserCreate userCreate;
+	private UserLogin userCreate;
 	private UserLogin userLogin;
 	private MenuPrincipal mainMenu;
+	private AreYouSure userOptions;
+	private AreYouSure preventSalida;
+	private AreYouSure preventSesion;
 	private FuncionesPrincipales funcionesPrimarias;
+	boolean volume = false;
 	public Controller() {
 		inicial=new InterfazInicial();
-		userCreate=new UserCreate();
+		userCreate=new UserLogin();
 		userLogin=new UserLogin();
 		mainMenu=new MenuPrincipal();
+		userOptions=new AreYouSure();
+		preventSesion=new AreYouSure();
+		preventSalida=new AreYouSure();
 		funcionesPrimarias=new FuncionesPrincipales();
 		agregarLectores();
 	}
 	public void start(){
 		inicial.setVisible(true);
+		funcionesPrimarias.reproducirMusica();
 		/*VentanaPrincipal v1 = new VentanaPrincipal();
 		v1.ejecutarPrincipal();*/
 	}
@@ -38,17 +45,52 @@ public class Controller implements ActionListener{
 		inicial.getBtnSal().setActionCommand("btnSalir");
 		
 		userCreate.getBtnConf().addActionListener(this);
-		userCreate.getBtnConf().setActionCommand("btnConfirm1");
+		userCreate.getBtnConf().setActionCommand("btnConfirmCrear");
 		
 		userCreate.getBtnVol().addActionListener(this);
-		userCreate.getBtnVol().setActionCommand("btnVolver1");
+		userCreate.getBtnVol().setActionCommand("btnVolverCrear");
 		
 		userLogin.getBtnConf().addActionListener(this);
-		userLogin.getBtnConf().setActionCommand("btnConfirm2");
+		userLogin.getBtnConf().setActionCommand("btnConfirmLogin");
 		
 		userLogin.getBtnVol().addActionListener(this);
-		userLogin.getBtnVol().setActionCommand("btnVolver2");
+		userLogin.getBtnVol().setActionCommand("btnVolverLogin");
 		
+		mainMenu.getBtnMus().addActionListener(this);
+		mainMenu.getBtnMus().setActionCommand("btnMusicaMain");
+		
+		mainMenu.getBtnJug().addActionListener(this);
+		mainMenu.getBtnJug().setActionCommand("btnJugarMain");
+		
+		mainMenu.getBtnMaz().addActionListener(this);
+		mainMenu.getBtnMaz().setActionCommand("btnMazoMain");
+		
+		mainMenu.getBtnTut().addActionListener(this);
+		mainMenu.getBtnTut().setActionCommand("btnTutorialMain");
+		
+		mainMenu.getBtnCue().addActionListener(this);
+		mainMenu.getBtnCue().setActionCommand("btnCuentaMain");
+		
+		mainMenu.getBtnSal().addActionListener(this);
+		mainMenu.getBtnSal().setActionCommand("btnSalirMain");
+		
+		userOptions.getBtnConf().addActionListener(this);
+		userOptions.getBtnConf().setActionCommand("btnStats");
+		
+		userOptions.getBtnVol().addActionListener(this);
+		userOptions.getBtnVol().setActionCommand("btnCerrar");
+		
+		preventSesion.getBtnConf().addActionListener(this);
+		preventSesion.getBtnConf().setActionCommand("btnConfirmSesion");
+		
+		preventSesion.getBtnVol().addActionListener(this);
+		preventSesion.getBtnVol().setActionCommand("btnVolverSesion");
+		
+		preventSalida.getBtnConf().addActionListener(this);
+		preventSalida.getBtnConf().setActionCommand("btnConfirmSURE");
+		
+		preventSalida.getBtnVol().addActionListener(this);
+		preventSalida.getBtnVol().setActionCommand("btnVolverSURE");
 		/*vi.getBtn2().addActionListener(this);
 		vi.getBtn2().setActionCommand("btn2click");*/
 	}
@@ -71,7 +113,7 @@ public class Controller implements ActionListener{
 				System.exit(0);
 				break;
 			}
-			case "btnConfirm1":{
+			case "btnConfirmCrear":{
 				String name = userCreate.getDigD().getText();;
 				boolean error = funcionesPrimarias.crearUsuario(name);
 				System.out.println(error);
@@ -86,12 +128,12 @@ public class Controller implements ActionListener{
 				}
 				break;
 			}
-			case "btnVolver1":{
+			case "btnVolverCrear":{
 				inicial.setVisible(true);
 				userCreate.setVisible(false);
 				break;
 			}
-			case "btnConfirm2":{
+			case "btnConfirmLogin":{
 				String name = userLogin.getDigD().getText();;
 				boolean error = funcionesPrimarias.ingresarUsuario(name);
 				System.out.println(error);
@@ -103,12 +145,67 @@ public class Controller implements ActionListener{
 							JOptionPane.ERROR_MESSAGE);
 					mainMenu.setVisible(true);
 					userLogin.setVisible(false);
+					
 				}
 				break;
 			}
-			case "btnVolver2":{
+			case "btnVolverLogin":{
 				inicial.setVisible(true);
 				userLogin.setVisible(false);
+				break;
+			}
+			case "btnMusicaMain":{
+				//funcionesPrimarias.reproducirMucica();
+				FuncionesPrincipales.bajarVolumenACero();
+				
+				//System.out.println("XDDDDD");
+				if(volume) {
+					FuncionesPrincipales.restaurarVolumenOriginal();
+					volume= false;
+					//System.out.println("DDDDDDDX");
+					break;
+				}
+				volume = true;
+				break;
+			}
+			case "btnCuentaMain":{
+				userOptions.setVisible(true);
+			    mainMenu.setVisible(false);
+			    break;
+			}
+			case "btnStats":{
+				userOptions.setVisible(false);
+			    //hacer visibles stats
+			    break;
+			}
+			case "btnCerrar":{
+				preventSesion.setVisible(true);
+			    //mainMenu.setVisible(false);
+				break;
+			}
+			case "btnConfirmSesion":{
+				preventSesion.setVisible(false);
+				userOptions.setVisible(false);
+				inicial.setVisible(true);
+				break;
+			}
+			case "btnVolverSesion":{
+				preventSesion.setVisible(false);
+				//mainMenu.setVisible(true);
+				break;
+			}
+			case "btnSalirMain":{
+				preventSalida.setVisible(true);
+			    //mainMenu.setVisible(false);
+			    break;
+			}
+			case "btnConfirmSURE":{
+				System.exit(0);
+				break;
+			}
+			case "btnVolverSURE":{
+				preventSalida.setVisible(false);
+				//mainMenu.setVisible(true);
 				break;
 			}
 		/*case "btn2click":{

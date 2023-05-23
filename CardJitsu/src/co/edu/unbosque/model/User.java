@@ -1,10 +1,9 @@
 package co.edu.unbosque.model;
 
-//usuarios shit
 import java.io.Serializable;
 
 public class User implements Serializable{
-    //user solo recibe nombre, puntaje e id, pero se almacenan mas cosas en este
+	private static final long serialVersionUID = 1L;
     private String name,cinturon;
     private int puntaje, nextLv;
     private byte id;

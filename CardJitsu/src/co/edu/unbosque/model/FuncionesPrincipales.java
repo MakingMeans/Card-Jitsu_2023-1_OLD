@@ -1,4 +1,12 @@
 package co.edu.unbosque.model;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,7 +14,8 @@ import java.util.Scanner;
 public class FuncionesPrincipales {
     private byte id;
     private ArrayList<User> usuarios = new ArrayList<User>();
-
+    private static Clip clip;
+    private static float volumenOriginal;
 	String name;
 
     Scanner sc = new Scanner(System.in);
@@ -25,7 +34,47 @@ public class FuncionesPrincipales {
     public byte loginId(){
         return this.id;
     }
+    
+    public void reproducirMusica() {
+    	
+    	 try {
+             File audioFile = new File("src/co/edu/unbosque/assets/musica/Tutorial.wav");
+             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+             clip = AudioSystem.getClip();
+             clip.open(audioStream);
+             clip.start(); // Inicia la reproducción de la música
 
+             // Guardar volumen
+             guardarVolumenOriginal();
+
+             // Opcional: Reproducir en bucle continuo
+             clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+             // Espera un tiempo para que la música se reproduzca antes de que el programa termine
+             Thread.sleep(500000); // Por ejemplo, espera 5 segundos (5000 milisegundos)
+
+             // Detener la reproducción y liberar recursos al finalizar
+             clip.stop();
+             clip.close();
+
+         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException e) {
+             e.printStackTrace();
+         }
+     }
+
+     public static void bajarVolumenACero() {
+         FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+         control.setValue(control.getMinimum());
+     }
+     public static void guardarVolumenOriginal() {
+         FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+         volumenOriginal = control.getValue();
+     }
+     public static void restaurarVolumenOriginal() {
+         FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+         control.setValue(volumenOriginal);
+     }
+   
     public void ejecutarPrincipal() {
 	    boolean seguirEjecutando1 = true;
 
