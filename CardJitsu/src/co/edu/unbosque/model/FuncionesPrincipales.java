@@ -19,17 +19,12 @@ public class FuncionesPrincipales {
 	String name;
 
     Scanner sc = new Scanner(System.in);
-
-    /*public ArrayList<User> temporalData(){
-        Data dat = new Data();
-        this.usuarios = dat.loadData();
-        System.out.println("DATA USUARIO ENTRA V2= "+usuarios);
-        return this.usuarios;
-    }*/
     public void temporalData(){
         Data dat = new Data();
         this.usuarios = dat.loadData();
         System.out.println("DATA USUARIO ENTRA V2= "+usuarios);
+        //test user ranking
+        //this.usuarios.get(1).setPuntaje(this.usuarios.get(1).getPuntaje()+68);
     }
     public byte loginId(){
         return this.id;
@@ -38,7 +33,7 @@ public class FuncionesPrincipales {
     public void reproducirMusica() {
     	
     	 try {
-             File audioFile = new File("src/co/edu/unbosque/assets/musica/Tutorial.wav");
+             File audioFile = new File("src/co/edu/unbosque/assets/musica/Menu.wav");
              AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
              clip = AudioSystem.getClip();
              clip.open(audioStream);
@@ -158,5 +153,10 @@ public class FuncionesPrincipales {
 			System.out.println("Su usuario es incorrecto");
 			return stop=true;
 		}else return stop=false;
+    }
+	public User currentUser(){
+		temporalData();
+		User user=this.usuarios.get(id);
+		return user;
     }
 }

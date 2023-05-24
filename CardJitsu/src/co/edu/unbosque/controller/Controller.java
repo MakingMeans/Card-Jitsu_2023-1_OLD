@@ -15,6 +15,7 @@ public class Controller implements ActionListener{
 	private AreYouSure userOptions;
 	private AreYouSure preventSalida;
 	private AreYouSure preventSesion;
+	private Stats userStats;
 	private FuncionesPrincipales funcionesPrimarias;
 	boolean volume = false;
 	public Controller() {
@@ -25,6 +26,7 @@ public class Controller implements ActionListener{
 		userOptions=new AreYouSure();
 		preventSesion=new AreYouSure();
 		preventSalida=new AreYouSure();
+		userStats=new Stats();
 		funcionesPrimarias=new FuncionesPrincipales();
 		agregarLectores();
 	}
@@ -80,6 +82,9 @@ public class Controller implements ActionListener{
 		userOptions.getBtnVol().addActionListener(this);
 		userOptions.getBtnVol().setActionCommand("btnCerrar");
 		
+		userStats.getBtnSal().addActionListener(this);
+		userStats.getBtnSal().setActionCommand("btnSalirStats");
+		
 		preventSesion.getBtnConf().addActionListener(this);
 		preventSesion.getBtnConf().setActionCommand("btnConfirmSesion");
 		
@@ -100,11 +105,15 @@ public class Controller implements ActionListener{
 		//throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
 		switch(e.getActionCommand()) {
 			case "btnCrear":{
+				userCreate.setYesTxt("SingUp", 30f,200,110);;
+				userCreate.setNoTxt("Volver", 30f,35,110);;
 				inicial.setVisible(false);
 				userCreate.setVisible(true);
 				break;
 			}
 			case "btnIngresar":{
+				userLogin.setYesTxt("LogIn", 30f,200,110);;
+				userLogin.setNoTxt("Volver", 30f,35,110);;
 				inicial.setVisible(false);
 				userLogin.setVisible(true);
 				break;
@@ -141,8 +150,8 @@ public class Controller implements ActionListener{
 					JOptionPane.showMessageDialog(userLogin, "NO ES VALIDO", "Error", 
 							JOptionPane.ERROR_MESSAGE);
 				}else if(!error){
-					JOptionPane.showMessageDialog(userLogin, "ES VALIDO", "Error", 
-							JOptionPane.ERROR_MESSAGE);
+					//JOptionPane.showMessageDialog(userLogin, "ES VALIDO", "Error", 
+							//JOptionPane.ERROR_MESSAGE);
 					mainMenu.setVisible(true);
 					userLogin.setVisible(false);
 					
@@ -169,18 +178,32 @@ public class Controller implements ActionListener{
 				break;
 			}
 			case "btnCuentaMain":{
+				userOptions.setUserName(funcionesPrimarias.currentUser().getName());;
+				userOptions.setPreguntaTxt("Opciones Usuario:", 30f,40,10);;
+				userOptions.setYesTxt("Stats", 30f,200,110);;
+				userOptions.setNoTxt("LogOut", 30f,35,110);;
 				userOptions.setVisible(true);
 			    mainMenu.setVisible(false);
 			    break;
 			}
 			case "btnStats":{
+				userStats.setUserName(funcionesPrimarias.currentUser().getName(),funcionesPrimarias.currentUser().getId(),
+						funcionesPrimarias.currentUser().getCinturon(), funcionesPrimarias.currentUser().getPuntaje(),
+						funcionesPrimarias.currentUser().getNextLv());;
 				userOptions.setVisible(false);
+				userStats.setVisible(true);
 			    //hacer visibles stats
 			    break;
 			}
 			case "btnCerrar":{
+				preventSesion.setUserName(funcionesPrimarias.currentUser().getName()+"?");;
 				preventSesion.setVisible(true);
 			    //mainMenu.setVisible(false);
+				break;
+			}
+			case "btnSalirStats":{
+				userStats.setVisible(false);
+			    mainMenu.setVisible(true);
 				break;
 			}
 			case "btnConfirmSesion":{
@@ -195,6 +218,7 @@ public class Controller implements ActionListener{
 				break;
 			}
 			case "btnSalirMain":{
+				preventSalida.setUserName(funcionesPrimarias.currentUser().getName()+"?");;
 				preventSalida.setVisible(true);
 			    //mainMenu.setVisible(false);
 			    break;

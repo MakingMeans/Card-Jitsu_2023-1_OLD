@@ -55,6 +55,7 @@ public class User implements Serializable{
     }
     public int getNextLv(){
     	this.nextLv = 10-(this.puntaje%10);
+    	//if(this.puntaje>=90) this.nextLv = 0;
     	return this.nextLv;
     }
     public void setId(byte id){

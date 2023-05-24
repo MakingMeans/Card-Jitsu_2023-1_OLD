@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 public class UserLogin extends JFrame {
@@ -16,6 +17,8 @@ public class UserLogin extends JFrame {
     private JTextField digD;
     private JButton btnConf;
 	private JButton btnVol;
+	private JLabel yes;
+    private JLabel no;
 	public UserLogin() {
         setTitle("Retro Card-Jitsu");
         setSize(350, 225);
@@ -38,6 +41,14 @@ public class UserLogin extends JFrame {
         digD.setBackground(new Color(159, 108, 63));
         digD.setForeground(Color.white);
         digD.setHorizontalAlignment(JTextField.CENTER);
+        yes = new JLabel("Comfirmar");
+		yes.setBounds(225,110,400,50);
+		yes.setForeground(Color.BLACK);
+		yes.setFont(customFont);
+	    no = new JLabel("Volver");
+		no.setBounds(70,110,400,50);
+		no.setForeground(Color.BLACK);
+		no.setFont(customFont);
         ImageIcon iConf = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnConf = new JButton(iConf);
         btnConf.setBounds(168, 100, 158, 71);
@@ -51,6 +62,8 @@ public class UserLogin extends JFrame {
         add(digD);
         add(btnConf);
         add(btnVol);
+        add(yes);
+        add(no);
         add(panel);
     }
     private static class InterfazDigitacionPanel extends JPanel {
@@ -89,5 +102,19 @@ public class UserLogin extends JFrame {
 	}
 	public void setDigD(JTextField digD) {
 		this.digD = digD;
+	}
+	public void setYesTxt(String txt, float size, int x, int y) {
+		this.yes.setText(txt);
+		Font font = this.yes.getFont();  
+		Font newFont = font.deriveFont((float)size);  
+		this.yes.setFont(newFont);
+		this.yes.setLocation(x, y);
+	}
+	public void setNoTxt(String txt, float size, int x, int y) {
+		this.no.setText(txt);
+		Font font = this.no.getFont();  
+		Font newFont = font.deriveFont((float)size);  
+		this.no.setFont(newFont);
+		this.no.setLocation(x, y);
 	}
 }
