@@ -83,11 +83,11 @@ public class MenuPrincipal extends JFrame {
 		easter[1].setBounds(180,560,400,50);
 		easter[2].setBounds(515,555,400,50);
 		easter[3].setBounds(950,560,400,50);
-		easter[0].setForeground(Color.WHITE);
-		for(int i=1; i<easter.length;i++) {
+		for(int i=0; i<easter.length;i++) {
 			easter[i].setForeground(Color.BLACK);
 			easter[i].setFont(customFont);
 			easter[i].setVisible(false);
+			easter[0].setForeground(Color.WHITE);
 		}
         
         add(btnMus);
