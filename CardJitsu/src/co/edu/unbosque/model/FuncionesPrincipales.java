@@ -17,7 +17,7 @@ public class FuncionesPrincipales {
         System.out.println("YES BRO IS LOADED");
         System.out.println("DATA USUARIO ENTRA V2= "+this.usuarios);
         //test user ranking
-        //this.usuarios.get(0).setPuntaje(this.usuarios.get(0).getPuntaje()+178);
+        //this.usuarios.get(2).setPuntaje(this.usuarios.get(2).getPuntaje()+178);
     }
     public ArrayList<User> getTemporalData(){
     	temporalData();
@@ -120,11 +120,11 @@ public class FuncionesPrincipales {
 	public User currentUser(){
 		temporalData();
 		User user=this.usuarios.get(this.id);
-		Carta baraja[]=new Carta[30];
+		/*Carta baraja[]=new Carta[30];
         baraja = usuarios.get(id).getMazo();
 		for(int i=0;i<30;i++){
 			System.out.println(baraja[i].getElemento()+" - "+baraja[i].getColor()+" - "+baraja[i].getNumero());
-		}
+		}*/
 		return user;
     }
 }

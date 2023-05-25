@@ -259,9 +259,13 @@ public class Controller implements ActionListener{
 					//opciones mazo editable
 						case "btnCustomMaz":{
 							String name = funcionesPrimarias.currentUser().getName();;
+							String num="2";
+							String elemento="Fuego";
+							String color="Amarillo";
 							funcionesSecundarias.asignarMazoCustom(name);;
 							//mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
 							mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+							mazoView.setBigCard(num,elemento,color);
 						    break;
 						}
 						case "btnRandomMaz":{
@@ -269,6 +273,7 @@ public class Controller implements ActionListener{
 							funcionesSecundarias.asignarMazoAleatorio(name);;
 							//mazoView.setVisible(false);
 							mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+							mazoView.resetBigCard();
 							//mazoView.setVisible(true);
 						    break;
 						}
@@ -329,31 +334,31 @@ public class Controller implements ActionListener{
 							break;	
 						}
 						case "btnMenu1":{
-							music.cambiarMusica("Menu");
+							music.cambiarMusica("DojoMenu");
 							tutorialpg1.setVisible(false);
 							mainMenu.setVisible(true);
 							break;
 						}
 						case "btnMenu2":{
-							music.cambiarMusica("Menu");
+							music.cambiarMusica("DojoMenu");
 							tutorialpg2.setVisible(false);
 							mainMenu.setVisible(true);
 							break;
 						}
 						case "btnMenu3":{
-							music.cambiarMusica("Menu");
+							music.cambiarMusica("DojoMenu");
 							tutorialpg3.setVisible(false);
 							mainMenu.setVisible(true);
 							break;
 						}
 						case "btnMenu4":{
-							music.cambiarMusica("Menu");
+							music.cambiarMusica("DojoMenu");
 							tutorialpg4.setVisible(false);
 							mainMenu.setVisible(true);
 							break;
 						}
 						case "btnMenu5":{
-							music.cambiarMusica("Menu");
+							music.cambiarMusica("DojoMenu");
 							tutorialpg5.setVisible(false);
 							mainMenu.setVisible(true);
 							break;
@@ -391,6 +396,7 @@ public class Controller implements ActionListener{
 						}
 						//opciones logout
 							case "btnConfirmSesion":{
+								mazoView.resetBigCard();
 								preventSesion.setVisible(false);
 								userOptions.setVisible(false);
 								mainMenu.setVisible(false);

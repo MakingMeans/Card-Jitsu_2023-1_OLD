@@ -45,23 +45,11 @@ public class Mazo {
 		byte i = idN;
 		card=cartitas;
 			boolean repetida = false;
-			System.out.print("Digite el numero de la carta " + (i + 1) + ": ");
-			select = ElementoN;
-			customN = barajaN[select - 1];
-			System.out.print("Seleccione el elemento de la carta " + (i + 1) + ": ");
-			System.out.println("1. Fuego.");
-			System.out.println("2. Nieve.");
-			System.out.println("3. Agua.");
-			select = ColorN;
-			customE = barajaE[select - 1];
-			System.out.print("Selecione el color de la carta " + (i + 1) + ": ");
-			System.out.println("1. Amarillo.");
-			System.out.println("2. Azul.");
-			System.out.println("3. Verde.");
-			System.out.println("4. Rojo.");
-			System.out.println("5. Violeta.");
-			System.out.println("6. Naranja.");
 			select = NumeroN;
+			customN = barajaN[select - 1];
+			select = ElementoN;
+			customE = barajaE[select - 1];
+			select = ColorN;
 			customC = barajaC[select - 1];
 			Carta preCard = new Carta(customE, customN, customC);
 			for(int j = 0; j < 30; j++){
@@ -78,7 +66,6 @@ public class Mazo {
 			}
 		return this.card;
 	}
-
 	public int[] cincoCartas(int seleccion){
 		//if(seleccion>5||seleccion<1) seleccion = rand.nextInt(5)+1;
 		if(randomCards==null){

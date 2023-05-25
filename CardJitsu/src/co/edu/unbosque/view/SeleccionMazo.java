@@ -28,11 +28,12 @@ public class SeleccionMazo extends JFrame {
     private JButton btnSal;
     private JLabel[] cards;
     private JLabel[] ids;
+    private JLabel bigCard;
     private Carta[] mazo;
 	
     public SeleccionMazo() {
         setTitle("Retro Card-Jitsu");
-        setSize(1200, 832);
+        setSize(1200, 832); //1200,720
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,6 +54,13 @@ public class SeleccionMazo extends JFrame {
         btnSal.setBounds(140, 673, 195, 52);
         btnSal.setContentAreaFilled(false);
         btnSal.setBorderPainted(true);
+        
+        bigCard = new JLabel();
+		bigCard.setBounds(67,465,216,256);
+		Image temporal0= new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/ReversoCartas.png").getImage();
+		ImageIcon imgRedimension0=new ImageIcon(
+				temporal0.getScaledInstance(bigCard.getWidth(), bigCard.getHeight(), Image.SCALE_SMOOTH));
+		bigCard.setIcon(imgRedimension0);
         
         cards = new JLabel[30];
         for(int i=0;i<3;i++) {
@@ -90,6 +98,7 @@ public class SeleccionMazo extends JFrame {
         add(btnRand);
         add(btnCus);
         add(btnSal);
+        add(bigCard);
         add(panel);
     }
     private static class InterfazPanel extends JPanel {
@@ -117,6 +126,19 @@ public class SeleccionMazo extends JFrame {
         		this.cards[(i*10)+j].setIcon(imgRedimension1);
         	}
         }
+    }
+    public void setBigCard(String num, String elemento, String color) {
+    	Image temporal= new ImageIcon("src/co/edu/unbosque/assets/cards"+elemento+
+    			"/C"+num+color+elemento+".png").getImage();
+		ImageIcon imgRedimension1=new ImageIcon(
+				temporal.getScaledInstance(this.bigCard.getWidth(), this.bigCard.getHeight(), Image.SCALE_SMOOTH));
+		this.bigCard.setIcon(imgRedimension1);
+    }
+    public void resetBigCard() {
+    	Image temporal= new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/ReversoCartas.png").getImage();
+		ImageIcon imgRedimension1=new ImageIcon(
+				temporal.getScaledInstance(this.bigCard.getWidth(), this.bigCard.getHeight(), Image.SCALE_SMOOTH));
+		this.bigCard.setIcon(imgRedimension1);
     }
 	public JButton getBtnRand() {
 		return btnRand;
