@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 import co.edu.unbosque.model.FuncionesPrincipales;
+import co.edu.unbosque.model.Musica;
 import co.edu.unbosque.view.*;
 
 //import java.awt.Color;
@@ -12,92 +13,149 @@ public class Controller implements ActionListener{
 	private UserLogin userCreate;
 	private UserLogin userLogin;
 	private MenuPrincipal mainMenu;
+	private AreYouSure mazoOptions;
+	private SeleccionMazo mazoRandom;
 	private AreYouSure userOptions;
 	private AreYouSure preventSalida;
 	private AreYouSure preventSesion;
 	private Stats userStats;
 	private FuncionesPrincipales funcionesPrimarias;
+	private Musica music;
+	private Tutorial tutorialpg1;
+	private Tutorial tutorialpg2;
+	private Tutorial tutorialpg3;
+	private Tutorial tutorialpg4;
+	private Tutorial tutorialpg5;
 	boolean volume = false;
 	public Controller() {
 		inicial=new InterfazInicial();
 		userCreate=new UserLogin();
 		userLogin=new UserLogin();
 		mainMenu=new MenuPrincipal();
+		mazoOptions=new AreYouSure();
+		mazoRandom=new SeleccionMazo();
 		userOptions=new AreYouSure();
 		preventSesion=new AreYouSure();
 		preventSalida=new AreYouSure();
 		userStats=new Stats();
+		tutorialpg1=new Tutorial("Tut0");
+		tutorialpg2=new Tutorial("Tut1");
+		tutorialpg3=new Tutorial("Tut2");
+		tutorialpg4=new Tutorial("Tut3");
+		tutorialpg5=new Tutorial("Tut4");
 		funcionesPrimarias=new FuncionesPrincipales();
+		music=new Musica();
 		agregarLectores();
 	}
 	public void start(){
 		inicial.setVisible(true);
-		funcionesPrimarias.reproducirMusica();
-		/*VentanaPrincipal v1 = new VentanaPrincipal();
-		v1.ejecutarPrincipal();*/
+		music.reproducirMusica();
 	}
 	public void agregarLectores(){
 		inicial.getBtnNueU().addActionListener(this);
 		inicial.getBtnNueU().setActionCommand("btnCrear");
 		
+			userCreate.getBtnConf().addActionListener(this);
+			userCreate.getBtnConf().setActionCommand("btnConfirmCrear");
+			
+			userCreate.getBtnVol().addActionListener(this);
+			userCreate.getBtnVol().setActionCommand("btnVolverCrear");
+		
 		inicial.getBtnIniS().addActionListener(this);
 		inicial.getBtnIniS().setActionCommand("btnIngresar");
 		
+			userLogin.getBtnConf().addActionListener(this);
+			userLogin.getBtnConf().setActionCommand("btnConfirmLogin");
+			
+				mainMenu.getBtnMus().addActionListener(this);
+				mainMenu.getBtnMus().setActionCommand("btnMusicaMain");
+				
+				mainMenu.getBtnJug().addActionListener(this);
+				mainMenu.getBtnJug().setActionCommand("btnJugarMain");
+				
+				mainMenu.getBtnMaz().addActionListener(this);
+				mainMenu.getBtnMaz().setActionCommand("btnMazoMain");
+				
+					mazoOptions.getBtnConf().addActionListener(this);
+					mazoOptions.getBtnConf().setActionCommand("btnCustom");
+					
+					mazoOptions.getBtnVol().addActionListener(this);
+					mazoOptions.getBtnVol().setActionCommand("btnRandom");
+				
+				mainMenu.getBtnTut().addActionListener(this);
+				mainMenu.getBtnTut().setActionCommand("btnTutorialMain");
+				
+					tutorialpg1.getBtnAde().addActionListener(this);
+					tutorialpg1.getBtnAde().setActionCommand("btnAdelante1");
+					
+					tutorialpg1.getBtnMen().addActionListener(this);
+					tutorialpg1.getBtnMen().setActionCommand("btnMenu1");
+					
+					tutorialpg2.getBtnAde().addActionListener(this);
+					tutorialpg2.getBtnAde().setActionCommand("btnAdelante2");
+					
+					tutorialpg2.getBtnAtr().addActionListener(this);
+					tutorialpg2.getBtnAtr().setActionCommand("btnAtras1");
+					
+					tutorialpg2.getBtnMen().addActionListener(this);
+					tutorialpg2.getBtnMen().setActionCommand("btnMenu2");
+					
+					tutorialpg3.getBtnAde().addActionListener(this);
+					tutorialpg3.getBtnAde().setActionCommand("btnAdelante3");
+					
+					tutorialpg3.getBtnAtr().addActionListener(this);
+					tutorialpg3.getBtnAtr().setActionCommand("btnAtras2");
+					
+					tutorialpg3.getBtnMen().addActionListener(this);
+					tutorialpg3.getBtnMen().setActionCommand("btnMenu3");
+					
+					tutorialpg4.getBtnAde().addActionListener(this);
+					tutorialpg4.getBtnAde().setActionCommand("btnAdelante4");
+					
+					tutorialpg4.getBtnAtr().addActionListener(this);
+					tutorialpg4.getBtnAtr().setActionCommand("btnAtras3");
+					
+					tutorialpg4.getBtnMen().addActionListener(this);
+					tutorialpg4.getBtnMen().setActionCommand("btnMenu4");
+					
+					tutorialpg5.getBtnAde().addActionListener(this);
+					tutorialpg5.getBtnAde().setActionCommand("btnAtras4");
+				
+					tutorialpg5.getBtnMen().addActionListener(this);
+					tutorialpg5.getBtnMen().setActionCommand("btnMenu5");
+				
+				mainMenu.getBtnCue().addActionListener(this);
+				mainMenu.getBtnCue().setActionCommand("btnCuentaMain");
+				
+					userOptions.getBtnConf().addActionListener(this);
+					userOptions.getBtnConf().setActionCommand("btnStats");
+					
+						userStats.getBtnSal().addActionListener(this);
+						userStats.getBtnSal().setActionCommand("btnSalirStats");
+					
+					userOptions.getBtnVol().addActionListener(this);
+					userOptions.getBtnVol().setActionCommand("btnCerrar");
+					
+						preventSesion.getBtnConf().addActionListener(this);
+						preventSesion.getBtnConf().setActionCommand("btnConfirmSesion");
+						
+						preventSesion.getBtnVol().addActionListener(this);
+						preventSesion.getBtnVol().setActionCommand("btnVolverSesion");
+				
+				mainMenu.getBtnSal().addActionListener(this);
+				mainMenu.getBtnSal().setActionCommand("btnSalirMain");
+				
+					preventSalida.getBtnConf().addActionListener(this);
+					preventSalida.getBtnConf().setActionCommand("btnConfirmSURE");
+					
+					preventSalida.getBtnVol().addActionListener(this);
+					preventSalida.getBtnVol().setActionCommand("btnVolverSURE");
+			
+			userLogin.getBtnVol().addActionListener(this);
+			userLogin.getBtnVol().setActionCommand("btnVolverLogin");
+		
 		inicial.getBtnSal().addActionListener(this);
 		inicial.getBtnSal().setActionCommand("btnSalir");
-		
-		userCreate.getBtnConf().addActionListener(this);
-		userCreate.getBtnConf().setActionCommand("btnConfirmCrear");
-		
-		userCreate.getBtnVol().addActionListener(this);
-		userCreate.getBtnVol().setActionCommand("btnVolverCrear");
-		
-		userLogin.getBtnConf().addActionListener(this);
-		userLogin.getBtnConf().setActionCommand("btnConfirmLogin");
-		
-		userLogin.getBtnVol().addActionListener(this);
-		userLogin.getBtnVol().setActionCommand("btnVolverLogin");
-		
-		mainMenu.getBtnMus().addActionListener(this);
-		mainMenu.getBtnMus().setActionCommand("btnMusicaMain");
-		
-		mainMenu.getBtnJug().addActionListener(this);
-		mainMenu.getBtnJug().setActionCommand("btnJugarMain");
-		
-		mainMenu.getBtnMaz().addActionListener(this);
-		mainMenu.getBtnMaz().setActionCommand("btnMazoMain");
-		
-		mainMenu.getBtnTut().addActionListener(this);
-		mainMenu.getBtnTut().setActionCommand("btnTutorialMain");
-		
-		mainMenu.getBtnCue().addActionListener(this);
-		mainMenu.getBtnCue().setActionCommand("btnCuentaMain");
-		
-		mainMenu.getBtnSal().addActionListener(this);
-		mainMenu.getBtnSal().setActionCommand("btnSalirMain");
-		
-		userOptions.getBtnConf().addActionListener(this);
-		userOptions.getBtnConf().setActionCommand("btnStats");
-		
-		userOptions.getBtnVol().addActionListener(this);
-		userOptions.getBtnVol().setActionCommand("btnCerrar");
-		
-		userStats.getBtnSal().addActionListener(this);
-		userStats.getBtnSal().setActionCommand("btnSalirStats");
-		
-		preventSesion.getBtnConf().addActionListener(this);
-		preventSesion.getBtnConf().setActionCommand("btnConfirmSesion");
-		
-		preventSesion.getBtnVol().addActionListener(this);
-		preventSesion.getBtnVol().setActionCommand("btnVolverSesion");
-		
-		preventSalida.getBtnConf().addActionListener(this);
-		preventSalida.getBtnConf().setActionCommand("btnConfirmSURE");
-		
-		preventSalida.getBtnVol().addActionListener(this);
-		preventSalida.getBtnVol().setActionCommand("btnVolverSURE");
-		/*vi.getBtn2().addActionListener(this);
-		vi.getBtn2().setActionCommand("btn2click");*/
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -106,145 +164,254 @@ public class Controller implements ActionListener{
 		switch(e.getActionCommand()) {
 			case "btnCrear":{
 				userCreate.setYesTxt("SingUp", 30f,200,110);;
-				userCreate.setNoTxt("Volver", 30f,35,110);;
+				userCreate.setNoTxt("Volver", 30f,40,110);;
 				inicial.setVisible(false);
 				userCreate.setVisible(true);
 				break;
 			}
+			//opciones crear user
+				case "btnConfirmCrear":{
+					String name = userCreate.getDigD().getText();;
+					boolean error = funcionesPrimarias.crearUsuario(name);
+					System.out.println(error);
+					if(error) {
+						JOptionPane.showMessageDialog(userCreate, "USER REPETIDO O VACIO", "Error", 
+								JOptionPane.ERROR_MESSAGE);
+					}else if(!error){
+						//JOptionPane.showMessageDialog(userCreate, "ES VALIDO", "Error", 
+								//JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(userCreate, "User creado con exito", "Validación",
+								JOptionPane.INFORMATION_MESSAGE);
+						if(name.equals("rickroll69")) {
+							JOptionPane.showMessageDialog(userCreate, "No deberias...", "Perdición",
+									JOptionPane.WARNING_MESSAGE);
+						}
+						inicial.setVisible(true);
+						userCreate.setVisible(false);
+					}
+					break;
+				}
+				case "btnVolverCrear":{
+					inicial.setVisible(true);
+					userCreate.setVisible(false);
+					break;
+				}
 			case "btnIngresar":{
 				userLogin.setYesTxt("LogIn", 30f,200,110);;
-				userLogin.setNoTxt("Volver", 30f,35,110);;
+				userLogin.setNoTxt("Volver", 30f,40,110);;
 				inicial.setVisible(false);
 				userLogin.setVisible(true);
 				break;
 			}
+			//opciones login user
+				case "btnConfirmLogin":{
+					String name = userLogin.getDigD().getText();;
+					boolean error = funcionesPrimarias.ingresarUsuario(name);
+					System.out.println(error);
+					if(error) {
+						JOptionPane.showMessageDialog(userLogin, "NO EXISTE TAL USER", "Error", 
+								JOptionPane.ERROR_MESSAGE);
+					}else if(!error){
+						//JOptionPane.showMessageDialog(userLogin, "ES VALIDO", "Error", 
+								//JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(userCreate, "Inicio de sesión exitoso", "Validación",
+								JOptionPane.INFORMATION_MESSAGE);
+						//if(name.equals("rickroll69"))music.cambiarMusica("Roll");
+						if(name.equals("rickroll69")) {
+							JOptionPane.showMessageDialog(userCreate, "Run.", "Desesperación",
+									JOptionPane.WARNING_MESSAGE);
+							music.shutUp();
+							music.soundEffect("Defeat");
+							mainMenu.setEaster();
+						}else mainMenu.hideEaster();
+						mainMenu.setVisible(true);
+						userLogin.setVisible(false);
+					}
+					break;
+				}
+				//opciones main menu
+					case "btnMusicaMain":{
+						Musica.bajarVolumenACero();
+						if(volume) {
+							Musica.restaurarVolumenOriginal();
+							volume= false;
+							break;
+						}
+						volume = true;
+						break;
+					}
+					case "btnMazoMain":{
+						mazoOptions.setUserName(funcionesPrimarias.currentUser().getName());;
+						mazoOptions.setPreguntaTxt("Opciones Mazo:", 30f,40,10);;
+						mazoOptions.setYesTxt("Randomizar", 27f,177,110);;
+						mazoOptions.setNoTxt("Editar", 30f,45,110);;
+						mazoOptions.setVisible(true);
+					    break;
+					}
+					//opciones mazo editable
+						case "btnCustom":{
+							//por ahora solo devuelve
+							mazoRandom.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+							mazoOptions.setVisible(false);
+							mainMenu.setVisible(false);
+						    mazoRandom.setVisible(true);
+						    break;
+						}
+						case "btnRandom":{
+							mazoRandom.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+							mainMenu.setVisible(false);
+							mazoRandom.setVisible(true);
+						    break;
+						}
+					case "btnTutorialMain": {
+						music.cambiarMusica("Tutorial");
+						tutorialpg1.hideButton(true);
+						mainMenu.setVisible(false);
+						tutorialpg1.setVisible(true);
+						break;
+					}
+					//botones pasar pagina tutorial
+						case "btnAdelante1":{
+							tutorialpg1.setVisible(false);
+							tutorialpg2.setVisible(true);
+							break;
+						}
+						case "btnAdelante2":{
+							tutorialpg2.setVisible(false);
+							tutorialpg3.setVisible(true);
+							break;	
+						}
+						case "btnAdelante3":{
+							tutorialpg3.setVisible(false);
+							tutorialpg4.setVisible(true);
+							break;	
+						}
+						case "btnAdelante4":{
+							tutorialpg5.hideButton(true);
+							tutorialpg4.setVisible(false);
+							tutorialpg5.setVisible(true);
+							break;	
+						}
+						case "btnAtras1":{
+							tutorialpg1.hideButton(true);
+							tutorialpg2.setVisible(false);
+							tutorialpg1.setVisible(true);
+							break;
+						}
+						case "btnAtras2":{
+							tutorialpg3.setVisible(false);
+							tutorialpg2.setVisible(true);
+							break;	
+						}
+						case "btnAtras3":{
+							tutorialpg4.setVisible(false);
+							tutorialpg3.setVisible(true);
+							break;	
+						}
+						case "btnAtras4":{
+							tutorialpg5.setVisible(false);
+							tutorialpg4.setVisible(true);
+							break;	
+						}
+						case "btnMenu1":{
+							music.cambiarMusica("Menu");
+							tutorialpg1.setVisible(false);
+							mainMenu.setVisible(true);
+							break;
+						}
+						case "btnMenu2":{
+							music.cambiarMusica("Menu");
+							tutorialpg2.setVisible(false);
+							mainMenu.setVisible(true);
+							break;
+						}
+						case "btnMenu3":{
+							music.cambiarMusica("Menu");
+							tutorialpg3.setVisible(false);
+							mainMenu.setVisible(true);
+							break;
+						}
+						case "btnMenu4":{
+							music.cambiarMusica("Menu");
+							tutorialpg4.setVisible(false);
+							mainMenu.setVisible(true);
+							break;
+						}
+						case "btnMenu5":{
+							music.cambiarMusica("Menu");
+							tutorialpg5.setVisible(false);
+							mainMenu.setVisible(true);
+							break;
+						}
+					case "btnCuentaMain":{
+						userOptions.setUserName(funcionesPrimarias.currentUser().getName());;
+						userOptions.setPreguntaTxt("Opciones Usuario:", 30f,40,10);;
+						userOptions.setYesTxt("Stats", 30f,205,110);;
+						userOptions.setNoTxt("LogOut", 30f,35,110);;
+						userOptions.setVisible(true);
+					    break;
+					}
+					//opciones user loged
+						case "btnStats":{
+							userStats.setUserName(funcionesPrimarias.currentUser().getName(),funcionesPrimarias.currentUser().getId(),
+									funcionesPrimarias.currentUser().getCinturon(), funcionesPrimarias.currentUser().getPuntaje(),
+									funcionesPrimarias.currentUser().getNextLv());;
+							userOptions.setVisible(false);
+							mainMenu.setVisible(false);
+							userStats.setVisible(true);
+						    //hacer visibles stats
+						    break;
+						}
+						//boton dentro de stats
+							case "btnSalirStats":{
+								userStats.setVisible(false);
+							    mainMenu.setVisible(true);
+								break;
+							}
+						case "btnCerrar":{
+							preventSesion.setUserName(funcionesPrimarias.currentUser().getName()+"?");;
+							preventSesion.setVisible(true);
+						    //mainMenu.setVisible(false);
+							break;
+						}
+						//opciones logout
+							case "btnConfirmSesion":{
+								preventSesion.setVisible(false);
+								userOptions.setVisible(false);
+								mainMenu.setVisible(false);
+								inicial.setVisible(true);
+								break;
+							}
+							case "btnVolverSesion":{
+								preventSesion.setVisible(false);
+								//mainMenu.setVisible(true);
+								break;
+							}
+					case "btnSalirMain":{
+						preventSalida.setUserName(funcionesPrimarias.currentUser().getName()+"?");;
+						preventSalida.setVisible(true);
+					    //mainMenu.setVisible(false);
+					    break;
+					}
+					//opciones salir desde main menu
+						case "btnConfirmSURE":{
+							System.exit(0);
+							break;
+						}
+						case "btnVolverSURE":{
+							preventSalida.setVisible(false);
+							//mainMenu.setVisible(true);
+							break;
+						}
+				case "btnVolverLogin":{
+					inicial.setVisible(true);
+					userLogin.setVisible(false);
+					break;
+				}
 			case "btnSalir":{
 				System.exit(0);
 				break;
 			}
-			case "btnConfirmCrear":{
-				String name = userCreate.getDigD().getText();;
-				boolean error = funcionesPrimarias.crearUsuario(name);
-				System.out.println(error);
-				if(error) {
-					JOptionPane.showMessageDialog(userCreate, "NO ES VALIDO", "Error", 
-							JOptionPane.ERROR_MESSAGE);
-				}else if(!error){
-					JOptionPane.showMessageDialog(userCreate, "ES VALIDO", "Error", 
-							JOptionPane.ERROR_MESSAGE);
-					inicial.setVisible(true);
-					userCreate.setVisible(false);
-				}
-				break;
-			}
-			case "btnVolverCrear":{
-				inicial.setVisible(true);
-				userCreate.setVisible(false);
-				break;
-			}
-			case "btnConfirmLogin":{
-				String name = userLogin.getDigD().getText();;
-				boolean error = funcionesPrimarias.ingresarUsuario(name);
-				System.out.println(error);
-				if(error) {
-					JOptionPane.showMessageDialog(userLogin, "NO ES VALIDO", "Error", 
-							JOptionPane.ERROR_MESSAGE);
-				}else if(!error){
-					//JOptionPane.showMessageDialog(userLogin, "ES VALIDO", "Error", 
-							//JOptionPane.ERROR_MESSAGE);
-					mainMenu.setVisible(true);
-					userLogin.setVisible(false);
-					
-				}
-				break;
-			}
-			case "btnVolverLogin":{
-				inicial.setVisible(true);
-				userLogin.setVisible(false);
-				break;
-			}
-			case "btnMusicaMain":{
-				//funcionesPrimarias.reproducirMucica();
-				FuncionesPrincipales.bajarVolumenACero();
-				
-				//System.out.println("XDDDDD");
-				if(volume) {
-					FuncionesPrincipales.restaurarVolumenOriginal();
-					volume= false;
-					//System.out.println("DDDDDDDX");
-					break;
-				}
-				volume = true;
-				break;
-			}
-			case "btnCuentaMain":{
-				userOptions.setUserName(funcionesPrimarias.currentUser().getName());;
-				userOptions.setPreguntaTxt("Opciones Usuario:", 30f,40,10);;
-				userOptions.setYesTxt("Stats", 30f,200,110);;
-				userOptions.setNoTxt("LogOut", 30f,35,110);;
-				userOptions.setVisible(true);
-			    mainMenu.setVisible(false);
-			    break;
-			}
-			case "btnStats":{
-				userStats.setUserName(funcionesPrimarias.currentUser().getName(),funcionesPrimarias.currentUser().getId(),
-						funcionesPrimarias.currentUser().getCinturon(), funcionesPrimarias.currentUser().getPuntaje(),
-						funcionesPrimarias.currentUser().getNextLv());;
-				userOptions.setVisible(false);
-				userStats.setVisible(true);
-			    //hacer visibles stats
-			    break;
-			}
-			case "btnCerrar":{
-				preventSesion.setUserName(funcionesPrimarias.currentUser().getName()+"?");;
-				preventSesion.setVisible(true);
-			    //mainMenu.setVisible(false);
-				break;
-			}
-			case "btnSalirStats":{
-				userStats.setVisible(false);
-			    mainMenu.setVisible(true);
-				break;
-			}
-			case "btnConfirmSesion":{
-				preventSesion.setVisible(false);
-				userOptions.setVisible(false);
-				inicial.setVisible(true);
-				break;
-			}
-			case "btnVolverSesion":{
-				preventSesion.setVisible(false);
-				//mainMenu.setVisible(true);
-				break;
-			}
-			case "btnSalirMain":{
-				preventSalida.setUserName(funcionesPrimarias.currentUser().getName()+"?");;
-				preventSalida.setVisible(true);
-			    //mainMenu.setVisible(false);
-			    break;
-			}
-			case "btnConfirmSURE":{
-				System.exit(0);
-				break;
-			}
-			case "btnVolverSURE":{
-				preventSalida.setVisible(false);
-				//mainMenu.setVisible(true);
-				break;
-			}
-		/*case "btn2click":{
-			try {
-				double numero= Double.parseDouble(funcionesPrimarias.getEntrada().getText());
-				numero=Math.pow(numero, 2);
-				funcionesPrimarias.getTitulos()[1].setText("POW: "+numero);
-			}catch(NumberFormatException e2){
-				JOptionPane.showMessageDialog(vp, "NO ES VALIDO", "error", 
-						JOptionPane.ERROR_MESSAGE);
-			}
-			break;
-			//JOptionPane.showMessageDialog(vp, "SI ES EL BOTON");
-		}
-		//default:*/
 		}
 	}
 }

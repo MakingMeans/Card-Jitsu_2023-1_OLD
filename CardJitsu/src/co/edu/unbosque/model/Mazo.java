@@ -9,8 +9,8 @@ public class Mazo {
 	Random rand = new Random();
 
 	byte[] barajaN = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-	String[] barajaC = {"Amaraillo", "Azul", "Verde", "Rojo", "Violeta", "Naranja"};
-	String[] barajaE = {"Fuego", "Nieve", "Agua"};
+	String[] barajaC = {"Amarillo", "Azul", "Verde", "Rojo", "Morado", "Naranja"};
+	String[] barajaE = {"Fuego", "Hielo", "Agua"};
 
 	private int[] randomCards;
 	int randomCard;

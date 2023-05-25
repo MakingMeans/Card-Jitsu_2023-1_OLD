@@ -32,7 +32,6 @@ public class Stats extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         InterfazPanel panel = new InterfazPanel();
         
-        //Declaracion de boton de musica
         ImageIcon iSal = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnSal = new JButton(iSal);
         btnSal.setBounds(140, 673, 195, 52);
@@ -60,6 +59,7 @@ public class Stats extends JFrame {
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }
+        
         name = new JLabel("Default!");
 		name.setBounds(360,60,400,50);
 		name.setForeground(Color.WHITE);
@@ -100,20 +100,6 @@ public class Stats extends JFrame {
         add(ranking);
         add(rank);
         add(panel);
-        
-        //Crear clase ll
-        /*btnMus.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (!musicaActiva) {
-                    // Iniciar la reproducción de la música
-                    reproducirMusica();
-                    musicaActiva = true;
-                } else {
-                    // Detener la reproducción de la música
-                    detenerMusica();
-                    musicaActiva = false;
-                }
-            }¨*/
     }
     private static class InterfazPanel extends JPanel {
         private static final long serialVersionUID = 1L;
@@ -181,6 +167,5 @@ public class Stats extends JFrame {
 		ImageIcon imgRedimension1=new ImageIcon(
 				temporal.getScaledInstance(this.cinturon.getWidth(), this.cinturon.getHeight(), Image.SCALE_SMOOTH));
 		this.cinturon.setIcon(imgRedimension1);
-
 	}
 }
