@@ -11,67 +11,31 @@ public class FuncionesSecundarias {
 
     Scanner sc = new Scanner(System.in);
     
-    public void ejecutarSecundaria() {
-        boolean seguirEjecutando2 = true;
-        FuncionesPrincipales v1 = new FuncionesPrincipales();
-        //usuarios = v1.temporalData();
-        id = v1.loginId();
-
-	    while(seguirEjecutando2) {
-			System.out.println("Digite la opcion deseada: ");
-	       	System.out.println("1. Estatus");
-	        System.out.println("2. Asignar mazo custom");
-			System.out.println("3. Asignar mazo aleatorio");
-	        System.out.println("4. Mostrar mazo");
-	        System.out.println("5. Partida CPU");
-	        System.out.println("6. Log out");
-	        byte seleccionSecundaria = sc.nextByte();
-	
-	        switch(seleccionSecundaria) {
-		        case 1:
-		            datosUsuario();
-		            break;
-		        case 2:
-		        	asignarMazoCustom();
-		        	break;
-				case 3:
-		        	asignarMazoAleatorio();
-		        	break;
-		        case 4:
-		        	mostrarMazo();
-		        	break;
-		        case 5:
-		        	jugarCPU();
-		        	break;
-		        case 6:
-					seguirEjecutando2 = false;
-		        	break;
-		        default:
-		        	System.out.println("Opcion invalida. Por favor, seleccione una opcion valida.");
-	                break;
-		    }
-	    }
-	}
-    public void datosUsuario(){
-		System.out.println("\nSu usuario: "+usuarios.get(id).getName());
-		System.out.println("Su ID: "+usuarios.get(id).getId());
-		System.out.println("Su cinturon: "+usuarios.get(id).getCinturon());
-		System.out.println("Su puntaje: "+usuarios.get(id).getPuntaje());
-		System.out.println("Puntos necesarios para siguiente cinturon: "+usuarios.get(id).getNextLv()+"\n");
-	}
-	public void asignarMazoAleatorio() {
+	public void asignarMazoAleatorio(String names) {
+		this.usuarios=v1.getTemporalData();
+		for(byte j=0;j<this.usuarios.size();j++){
+			if(this.usuarios.get(j).getName().equals(names)) {
+				this.id=j;
+			}
+		}
 		Mazo mazo = new Mazo();
-		usuarios.get(id).setMazo(mazo.crearMazoAl());
-		System.out.println("Se ha asignado un mazo aleatorio al usuario " + usuarios.get(id).getName()+"\n"); 
+		this.usuarios.get(id).setMazo(mazo.crearMazoAl());
+		System.out.println("Se ha asignado un mazo aleatorio al usuario " + this.usuarios.get(this.id).getName()+"\n"); 
 		Data dat = new Data();
-		dat.saveData(usuarios);
+		dat.saveData(this.usuarios);
 	}
-	public void asignarMazoCustom() {
+	public void asignarMazoCustom(String names) {
+		this.usuarios=v1.getTemporalData();
+		for(byte j=0;j<this.usuarios.size();j++){
+			if(this.usuarios.get(j).getName().equals(names)) {
+				this.id=j;
+			}
+		}
 		Mazo mazo = new Mazo();
-		usuarios.get(id).setMazo(mazo.crearMazoCus());
-		System.out.println("Se ha asignado un mazo custom al usuario " + usuarios.get(id).getName()+"\n"); 
+		this.usuarios.get(id).setMazo(mazo.crearMazoCus((byte)1,(byte)1,(byte)1,(byte)1,this.usuarios.get(id).getMazo()));
+		System.out.println("Se ha asignado un mazo custom al usuario " + this.usuarios.get(id).getName()+"\n"); 
 		Data dat = new Data();
-		dat.saveData(usuarios);
+		dat.saveData(this.usuarios);
 	}
 	public void mostrarMazo() {	
         Carta baraja[]=new Carta[30];

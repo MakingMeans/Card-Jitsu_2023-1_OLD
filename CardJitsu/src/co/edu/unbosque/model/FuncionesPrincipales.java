@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class FuncionesPrincipales {
     private byte id;
+    //private boolean alreadyLoad=false;
     private ArrayList<User> usuarios = new ArrayList<User>();
     //private boolean easterEgg=false;
 	String name;
@@ -13,11 +14,19 @@ public class FuncionesPrincipales {
     public void temporalData(){
         Data dat = new Data();
         this.usuarios = dat.loadData();
-        System.out.println("DATA USUARIO ENTRA V2= "+usuarios);
+        System.out.println("YES BRO IS LOADED");
+        System.out.println("DATA USUARIO ENTRA V2= "+this.usuarios);
         //test user ranking
         //this.usuarios.get(0).setPuntaje(this.usuarios.get(0).getPuntaje()+178);
     }
+    public ArrayList<User> getTemporalData(){
+    	temporalData();
+    	System.out.println("Devuelve="+this.usuarios);
+        return this.usuarios;
+    }
     public byte loginId(){
+    	temporalData();
+    	System.out.println("Devuelve="+this.id);
         return this.id;
     }
    
@@ -76,7 +85,7 @@ public class FuncionesPrincipales {
 			System.out.println(this.usuarios.get(j).getName());
 		}*/
 		Data dat = new Data();
-		dat.saveData(usuarios);
+		dat.saveData(this.usuarios);
 		return stop=false;
     }
 	public boolean ingresarUsuario(String name){
@@ -98,6 +107,7 @@ public class FuncionesPrincipales {
 	        	/*if(name.equals("RickRoll")) easterEgg=true;
 	        	else easterEgg=false;*/
 	        	this.id=i;
+	        	System.out.println("ID="+this.id);
 	        	success = true;
 				break;
 	        }
@@ -109,7 +119,7 @@ public class FuncionesPrincipales {
     }
 	public User currentUser(){
 		temporalData();
-		User user=this.usuarios.get(id);
+		User user=this.usuarios.get(this.id);
 		Carta baraja[]=new Carta[30];
         baraja = usuarios.get(id).getMazo();
 		for(int i=0;i<30;i++){

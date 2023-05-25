@@ -24,7 +24,7 @@ public class Musica {
     }
     public void reproducirMusica() {
         try {
-            iniciarReproduccionMusica("src/co/edu/unbosque/assets/musica/Menu.wav");
+            iniciarReproduccionMusica("src/co/edu/unbosque/assets/musica/DojoMenu.wav");
             // Guardar volumen
             guardarVolumenOriginal();
             // Opcional: Reproducir en bucle continuo

@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 import co.edu.unbosque.model.FuncionesPrincipales;
+import co.edu.unbosque.model.FuncionesSecundarias;
 import co.edu.unbosque.model.Musica;
 import co.edu.unbosque.view.*;
 
@@ -13,27 +14,28 @@ public class Controller implements ActionListener{
 	private UserLogin userCreate;
 	private UserLogin userLogin;
 	private MenuPrincipal mainMenu;
-	private AreYouSure mazoOptions;
-	private SeleccionMazo mazoRandom;
+	//private AreYouSure mazoOptions;
+	private SeleccionMazo mazoView;
 	private AreYouSure userOptions;
 	private AreYouSure preventSalida;
 	private AreYouSure preventSesion;
 	private Stats userStats;
 	private FuncionesPrincipales funcionesPrimarias;
+	private FuncionesSecundarias funcionesSecundarias;
 	private Musica music;
 	private Tutorial tutorialpg1;
 	private Tutorial tutorialpg2;
 	private Tutorial tutorialpg3;
 	private Tutorial tutorialpg4;
 	private Tutorial tutorialpg5;
-	boolean volume = false;
+	boolean mute = false;
 	public Controller() {
 		inicial=new InterfazInicial();
 		userCreate=new UserLogin();
 		userLogin=new UserLogin();
 		mainMenu=new MenuPrincipal();
-		mazoOptions=new AreYouSure();
-		mazoRandom=new SeleccionMazo();
+		//mazoOptions=new AreYouSure();
+		mazoView=new SeleccionMazo();
 		userOptions=new AreYouSure();
 		preventSesion=new AreYouSure();
 		preventSalida=new AreYouSure();
@@ -44,6 +46,7 @@ public class Controller implements ActionListener{
 		tutorialpg4=new Tutorial("Tut3");
 		tutorialpg5=new Tutorial("Tut4");
 		funcionesPrimarias=new FuncionesPrincipales();
+		funcionesSecundarias=new FuncionesSecundarias();
 		music=new Musica();
 		agregarLectores();
 	}
@@ -76,11 +79,14 @@ public class Controller implements ActionListener{
 				mainMenu.getBtnMaz().addActionListener(this);
 				mainMenu.getBtnMaz().setActionCommand("btnMazoMain");
 				
-					mazoOptions.getBtnConf().addActionListener(this);
-					mazoOptions.getBtnConf().setActionCommand("btnCustom");
+					mazoView.getBtnCus().addActionListener(this);
+					mazoView.getBtnCus().setActionCommand("btnCustomMaz");
 					
-					mazoOptions.getBtnVol().addActionListener(this);
-					mazoOptions.getBtnVol().setActionCommand("btnRandom");
+					mazoView.getBtnRand().addActionListener(this);
+					mazoView.getBtnRand().setActionCommand("btnRandomMaz");
+					
+					mazoView.getBtnSal().addActionListener(this);
+					mazoView.getBtnSal().setActionCommand("btnSalirMaz");
 				
 				mainMenu.getBtnTut().addActionListener(this);
 				mainMenu.getBtnTut().setActionCommand("btnTutorialMain");
@@ -224,43 +230,52 @@ public class Controller implements ActionListener{
 							music.soundEffect("Defeat");
 							mainMenu.setEaster();
 						}else mainMenu.hideEaster();
-						mainMenu.setVisible(true);
 						userLogin.setVisible(false);
+						mainMenu.setVisible(true);
 					}
 					break;
 				}
 				//opciones main menu
 					case "btnMusicaMain":{
 						Musica.bajarVolumenACero();
-						if(volume) {
+						if(mute) {
 							Musica.restaurarVolumenOriginal();
-							volume= false;
+							mute= false;
 							break;
 						}
-						volume = true;
+						mute = true;
 						break;
 					}
 					case "btnMazoMain":{
-						mazoOptions.setUserName(funcionesPrimarias.currentUser().getName());;
-						mazoOptions.setPreguntaTxt("Opciones Mazo:", 30f,40,10);;
-						mazoOptions.setYesTxt("Randomizar", 27f,177,110);;
-						mazoOptions.setNoTxt("Editar", 30f,45,110);;
-						mazoOptions.setVisible(true);
+						/*mazoView.setUserName(funcionesPrimarias.currentUser().getName());;
+						mazoView.setPreguntaTxt("Opciones Mazo:", 30f,40,10);;
+						mazoView.setYesTxt("Randomizar", 27f,177,110);;
+						mazoView.setNoTxt("Editar", 30f,45,110);;*/
+						mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+						mainMenu.setVisible(false);
+						mazoView.setVisible(true);
 					    break;
 					}
 					//opciones mazo editable
-						case "btnCustom":{
-							//por ahora solo devuelve
-							mazoRandom.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
-							mazoOptions.setVisible(false);
-							mainMenu.setVisible(false);
-						    mazoRandom.setVisible(true);
+						case "btnCustomMaz":{
+							String name = funcionesPrimarias.currentUser().getName();;
+							funcionesSecundarias.asignarMazoCustom(name);;
+							//mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+							mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
 						    break;
 						}
-						case "btnRandom":{
-							mazoRandom.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
-							mainMenu.setVisible(false);
-							mazoRandom.setVisible(true);
+						case "btnRandomMaz":{
+							String name = funcionesPrimarias.currentUser().getName();;
+							funcionesSecundarias.asignarMazoAleatorio(name);;
+							//mazoView.setVisible(false);
+							mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+							//mazoView.setVisible(true);
+						    break;
+						}
+						case "btnSalirMaz":{
+							//mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+							mainMenu.setVisible(true);
+							mazoView.setVisible(false);
 						    break;
 						}
 					case "btnTutorialMain": {
@@ -411,6 +426,7 @@ public class Controller implements ActionListener{
 			case "btnSalir":{
 				System.exit(0);
 				break;
+				//para organizar ctr shift f
 			}
 		}
 	}

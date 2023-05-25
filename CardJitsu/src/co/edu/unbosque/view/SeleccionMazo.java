@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 //import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,6 +23,9 @@ import co.edu.unbosque.model.Carta;
 
 public class SeleccionMazo extends JFrame {
     private static final long serialVersionUID = 1L;
+    private JButton btnRand;
+    private JButton btnCus;
+    private JButton btnSal;
     private JLabel[] cards;
     private JLabel[] ids;
     private Carta[] mazo;
@@ -33,6 +37,22 @@ public class SeleccionMazo extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         InterfazPanel panel = new InterfazPanel();
+        
+        ImageIcon iRand = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+        btnRand = new JButton(iRand);
+        btnRand.setBounds(420, 673, 195, 52);
+        btnRand.setContentAreaFilled(false);
+        btnRand.setBorderPainted(true);
+        ImageIcon iCus = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+        btnCus = new JButton(iCus);
+        btnCus.setBounds(280, 673, 195, 52);
+        btnCus.setContentAreaFilled(false);
+        btnCus.setBorderPainted(true);
+        ImageIcon iSal = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+        btnSal = new JButton(iSal);
+        btnSal.setBounds(140, 673, 195, 52);
+        btnSal.setContentAreaFilled(false);
+        btnSal.setBorderPainted(true);
         
         cards = new JLabel[30];
         for(int i=0;i<3;i++) {
@@ -67,6 +87,9 @@ public class SeleccionMazo extends JFrame {
         	add(ids[i]);
         	add(cards[i]);
 		}
+        add(btnRand);
+        add(btnCus);
+        add(btnSal);
         add(panel);
     }
     private static class InterfazPanel extends JPanel {
@@ -95,4 +118,22 @@ public class SeleccionMazo extends JFrame {
         	}
         }
     }
+	public JButton getBtnRand() {
+		return btnRand;
+	}
+	public void setBtnRand(JButton btnRand) {
+		this.btnRand = btnRand;
+	}
+	public JButton getBtnCus() {
+		return btnCus;
+	}
+	public void setBtnCus(JButton btnCus) {
+		this.btnCus = btnCus;
+	}
+	public JButton getBtnSal() {
+		return btnSal;
+	}
+	public void setBtnSal(JButton btnSal) {
+		this.btnSal = btnSal;
+	}
 }

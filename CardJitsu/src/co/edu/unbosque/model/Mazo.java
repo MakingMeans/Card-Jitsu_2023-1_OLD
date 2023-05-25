@@ -41,17 +41,18 @@ public class Mazo {
 		return this.card;
 	}
 
-	public Carta[] crearMazoCus() {
-		for(int i = 0 ; i < 30; i++) {
+	public Carta[] crearMazoCus(byte idN, byte ElementoN, byte ColorN, byte NumeroN, Carta[] cartitas) {
+		byte i = idN;
+		card=cartitas;
 			boolean repetida = false;
 			System.out.print("Digite el numero de la carta " + (i + 1) + ": ");
-			select = sc.nextByte();
-			customN = barajaN[select - 2];
+			select = ElementoN;
+			customN = barajaN[select - 1];
 			System.out.print("Seleccione el elemento de la carta " + (i + 1) + ": ");
 			System.out.println("1. Fuego.");
 			System.out.println("2. Nieve.");
 			System.out.println("3. Agua.");
-			select = sc.nextByte();
+			select = ColorN;
 			customE = barajaE[select - 1];
 			System.out.print("Selecione el color de la carta " + (i + 1) + ": ");
 			System.out.println("1. Amarillo.");
@@ -60,10 +61,10 @@ public class Mazo {
 			System.out.println("4. Rojo.");
 			System.out.println("5. Violeta.");
 			System.out.println("6. Naranja.");
-			select = sc.nextByte();
+			select = NumeroN;
 			customC = barajaC[select - 1];
 			Carta preCard = new Carta(customE, customN, customC);
-			for(int j = 0; j < i; j++){
+			for(int j = 0; j < 30; j++){
 				if(card[j].getElemento().equals(preCard.getElemento()) && 
 				card[j].getColor().equals(preCard.getColor()) && 
 				card[j].getNumero() == preCard.getNumero()) repetida = true;
@@ -75,7 +76,6 @@ public class Mazo {
 				i--; 
 				System.out.println("Carta repetida, vuelva a ingresar el la carta.");
 			}
-		}
 		return this.card;
 	}
 
