@@ -17,7 +17,7 @@ public class FuncionesPrincipales {
         System.out.println("YES BRO IS LOADED");
         System.out.println("DATA USUARIO ENTRA V2= "+this.usuarios);
         //test user ranking
-        //this.usuarios.get(2).setPuntaje(this.usuarios.get(2).getPuntaje()+178);
+        //this.usuarios.get(0).setPuntaje(this.usuarios.get(0).getPuntaje()+178);
     }
     public ArrayList<User> getTemporalData(){
     	temporalData();
@@ -60,20 +60,19 @@ public class FuncionesPrincipales {
 	}
     public boolean crearUsuario(String name){
 		temporalData();
-    	boolean stop = false;
         //System.out.print("Digite el nombre de usuario --> ");
         //name = sc.next();
         int puntaje=0;
-        if(name.isEmpty()) return stop=true;
+        if(name.isEmpty()) return true;
 		if(this.usuarios.size()>0){
 			for(int j=0;j<this.usuarios.size();j++){
 				if(this.usuarios.get(j).getName().equals(name)) {
 					System.out.println("ERROR-->USUARIOS REPETIDOS");
-					stop = true;
+					return true;
 				}
 			}
 		}
-		if(stop==true) return stop=true;
+		//if(stop==true) return stop=true;
 		byte i= (byte)this.usuarios.size();
 		this.usuarios.add(new User(name, puntaje, i));
 		Mazo mazo = new Mazo();
@@ -86,7 +85,7 @@ public class FuncionesPrincipales {
 		}*/
 		Data dat = new Data();
 		dat.saveData(this.usuarios);
-		return stop=false;
+		return false;
     }
 	public boolean ingresarUsuario(String name){
 		temporalData();

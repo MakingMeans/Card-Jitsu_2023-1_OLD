@@ -16,6 +16,13 @@ public class Controller implements ActionListener{
 	private MenuPrincipal mainMenu;
 	//private AreYouSure mazoOptions;
 	private SeleccionMazo mazoView;
+	private AreYouSure preventRandom;
+	private AreYouSure preventCustom;
+	private Tutorial tutorialpg1;
+	private Tutorial tutorialpg2;
+	private Tutorial tutorialpg3;
+	private Tutorial tutorialpg4;
+	private Tutorial tutorialpg5;
 	private AreYouSure userOptions;
 	private AreYouSure preventSalida;
 	private AreYouSure preventSesion;
@@ -23,28 +30,29 @@ public class Controller implements ActionListener{
 	private FuncionesPrincipales funcionesPrimarias;
 	private FuncionesSecundarias funcionesSecundarias;
 	private Musica music;
-	private Tutorial tutorialpg1;
-	private Tutorial tutorialpg2;
-	private Tutorial tutorialpg3;
-	private Tutorial tutorialpg4;
-	private Tutorial tutorialpg5;
+	
+	/*private byte num;
+	private String element;
+	private String color;
+	private byte id;*/
 	boolean mute = false;
 	public Controller() {
 		inicial=new InterfazInicial();
 		userCreate=new UserLogin();
 		userLogin=new UserLogin();
 		mainMenu=new MenuPrincipal();
-		//mazoOptions=new AreYouSure();
 		mazoView=new SeleccionMazo();
-		userOptions=new AreYouSure();
-		preventSesion=new AreYouSure();
-		preventSalida=new AreYouSure();
-		userStats=new Stats();
+		preventRandom=new AreYouSure();
+		preventCustom=new AreYouSure();
 		tutorialpg1=new Tutorial("Tut0");
 		tutorialpg2=new Tutorial("Tut1");
 		tutorialpg3=new Tutorial("Tut2");
 		tutorialpg4=new Tutorial("Tut3");
 		tutorialpg5=new Tutorial("Tut4");
+		userOptions=new AreYouSure();
+		preventSesion=new AreYouSure();
+		preventSalida=new AreYouSure();
+		userStats=new Stats();
 		funcionesPrimarias=new FuncionesPrincipales();
 		funcionesSecundarias=new FuncionesSecundarias();
 		music=new Musica();
@@ -52,7 +60,7 @@ public class Controller implements ActionListener{
 	}
 	public void start(){
 		inicial.setVisible(true);
-		music.reproducirMusica();
+		music.reproducirMusica("DojoMenu");
 	}
 	public void agregarLectores(){
 		inicial.getBtnNueU().addActionListener(this);
@@ -82,11 +90,50 @@ public class Controller implements ActionListener{
 					mazoView.getBtnCus().addActionListener(this);
 					mazoView.getBtnCus().setActionCommand("btnCustomMaz");
 					
+						preventCustom.getBtnConf().addActionListener(this);
+						preventCustom.getBtnConf().setActionCommand("btnConfirmCus");
+						
+						preventCustom.getBtnVol().addActionListener(this);
+						preventCustom.getBtnVol().setActionCommand("btnCancelCus");
+					
 					mazoView.getBtnRand().addActionListener(this);
 					mazoView.getBtnRand().setActionCommand("btnRandomMaz");
 					
+						preventRandom.getBtnConf().addActionListener(this);
+						preventRandom.getBtnConf().setActionCommand("btnConfirmRand");
+						
+						preventRandom.getBtnVol().addActionListener(this);
+						preventRandom.getBtnVol().setActionCommand("btnCancelRand");
+					
 					mazoView.getBtnSal().addActionListener(this);
 					mazoView.getBtnSal().setActionCommand("btnSalirMaz");
+					
+					mazoView.getBtnFuego().addActionListener(this);
+					mazoView.getBtnFuego().setActionCommand("btnFuegoMaz");
+					
+					mazoView.getBtnAgua().addActionListener(this);
+					mazoView.getBtnAgua().setActionCommand("btnAguaMaz");
+					
+					mazoView.getBtnNieve().addActionListener(this);
+					mazoView.getBtnNieve().setActionCommand("btnNieveMaz");
+					
+					mazoView.getBtnAzul().addActionListener(this);
+					mazoView.getBtnAzul().setActionCommand("btnAzulMaz");
+					
+					mazoView.getBtnAmarillo().addActionListener(this);
+					mazoView.getBtnAmarillo().setActionCommand("btnAmarilloMaz");
+					
+					mazoView.getBtnRojo().addActionListener(this);
+					mazoView.getBtnRojo().setActionCommand("btnRojoMaz");
+					
+					mazoView.getBtnVerde().addActionListener(this);
+					mazoView.getBtnVerde().setActionCommand("btnVerdeMaz");
+					
+					mazoView.getBtnVioleta().addActionListener(this);
+					mazoView.getBtnVioleta().setActionCommand("btnMoradoMaz");
+					
+					mazoView.getBtnNaranja().addActionListener(this);
+					mazoView.getBtnNaranja().setActionCommand("btnNaranjaMaz");
 				
 				mainMenu.getBtnTut().addActionListener(this);
 				mainMenu.getBtnTut().setActionCommand("btnTutorialMain");
@@ -165,8 +212,6 @@ public class Controller implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		//throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
 		switch(e.getActionCommand()) {
 			case "btnCrear":{
 				userCreate.setYesTxt("SingUp", 30f,200,110);;
@@ -184,8 +229,6 @@ public class Controller implements ActionListener{
 						JOptionPane.showMessageDialog(userCreate, "USER REPETIDO O VACIO", "Error", 
 								JOptionPane.ERROR_MESSAGE);
 					}else if(!error){
-						//JOptionPane.showMessageDialog(userCreate, "ES VALIDO", "Error", 
-								//JOptionPane.ERROR_MESSAGE);
 						JOptionPane.showMessageDialog(userCreate, "User creado con exito", "Validación",
 								JOptionPane.INFORMATION_MESSAGE);
 						if(name.equals("rickroll69")) {
@@ -218,8 +261,6 @@ public class Controller implements ActionListener{
 						JOptionPane.showMessageDialog(userLogin, "NO EXISTE TAL USER", "Error", 
 								JOptionPane.ERROR_MESSAGE);
 					}else if(!error){
-						//JOptionPane.showMessageDialog(userLogin, "ES VALIDO", "Error", 
-								//JOptionPane.ERROR_MESSAGE);
 						JOptionPane.showMessageDialog(userCreate, "Inicio de sesión exitoso", "Validación",
 								JOptionPane.INFORMATION_MESSAGE);
 						//if(name.equals("rickroll69"))music.cambiarMusica("Roll");
@@ -247,10 +288,6 @@ public class Controller implements ActionListener{
 						break;
 					}
 					case "btnMazoMain":{
-						/*mazoView.setUserName(funcionesPrimarias.currentUser().getName());;
-						mazoView.setPreguntaTxt("Opciones Mazo:", 30f,40,10);;
-						mazoView.setYesTxt("Randomizar", 27f,177,110);;
-						mazoView.setNoTxt("Editar", 30f,45,110);;*/
 						mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
 						mainMenu.setVisible(false);
 						mazoView.setVisible(true);
@@ -259,28 +296,138 @@ public class Controller implements ActionListener{
 					//opciones mazo editable
 						case "btnCustomMaz":{
 							String name = funcionesPrimarias.currentUser().getName();;
-							String num="2";
-							String elemento="Fuego";
-							String color="Amarillo";
-							funcionesSecundarias.asignarMazoCustom(name);;
-							//mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
-							mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
-							mazoView.setBigCard(num,elemento,color);
+							String preNum = mazoView.getDigNUM().getText();;
+							String preId = mazoView.getDigID().getText();;
+							try {
+								@SuppressWarnings("unused")
+								byte test = Byte.parseByte(preId);
+							}catch(NumberFormatException e2){
+								JOptionPane.showMessageDialog(mazoView, "La Id debe ser numerica (entre 1 y 30)", "error", 
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+							try {
+								@SuppressWarnings("unused")
+								byte test = Byte.parseByte(preNum);
+							}catch(NumberFormatException e2){
+								JOptionPane.showMessageDialog(mazoView, "El número de la carta debe ser numerico (entre 2 y 15)", "error", 
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+							if(preId.isEmpty()) {
+								JOptionPane.showMessageDialog(mazoView, "La Id de la carta esta vacia", "Error", 
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+							if(preNum.isEmpty()) {
+								JOptionPane.showMessageDialog(mazoView, "No se especifico número de la carta", "Error", 
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+							mazoView.setId((byte)(Byte.parseByte(preId)-1));
+							mazoView.setNum(Byte.parseByte(preNum));
+							if(mazoView.getId()<0||mazoView.getId()>29) {
+								JOptionPane.showMessageDialog(mazoView, "Las ids de las cartas van de 1 a 30", "Error", 
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+							if(mazoView.getNum()<2||mazoView.getNum()>15) {
+								JOptionPane.showMessageDialog(mazoView, "Los números de las cartas van de 2 a 15", "Error", 
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+							if(mazoView.getElement()==null) {
+								JOptionPane.showMessageDialog(mazoView, "No ha seleccionado algun elemento", "Error", 
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+							if(mazoView.getColor()==null) {
+								JOptionPane.showMessageDialog(mazoView, "No ha seleccionado algun color", "Error", 
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+							byte error2 = funcionesSecundarias.asignarMazoCustom(name, mazoView.getId(), mazoView.getNum(), mazoView.getElement(), mazoView.getColor());;
+							if(error2!=0) {
+								JOptionPane.showMessageDialog(mazoView, "No se puede crear la Carta#"+(mazoView.getId()+1)+"="+mazoView.getNum()+mazoView.getElement()+mazoView.getColor()+
+										" porque ya esta en el mazo, no pueden haber cartas repetidas ---> Carta#"+error2+"="+mazoView.getNum()+mazoView.getElement()+mazoView.getColor(), "Error", 
+										JOptionPane.ERROR_MESSAGE);
+							}else {
+								preventCustom.setUserName(funcionesPrimarias.currentUser().getName()+"?");;
+								preventCustom.setPreguntaTxt("Remplazar Carta#"+(mazoView.getId()+1)+" de", 28f,25,10);;
+								preventCustom.setVisible(true);
+							}
 						    break;
 						}
+							case "btnConfirmCus":{
+								preventCustom.setVisible(false);
+								mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+								mazoView.setBigCard(String.valueOf(mazoView.getNum()),mazoView.getElement(),mazoView.getColor());
+								JOptionPane.showMessageDialog(userCreate, "Se ha remplazado la Carta#"+(mazoView.getId()+1)+" por una Carta="
+										+mazoView.getNum()+mazoView.getElement()+mazoView.getColor(), "Validación",JOptionPane.INFORMATION_MESSAGE);
+							    break;
+							}
+							case "btnCancelCus":{
+								preventCustom.setVisible(false);
+							    break;
+							}
 						case "btnRandomMaz":{
-							String name = funcionesPrimarias.currentUser().getName();;
-							funcionesSecundarias.asignarMazoAleatorio(name);;
-							//mazoView.setVisible(false);
-							mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
-							mazoView.resetBigCard();
-							//mazoView.setVisible(true);
+							preventRandom.setUserName(funcionesPrimarias.currentUser().getName()+"?");;
+							preventRandom.setPreguntaTxt("Randomizar el mazo de", 28f,25,10);;
+							preventRandom.setVisible(true);
 						    break;
 						}
+							case "btnConfirmRand":{
+								preventRandom.setVisible(false);
+								String name = funcionesPrimarias.currentUser().getName();;
+								funcionesSecundarias.asignarMazoAleatorio(name);;
+								mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+								mazoView.resetBigCard();
+							    break;
+							}
+							case "btnCancelRand":{
+								preventRandom.setVisible(false);
+							    break;
+							}
 						case "btnSalirMaz":{
-							//mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+							mazoView.resetBigCard();
 							mainMenu.setVisible(true);
 							mazoView.setVisible(false);
+						    break;
+						}
+						case "btnFuegoMaz":{
+							mazoView.setElement("Fuego");
+						    break;
+						}
+						case "btnAguaMaz":{
+							mazoView.setElement("Agua");
+						    break;
+						}
+						case "btnNieveMaz":{
+							mazoView.setElement("Hielo");
+						    break;
+						}
+						case "btnAzulMaz":{
+							mazoView.setColor("Azul");
+						    break;
+						}
+						case "btnAmarilloMaz":{
+							mazoView.setColor("Amarillo");
+						    break;
+						}
+						case "btnRojoMaz":{
+							mazoView.setColor("Rojo");
+						    break;
+						}
+						case "btnVerdeMaz":{
+							mazoView.setColor("Verde");
+						    break;
+						}
+						case "btnMoradoMaz":{
+							mazoView.setColor("Morado");
+						    break;
+						}
+						case "btnNaranjaMaz":{
+							mazoView.setColor("Naranja");
 						    break;
 						}
 					case "btnTutorialMain": {
@@ -396,7 +543,7 @@ public class Controller implements ActionListener{
 						}
 						//opciones logout
 							case "btnConfirmSesion":{
-								mazoView.resetBigCard();
+								//mazoView.resetBigCard();
 								preventSesion.setVisible(false);
 								userOptions.setVisible(false);
 								mainMenu.setVisible(false);

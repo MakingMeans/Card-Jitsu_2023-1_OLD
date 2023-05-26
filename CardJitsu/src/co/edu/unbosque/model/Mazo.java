@@ -40,32 +40,6 @@ public class Mazo {
 		}
 		return this.card;
 	}
-
-	public Carta[] crearMazoCus(byte idN, byte ElementoN, byte ColorN, byte NumeroN, Carta[] cartitas) {
-		byte i = idN;
-		card=cartitas;
-			boolean repetida = false;
-			select = NumeroN;
-			customN = barajaN[select - 1];
-			select = ElementoN;
-			customE = barajaE[select - 1];
-			select = ColorN;
-			customC = barajaC[select - 1];
-			Carta preCard = new Carta(customE, customN, customC);
-			for(int j = 0; j < 30; j++){
-				if(card[j].getElemento().equals(preCard.getElemento()) && 
-				card[j].getColor().equals(preCard.getColor()) && 
-				card[j].getNumero() == preCard.getNumero()) repetida = true;
-			}
-			if(repetida == false) {
-				card[i] = preCard; System.out.println("No se repite.");
-			}
-			else {
-				i--; 
-				System.out.println("Carta repetida, vuelva a ingresar el la carta.");
-			}
-		return this.card;
-	}
 	public int[] cincoCartas(int seleccion){
 		//if(seleccion>5||seleccion<1) seleccion = rand.nextInt(5)+1;
 		if(randomCards==null){

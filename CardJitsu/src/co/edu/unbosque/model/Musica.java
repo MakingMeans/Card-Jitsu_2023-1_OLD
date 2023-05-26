@@ -22,9 +22,9 @@ public class Musica {
         clipActual.open(audioStream);
         clipActual.start(); // Inicia la reproducción de la música
     }
-    public void reproducirMusica() {
+    public void reproducirMusica(String rutaArchivo) {
         try {
-            iniciarReproduccionMusica("src/co/edu/unbosque/assets/musica/DojoMenu.wav");
+            iniciarReproduccionMusica("src/co/edu/unbosque/assets/musica/"+rutaArchivo+".wav");
             // Guardar volumen
             guardarVolumenOriginal();
             // Opcional: Reproducir en bucle continuo

@@ -34,7 +34,7 @@ public class Stats extends JFrame {
         
         ImageIcon iSal = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnSal = new JButton(iSal);
-        btnSal.setBounds(140, 673, 195, 52);
+        btnSal.setBounds(536, 688, 130, 125);
         btnSal.setContentAreaFilled(false);
         btnSal.setBorderPainted(true);
         
@@ -61,33 +61,33 @@ public class Stats extends JFrame {
         }
         
         name = new JLabel("Default!");
-		name.setBounds(360,60,400,50);
+		name.setBounds(340,70,400,50);
 		name.setForeground(Color.WHITE);
 		name.setFont(customFont);
 		id = new JLabel("Default!");
-		id.setBounds(930,60,400,50);
+		id.setBounds(930,70,400,50);
 		id.setForeground(Color.WHITE);
 		id.setFont(customFont);
 		cinturon =new JLabel();
-		cinturon.setBounds(500,140,675,125);
+		cinturon.setBounds(425,190,675,125);
 		Image temporal= new ImageIcon("src/co/edu/unbosque/assets/cinturones/"+cintColor+".png").getImage();
 		ImageIcon imgRedimension1=new ImageIcon(
 				temporal.getScaledInstance(cinturon.getWidth(), cinturon.getHeight(), Image.SCALE_SMOOTH));
 		cinturon.setIcon(imgRedimension1);
 		puntaje = new JLabel("Default!");
-		puntaje.setBounds(475,340,400,50);
+		puntaje.setBounds(605,540,400,50);
 		puntaje.setForeground(Color.WHITE);
 		puntaje.setFont(customFont2);
 		restante = new JLabel("Default!");
-		restante.setBounds(555,510,400,50);
+		restante.setBounds(770,388,400,50);
 		restante.setForeground(Color.WHITE);
 		restante.setFont(customFont2);
 		JLabel ranking = new JLabel("RANK");
-		ranking.setBounds(540,670,400,50);
+		ranking.setBounds(870,540,400,50);
 		ranking.setForeground(Color.WHITE);
 		ranking.setFont(customFont3);
 		rank = new JLabel("Default!");
-		rank.setBounds(760,670,400,50);
+		rank.setBounds(800,540,400,50);
 		rank.setForeground(Color.WHITE);
 		rank.setFont(customFont3);
         
@@ -128,7 +128,16 @@ public class Stats extends JFrame {
 		this.cintColor=cinturon;
 		this.puntaje.setText(String.valueOf(puntaje));
 		this.restante.setText(String.valueOf(nextLv));
-		if(puntaje>=90) this.restante.setText("COMPLETE!");
+		if(puntaje>=90) {
+			this.restante.setText("COMPLETE!");
+			Font font = this.restante.getFont();  
+			Font newFont = font.deriveFont(35f);  
+			this.restante.setFont(newFont);
+		} else {
+			Font font = this.restante.getFont();  
+			Font newFont = font.deriveFont(45f);  
+			this.restante.setFont(newFont);
+		}
 		if(cinturon=="NINGUNO") this.puntaje.setForeground(Color.WHITE);;
 		if(cinturon=="BLANCO") this.puntaje.setForeground(Color.WHITE);;
 		if(cinturon=="AMARILLO") this.puntaje.setForeground(Color.YELLOW);;
