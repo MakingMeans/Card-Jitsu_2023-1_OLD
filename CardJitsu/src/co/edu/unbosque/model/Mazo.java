@@ -10,7 +10,7 @@ public class Mazo {
 
 	byte[] barajaN = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 	String[] barajaC = {"Amarillo", "Azul", "Verde", "Rojo", "Morado", "Naranja"};
-	String[] barajaE = {"Fuego", "Hielo", "Agua"};
+	String[] barajaE = {"Fuego", "Nieve", "Agua"};
 
 	private int[] randomCards;
 	int randomCard;
@@ -40,6 +40,7 @@ public class Mazo {
 		}
 		return this.card;
 	}
+	//eliminar cinco cards
 	public int[] cincoCartas(int seleccion){
 		//if(seleccion>5||seleccion<1) seleccion = rand.nextInt(5)+1;
 		if(randomCards==null){
@@ -75,7 +76,7 @@ public class Mazo {
 		}
 		return randomCards;
 	}
-	public Carta senseiCard(){
+	public Carta rivalCard(){
 		String senseiElement = barajaE[rand.nextInt(barajaE.length)];
 		String senseiColor = barajaC[rand.nextInt(barajaC.length)];
 		byte senseiNumber = barajaN[rand.nextInt(barajaN.length)];

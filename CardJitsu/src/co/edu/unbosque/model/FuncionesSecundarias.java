@@ -57,19 +57,4 @@ public class FuncionesSecundarias {
 		dat.saveData(this.usuarios);
 		return 0;
 	}
-	public void mostrarMazo() {	
-        Carta baraja[]=new Carta[30];
-        baraja = usuarios.get(id).getMazo();
-		for(int i=0;i<30;i++){
-			System.out.println(baraja[i].getElemento()+" - "+baraja[i].getColor()+" - "+baraja[i].getNumero());
-		}
-	}	
-	public void jugarCPU() {
-		User usuario = usuarios.get(id);
-	    Gameplay match = new Gameplay(usuario); 
-		match.partidaTEST();       
-		match.partidaCPU();
-		Data dat = new Data();
-		dat.saveData(usuarios);
-	}
 }

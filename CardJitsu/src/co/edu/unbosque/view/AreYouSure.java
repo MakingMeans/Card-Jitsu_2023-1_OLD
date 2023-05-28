@@ -29,7 +29,7 @@ public class AreYouSure extends JFrame {
         setSize(350, 225);
         setLocationRelativeTo(null);
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         InterfazDigitacionPanel panel = new InterfazDigitacionPanel();
         Font customFont= new Font("Arial", Font.PLAIN, 50);
         try {
@@ -48,22 +48,22 @@ public class AreYouSure extends JFrame {
 		name.setFont(customFont);
 		yes = new JLabel("Si");
 		yes.setBounds(225,110,400,50);
-		yes.setForeground(Color.BLACK);
+		yes.setForeground(new Color(68, 42, 20));
 		yes.setFont(customFont);
 	    no = new JLabel("No");
 		no.setBounds(70,110,400,50);
-		no.setForeground(Color.BLACK);
+		no.setForeground(new Color(68, 42, 20));
 		no.setFont(customFont);
         ImageIcon iConf = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnConf = new JButton(iConf);
         btnConf.setBounds(168, 100, 158, 71);
         btnConf.setContentAreaFilled(false);
-        btnConf.setBorderPainted(true);
+        btnConf.setBorderPainted(false);
         ImageIcon iVol = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
         btnVol = new JButton(iVol);
         btnVol.setBounds(10, 100, 158, 71);
         btnVol.setContentAreaFilled(false);
-        btnVol.setBorderPainted(true);
+        btnVol.setBorderPainted(false);
         add(btnConf);
         add(btnVol);
         add(pregunta);

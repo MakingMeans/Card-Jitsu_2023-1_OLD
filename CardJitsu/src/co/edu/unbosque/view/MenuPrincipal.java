@@ -1,16 +1,10 @@
 package co.edu.unbosque.view;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MenuPrincipal extends JFrame {
@@ -21,7 +15,6 @@ public class MenuPrincipal extends JFrame {
     private JButton btnTut;
     private JButton btnCue;
     private JButton btnSal;
-    private JLabel[] easter;
 	
 	public MenuPrincipal() {
         setTitle("Retro Card-Jitsu");
@@ -67,38 +60,12 @@ public class MenuPrincipal extends JFrame {
         btnSal.setContentAreaFilled(false);
         btnSal.setBorderPainted(true);
         
-        Font customFont= new Font("Arial", Font.PLAIN, 50);
-        try {
-        	customFont = Font.createFont(Font.TRUETYPE_FONT, 
-            		new File("src/co/edu/unbosque/assets/fonts/Daydream.ttf")).deriveFont(Font.PLAIN, 45);
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-        }
-        easter= new JLabel[4];
-        easter[0] = new JLabel("Si puedes leerme, corre!");
-        easter[1] = new JLabel(":(");
-        easter[2] = new JLabel(":v");
-        easter[3] = new JLabel(">:)");
-		easter[0].setBounds(475,340,400,50);
-		easter[1].setBounds(180,560,400,50);
-		easter[2].setBounds(515,555,400,50);
-		easter[3].setBounds(950,560,400,50);
-		for(int i=0; i<easter.length;i++) {
-			easter[i].setForeground(Color.BLACK);
-			easter[i].setFont(customFont);
-			easter[i].setVisible(false);
-			easter[0].setForeground(Color.WHITE);
-		}
-        
         add(btnMus);
         add(btnJug);
         add(btnMaz);
         add(btnTut);
         add(btnCue);
         add(btnSal);
-        for(int i=0; i<easter.length;i++) {
-        	add(easter[i]);
-		}
         add(panel);
     }
 
@@ -168,16 +135,5 @@ public class MenuPrincipal extends JFrame {
 	}
 	public void setBtnSal(JButton btnSal) {
 		this.btnSal = btnSal;
-	}
-	public void setEaster() {
-		this.easter[0].setText("NO BRO...");
-		for(int i=0; i<this.easter.length;i++) {
-			this.easter[i].setVisible(true);
-		}
-	}
-	public void hideEaster() {
-		for(int i=0; i<this.easter.length;i++) {
-			this.easter[i].setVisible(false);
-		}
 	}
 }

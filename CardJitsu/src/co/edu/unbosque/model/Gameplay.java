@@ -37,6 +37,9 @@ public class Gameplay {
 	ArrayList<String> rivalElementoDiferente = new ArrayList<String>();
 
 	Scanner sc = new Scanner(System.in);
+	
+	private Carta cincoCards[] = new Carta[5];
+	private Carta card[] = usuario.getMazo();
 
     public Gameplay(User usuario) {
 		this.usuario = usuario;
@@ -48,7 +51,6 @@ public class Gameplay {
         Random rand = new Random();
 
         Mazo mazo = new Mazo();
-        Carta card[] = usuario.getMazo();
 
         for(int i=0;i<30;i++){
 			System.out.println(card[i].getElemento()+" - "+card[i].getColor()+" - "+card[i].getNumero());
@@ -56,8 +58,11 @@ public class Gameplay {
         int randomCarta[];
 		boolean hayGanador = false;
 		while (hayGanador == false) {
-			Carta cartaJugador, cartaRival = mazo.senseiCard();
+			Carta cartaJugador, cartaRival = mazo.rivalCard();
 			randomCarta = mazo.cincoCartas(seleccion);
+			for(int i=0;i<cincoCards.length;i++) {
+				cincoCards[i]=card[randomCarta[i]];
+			}
 			System.out.println("-----------Partida contra sensei-----------\n");
 			System.out.println("---Mano---");
 			System.out.println("1. "+card[randomCarta[0]].getElemento()+" - "+card[randomCarta[0]].getColor()+" - "+card[randomCarta[0]].getNumero());
@@ -242,5 +247,14 @@ public class Gameplay {
 			hayGanador = true;
 		}
 		return hayGanador;
+	}
+	public Carta[] cincoCartas() {
+		Mazo mazo = new Mazo();
+		int[] randomCarta;
+		randomCarta = mazo.cincoCartas(seleccion);
+		for(int i=0;i<cincoCards.length;i++) {
+			cincoCards[i]=card[randomCarta[i]];
+		}
+		return cincoCards;
 	}
 }

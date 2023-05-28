@@ -1,6 +1,7 @@
 package co.edu.unbosque.controller;
 import co.edu.unbosque.model.FuncionesPrincipales;
 import co.edu.unbosque.model.FuncionesSecundarias;
+import co.edu.unbosque.model.GameplayLogic;
 import co.edu.unbosque.model.Musica;
 import co.edu.unbosque.view.*;
 
@@ -14,53 +15,53 @@ public class Controller implements ActionListener{
 	private UserLogin userCreate;
 	private UserLogin userLogin;
 	private MenuPrincipal mainMenu;
-	//private AreYouSure mazoOptions;
+	private GraphicGameplay gameplay;
+	private AreYouSure preventLostGame;
 	private SeleccionMazo mazoView;
 	private AreYouSure preventRandom;
-	private AreYouSure preventCustom;
 	private Tutorial tutorialpg1;
 	private Tutorial tutorialpg2;
 	private Tutorial tutorialpg3;
 	private Tutorial tutorialpg4;
 	private Tutorial tutorialpg5;
-	private AreYouSure userOptions;
-	private AreYouSure preventSalida;
-	private AreYouSure preventSesion;
 	private Stats userStats;
+	private AreYouSure userOptions;
+	private AreYouSure preventSesion;
+	private AreYouSure preventSalida;
 	private FuncionesPrincipales funcionesPrimarias;
 	private FuncionesSecundarias funcionesSecundarias;
+	private GameplayLogic gameLogic;
 	private Musica music;
+	//private FlashScreen flashScreen;
 	
-	/*private byte num;
-	private String element;
-	private String color;
-	private byte id;*/
-	boolean mute = false;
 	public Controller() {
 		inicial=new InterfazInicial();
 		userCreate=new UserLogin();
 		userLogin=new UserLogin();
 		mainMenu=new MenuPrincipal();
+		gameplay=new GraphicGameplay();
+		preventLostGame=new AreYouSure();
 		mazoView=new SeleccionMazo();
 		preventRandom=new AreYouSure();
-		preventCustom=new AreYouSure();
 		tutorialpg1=new Tutorial("Tut0");
 		tutorialpg2=new Tutorial("Tut1");
 		tutorialpg3=new Tutorial("Tut2");
 		tutorialpg4=new Tutorial("Tut3");
 		tutorialpg5=new Tutorial("Tut4");
+		userStats=new Stats();
 		userOptions=new AreYouSure();
 		preventSesion=new AreYouSure();
 		preventSalida=new AreYouSure();
-		userStats=new Stats();
 		funcionesPrimarias=new FuncionesPrincipales();
 		funcionesSecundarias=new FuncionesSecundarias();
+		gameLogic=new GameplayLogic();
 		music=new Musica();
+		//flashScreen = new FlashScreen();
 		agregarLectores();
 	}
 	public void start(){
 		inicial.setVisible(true);
-		music.reproducirMusica("DojoMenu");
+		music.reproducirMusica("Welcome");
 	}
 	public void agregarLectores(){
 		inicial.getBtnNueU().addActionListener(this);
@@ -84,17 +85,34 @@ public class Controller implements ActionListener{
 				mainMenu.getBtnJug().addActionListener(this);
 				mainMenu.getBtnJug().setActionCommand("btnJugarMain");
 				
+					gameplay.getBtnMus().addActionListener(this);
+					gameplay.getBtnMus().setActionCommand("btnJugarMus");
+					
+					gameplay.getBtnSal().addActionListener(this);
+					gameplay.getBtnSal().setActionCommand("btnJugarSal");
+					
+					gameplay.getBtnC1().addActionListener(this);
+					gameplay.getBtnC1().setActionCommand("btnCard1");
+					gameplay.getBtnC2().addActionListener(this);
+					gameplay.getBtnC2().setActionCommand("btnCard2");
+					gameplay.getBtnC3().addActionListener(this);
+					gameplay.getBtnC3().setActionCommand("btnCard3");
+					gameplay.getBtnC4().addActionListener(this);
+					gameplay.getBtnC4().setActionCommand("btnCard4");
+					gameplay.getBtnC5().addActionListener(this);
+					gameplay.getBtnC5().setActionCommand("btnCard5");
+				
+						preventLostGame.getBtnConf().addActionListener(this);
+						preventLostGame.getBtnConf().setActionCommand("btnConfirmSalPlay");
+						
+						preventLostGame.getBtnVol().addActionListener(this);
+						preventLostGame.getBtnVol().setActionCommand("btnCancelSalPlay");
+				
 				mainMenu.getBtnMaz().addActionListener(this);
 				mainMenu.getBtnMaz().setActionCommand("btnMazoMain");
 				
 					mazoView.getBtnCus().addActionListener(this);
 					mazoView.getBtnCus().setActionCommand("btnCustomMaz");
-					
-						preventCustom.getBtnConf().addActionListener(this);
-						preventCustom.getBtnConf().setActionCommand("btnConfirmCus");
-						
-						preventCustom.getBtnVol().addActionListener(this);
-						preventCustom.getBtnVol().setActionCommand("btnCancelCus");
 					
 					mazoView.getBtnRand().addActionListener(this);
 					mazoView.getBtnRand().setActionCommand("btnRandomMaz");
@@ -214,22 +232,22 @@ public class Controller implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case "btnCrear":{
-				userCreate.setYesTxt("SingUp", 30f,200,110);;
-				userCreate.setNoTxt("Volver", 30f,40,110);;
+				userCreate.setYesTxt("SingUp", 35f,190,110);
+				userCreate.setNoTxt("Volver", 35f,40,110);
 				inicial.setVisible(false);
 				userCreate.setVisible(true);
 				break;
 			}
 			//opciones crear user
 				case "btnConfirmCrear":{
-					String name = userCreate.getDigD().getText();;
+					String name = userCreate.getDigD().getText();
 					boolean error = funcionesPrimarias.crearUsuario(name);
 					System.out.println(error);
 					if(error) {
-						JOptionPane.showMessageDialog(userCreate, "USER REPETIDO O VACIO", "Error", 
+						JOptionPane.showMessageDialog(userCreate, "USUARIO REPETIDO O VACIO", "Error", 
 								JOptionPane.ERROR_MESSAGE);
 					}else if(!error){
-						JOptionPane.showMessageDialog(userCreate, "User creado con exito", "Validación",
+						JOptionPane.showMessageDialog(userCreate, "Usuario creado con exito", "Validación",
 								JOptionPane.INFORMATION_MESSAGE);
 						if(name.equals("rickroll69")) {
 							JOptionPane.showMessageDialog(userCreate, "No deberias...", "Perdición",
@@ -246,63 +264,162 @@ public class Controller implements ActionListener{
 					break;
 				}
 			case "btnIngresar":{
-				userLogin.setYesTxt("LogIn", 30f,200,110);;
-				userLogin.setNoTxt("Volver", 30f,40,110);;
+				userLogin.setYesTxt("LogIn", 35f,200,110);
+				userLogin.setNoTxt("Volver", 35f,40,110);
 				inicial.setVisible(false);
 				userLogin.setVisible(true);
 				break;
 			}
 			//opciones login user
 				case "btnConfirmLogin":{
-					String name = userLogin.getDigD().getText();;
+					String name = userLogin.getDigD().getText();
 					boolean error = funcionesPrimarias.ingresarUsuario(name);
 					System.out.println(error);
 					if(error) {
-						JOptionPane.showMessageDialog(userLogin, "NO EXISTE TAL USER", "Error", 
+						JOptionPane.showMessageDialog(userLogin, "NO EXISTE TAL USUARIO", "Error", 
 								JOptionPane.ERROR_MESSAGE);
 					}else if(!error){
 						JOptionPane.showMessageDialog(userCreate, "Inicio de sesión exitoso", "Validación",
-								JOptionPane.INFORMATION_MESSAGE);
-						//if(name.equals("rickroll69"))music.cambiarMusica("Roll");
-						if(name.equals("rickroll69")) {
-							JOptionPane.showMessageDialog(userCreate, "Run.", "Desesperación",
-									JOptionPane.WARNING_MESSAGE);
-							music.shutUp();
-							music.soundEffect("Defeat");
-							mainMenu.setEaster();
-						}else mainMenu.hideEaster();
+								JOptionPane.INFORMATION_MESSAGE);	
 						userLogin.setVisible(false);
 						mainMenu.setVisible(true);
+						if(name.equals("rickroll69")) {
+							JOptionPane.showMessageDialog(userCreate, "Corre.", "Desesperación",
+									JOptionPane.WARNING_MESSAGE);
+							music.cambiarMusica("Roll");
+						}else music.cambiarMusica("DojoMenu");
 					}
 					break;
 				}
 				//opciones main menu
 					case "btnMusicaMain":{
-						Musica.bajarVolumenACero();
-						if(mute) {
-							Musica.restaurarVolumenOriginal();
-							mute= false;
+						Musica mc = new Musica();
+						if(mc.getPreMute()) {
+							Musica.establecerVolumenInicial(0.7f);
 							break;
+						}else {
+							Musica.establecerVolumenInicial(-1000f);
 						}
-						mute = true;
 						break;
 					}
+					case "btnJugarMain":{
+						String name = funcionesPrimarias.currentUser().getName();
+						int score = funcionesPrimarias.currentUser().getPuntaje();
+						gameplay.setCartasCinco(gameLogic.cincoCartas(funcionesPrimarias.currentUser()));
+						if(score<45) {
+							if (name.equals("rickroll69")) music.cambiarMusica("PizzaTheme");
+							else music.cambiarMusica("BattleTheme");
+						}
+						else if(score<60&&score>=45) music.cambiarMusica("MidWayTheme");
+						else if(score<85&&score>=60) {
+							if (name.equals("rickroll69")) music.cambiarMusica("PizzaTheme");
+							else music.cambiarMusica("BattleTheme");
+						}
+						else if(score<100&&score>=85) music.cambiarMusica("FinaleTheme");
+						else if(score>=100) music.cambiarMusica("PerfectRanking");
+						
+						gameplay.setUserStats(funcionesPrimarias.currentUser().getName(),
+								funcionesPrimarias.currentUser().getCinturon(), funcionesPrimarias.currentUser().getPuntaje());
+						
+						mainMenu.setVisible(false);
+						gameplay.setVisible(true);
+					    break;
+					}
+					//in-game
+						case "btnCard1":{
+							if(!gameplay.getProhibited()) {
+								gameLogic.setSeleccion(1);
+								Runnable timeCallback = () -> {
+						            gameplay.setCartasCinco(gameLogic.cincoCartas(funcionesPrimarias.currentUser()));
+						        };
+						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 0, timeCallback);
+							}
+							break;
+						}
+						case "btnCard2":{
+							if(!gameplay.getProhibited()) {
+								gameLogic.setSeleccion(2);
+								Runnable timeCallback = () -> {
+						            gameplay.setCartasCinco(gameLogic.cincoCartas(funcionesPrimarias.currentUser()));
+						        };
+						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 1, timeCallback);
+							}
+							break;
+						}
+						case "btnCard3":{
+							if(!gameplay.getProhibited()) {
+								gameLogic.setSeleccion(3);
+								Runnable timeCallback = () -> {
+						            gameplay.setCartasCinco(gameLogic.cincoCartas(funcionesPrimarias.currentUser()));
+						        };
+						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 2, timeCallback);	
+							}
+							break;
+						}
+						case "btnCard4":{
+							if(!gameplay.getProhibited()) {
+								gameLogic.setSeleccion(4);
+								Runnable timeCallback = () -> {
+						            gameplay.setCartasCinco(gameLogic.cincoCartas(funcionesPrimarias.currentUser()));
+						        };
+						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 3, timeCallback);	
+							}
+							break;
+						}
+						case "btnCard5":{
+							if(!gameplay.getProhibited()) {
+								gameLogic.setSeleccion(5);
+								Runnable timeCallback = () -> {
+						            gameplay.setCartasCinco(gameLogic.cincoCartas(funcionesPrimarias.currentUser()));
+						        };
+						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 4, timeCallback);
+							}
+							break;
+						}
+						case "btnJugarMus":{
+							Musica mc = new Musica();
+							if(mc.getPreMute()) {
+								Musica.establecerVolumenInicial(0.7f);
+								break;
+							}else {
+								Musica.establecerVolumenInicial(-1000f);
+							}
+							break;
+						}
+						case "btnJugarSal":{
+							preventLostGame.setUserName(funcionesPrimarias.currentUser().getName()+"?");
+							preventLostGame.setVisible(true);
+						    break;
+						}
+						case "btnConfirmSalPlay":{
+							music.cambiarMusica("DojoMenu");
+							gameLogic.setRandomCards(null);
+							gameplay.nonvisibleSelect();
+							preventLostGame.setVisible(false);
+							gameplay.setVisible(false);
+							mainMenu.setVisible(true);
+						    break;
+						}
+						case "btnCancelSalPlay":{
+							preventLostGame.setVisible(false);
+						    break;
+						}
 					case "btnMazoMain":{
-						mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+						mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());
 						mainMenu.setVisible(false);
 						mazoView.setVisible(true);
 					    break;
 					}
 					//opciones mazo editable
 						case "btnCustomMaz":{
-							String name = funcionesPrimarias.currentUser().getName();;
-							String preNum = mazoView.getDigNUM().getText();;
-							String preId = mazoView.getDigID().getText();;
+							String name = funcionesPrimarias.currentUser().getName();
+							String preNum = mazoView.getDigNUM().getText();
+							String preId = mazoView.getDigID().getText();
 							try {
 								@SuppressWarnings("unused")
 								byte test = Byte.parseByte(preId);
 							}catch(NumberFormatException e2){
-								JOptionPane.showMessageDialog(mazoView, "La Id debe ser numerica (entre 1 y 30)", "error", 
+								JOptionPane.showMessageDialog(mazoView, "La Id debe ser numerica (entre 1 y 30)", "Error", 
 										JOptionPane.ERROR_MESSAGE);
 								break;
 							}
@@ -310,7 +427,7 @@ public class Controller implements ActionListener{
 								@SuppressWarnings("unused")
 								byte test = Byte.parseByte(preNum);
 							}catch(NumberFormatException e2){
-								JOptionPane.showMessageDialog(mazoView, "El número de la carta debe ser numerico (entre 2 y 15)", "error", 
+								JOptionPane.showMessageDialog(mazoView, "El número de la carta debe ser numerico (entre 2 y 15)", "Error", 
 										JOptionPane.ERROR_MESSAGE);
 								break;
 							}
@@ -352,35 +469,24 @@ public class Controller implements ActionListener{
 										" porque ya esta en el mazo, no pueden haber cartas repetidas ---> Carta#"+error2+"="+mazoView.getNum()+mazoView.getElement()+mazoView.getColor(), "Error", 
 										JOptionPane.ERROR_MESSAGE);
 							}else {
-								preventCustom.setUserName(funcionesPrimarias.currentUser().getName()+"?");;
-								preventCustom.setPreguntaTxt("Remplazar Carta#"+(mazoView.getId()+1)+" de", 28f,25,10);;
-								preventCustom.setVisible(true);
-							}
-						    break;
-						}
-							case "btnConfirmCus":{
-								preventCustom.setVisible(false);
 								mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
 								mazoView.setBigCard(String.valueOf(mazoView.getNum()),mazoView.getElement(),mazoView.getColor());
 								JOptionPane.showMessageDialog(userCreate, "Se ha remplazado la Carta#"+(mazoView.getId()+1)+" por una Carta="
 										+mazoView.getNum()+mazoView.getElement()+mazoView.getColor(), "Validación",JOptionPane.INFORMATION_MESSAGE);
-							    break;
 							}
-							case "btnCancelCus":{
-								preventCustom.setVisible(false);
-							    break;
-							}
+						    break;
+						}
 						case "btnRandomMaz":{
-							preventRandom.setUserName(funcionesPrimarias.currentUser().getName()+"?");;
+							preventRandom.setUserName(funcionesPrimarias.currentUser().getName()+"?");
 							preventRandom.setPreguntaTxt("Randomizar el mazo de", 28f,25,10);;
 							preventRandom.setVisible(true);
 						    break;
 						}
 							case "btnConfirmRand":{
 								preventRandom.setVisible(false);
-								String name = funcionesPrimarias.currentUser().getName();;
-								funcionesSecundarias.asignarMazoAleatorio(name);;
-								mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());;
+								String name = funcionesPrimarias.currentUser().getName();
+								funcionesSecundarias.asignarMazoAleatorio(name);
+								mazoView.setCurrentMazo(funcionesPrimarias.currentUser().getMazo());
 								mazoView.resetBigCard();
 							    break;
 							}
@@ -403,7 +509,7 @@ public class Controller implements ActionListener{
 						    break;
 						}
 						case "btnNieveMaz":{
-							mazoView.setElement("Hielo");
+							mazoView.setElement("Nieve");
 						    break;
 						}
 						case "btnAzulMaz":{
@@ -511,18 +617,18 @@ public class Controller implements ActionListener{
 							break;
 						}
 					case "btnCuentaMain":{
-						userOptions.setUserName(funcionesPrimarias.currentUser().getName());;
-						userOptions.setPreguntaTxt("Opciones Usuario:", 30f,40,10);;
-						userOptions.setYesTxt("Stats", 30f,205,110);;
-						userOptions.setNoTxt("LogOut", 30f,35,110);;
+						userOptions.setUserName(funcionesPrimarias.currentUser().getName());
+						userOptions.setPreguntaTxt("Usuario:", 35f,40,10);
+						userOptions.setYesTxt("Stats", 35f,205,110);
+						userOptions.setNoTxt("LogOut", 35f,35,110);
 						userOptions.setVisible(true);
 					    break;
 					}
 					//opciones user loged
 						case "btnStats":{
-							userStats.setUserName(funcionesPrimarias.currentUser().getName(),funcionesPrimarias.currentUser().getId(),
+							userStats.setUserStats(funcionesPrimarias.currentUser().getName(),funcionesPrimarias.currentUser().getId(),
 									funcionesPrimarias.currentUser().getCinturon(), funcionesPrimarias.currentUser().getPuntaje(),
-									funcionesPrimarias.currentUser().getNextLv());;
+									funcionesPrimarias.currentUser().getNextLv());
 							userOptions.setVisible(false);
 							mainMenu.setVisible(false);
 							userStats.setVisible(true);
@@ -544,6 +650,7 @@ public class Controller implements ActionListener{
 						//opciones logout
 							case "btnConfirmSesion":{
 								//mazoView.resetBigCard();
+								music.cambiarMusica("Welcome");
 								preventSesion.setVisible(false);
 								userOptions.setVisible(false);
 								mainMenu.setVisible(false);
@@ -556,7 +663,7 @@ public class Controller implements ActionListener{
 								break;
 							}
 					case "btnSalirMain":{
-						preventSalida.setUserName(funcionesPrimarias.currentUser().getName()+"?");;
+						preventSalida.setUserName(funcionesPrimarias.currentUser().getName()+"?");
 						preventSalida.setVisible(true);
 					    //mainMenu.setVisible(false);
 					    break;

@@ -2,7 +2,6 @@ package co.edu.unbosque.view;
 
 import java.awt.Graphics;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,26 +16,30 @@ public class Tutorial extends JFrame {
 
 	public Tutorial(String pagina) {
 		setTitle("Retro Card-Jitsu");
-		setSize(1200, 832);
+		setSize(1200, 800);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		InterfazInicialPanel panel = new InterfazInicialPanel("/co/edu/unbosque/assets/tutorial/"+pagina+".png");
+		InterfazInicialPanel panel = new InterfazInicialPanel("/co/edu/unbosque/assets/tutorial/" + pagina + ".png");
+
 		ImageIcon iAtr = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnAtr = new JButton(iAtr);
-		btnAtr.setBounds(802, 720, 150, 76);
+		btnAtr.setBounds(802, 690, 150, 76);
 		btnAtr.setContentAreaFilled(false);
-		btnAtr.setBorderPainted(true);
+		btnAtr.setBorderPainted(false);
+
 		ImageIcon iAde = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnAde = new JButton(iAde);
-		btnAde.setBounds(957, 720, 150, 76);
+		btnAde.setBounds(957, 690, 150, 76);
 		btnAde.setContentAreaFilled(false);
-		btnAde.setBorderPainted(true);
+		btnAde.setBorderPainted(false);
+
 		ImageIcon iMen = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnMen = new JButton(iMen);
-		btnMen.setBounds(1111, 720, 75, 76);
+		btnMen.setBounds(1111, 690, 75, 76);
 		btnMen.setContentAreaFilled(false);
-		btnMen.setBorderPainted(true);
+		btnMen.setBorderPainted(false);
+
 		add(btnAtr);
 		add(btnAde);
 		add(btnMen);
@@ -64,27 +67,36 @@ public class Tutorial extends JFrame {
 			g.drawImage(iT1, 0, 0, newWidth, newHeight, this);
 		}
 	}
+
 	public JButton getBtnAtr() {
 		return btnAtr;
 	}
+
 	public void setBtnAtr(JButton btnAtr) {
 		this.btnAtr = btnAtr;
 	}
+
 	public JButton getBtnAde() {
 		return btnAde;
 	}
+
 	public void setBtnAde(JButton btnAde) {
 		this.btnAde = btnAde;
 	}
+
 	public JButton getBtnMen() {
 		return btnMen;
 	}
+
 	public void setBtnMen(JButton btnMen) {
 		this.btnMen = btnMen;
 	}
+
 	public void hideButton(boolean hide) {
 		this.hide = hide;
-		if(this.hide==true) btnAtr.setBorderPainted(false);
-		else btnAtr.setBorderPainted(true);
+		if (this.hide == true)
+			btnAtr.setBorderPainted(false);
+		else
+			btnAtr.setBorderPainted(true);
 	}
 }

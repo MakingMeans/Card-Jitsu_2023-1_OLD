@@ -50,193 +50,211 @@ public class SeleccionMazo extends JFrame {
     
     public SeleccionMazo() {
         setTitle("Retro Card-Jitsu");
-        setSize(1200, 832); //1200,720
+        setSize(1200, 800); //1200,720
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         InterfazPanel panel = new InterfazPanel();
         
         ImageIcon iRand = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnRand = new JButton(iRand);
-        btnRand.setBounds(350, 740, 182, 58);
-        btnRand.setContentAreaFilled(false);
-        btnRand.setBorderPainted(true);
-        ImageIcon iCus = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnCus = new JButton(iCus);
-        btnCus.setBounds(670, 740, 182, 58);
-        btnCus.setContentAreaFilled(false);
-        btnCus.setBorderPainted(true);
-        ImageIcon iSal = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnSal = new JButton(iSal);
-        btnSal.setBounds(560, 740, 81, 58);
-        btnSal.setContentAreaFilled(false);
-        btnSal.setBorderPainted(true);
-        
-        
-        ImageIcon iAgu = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnAgua = new JButton(iAgu);
-        btnAgua.setBounds(320, 445, 144, 78);
-        btnAgua.setContentAreaFilled(false);
-        btnAgua.setBorderPainted(true);
-        ImageIcon iNie = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnNieve = new JButton(iNie);
-        btnNieve.setBounds(318, 625, 150, 74);
-        btnNieve.setContentAreaFilled(false);
-        btnNieve.setBorderPainted(true);
-        ImageIcon iFue = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnFuego = new JButton(iFue);
-        btnFuego.setBounds(311, 530, 170, 85);
-        btnFuego.setContentAreaFilled(false);
-        btnFuego.setBorderPainted(true);
-        
-        
-        ImageIcon iAma = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnAmarillo = new JButton(iAma);
-        btnAmarillo.setBounds(720, 441, 202, 78);
-        btnAmarillo.setContentAreaFilled(false);
-        btnAmarillo.setBorderPainted(true);
-        ImageIcon iAzu = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnAzul = new JButton(iAzu);
-        btnAzul.setBounds(757, 520, 127, 70);
-        btnAzul.setContentAreaFilled(false);
-        btnAzul.setBorderPainted(true);
-        ImageIcon iVer = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnVerde = new JButton(iVer);
-        btnVerde.setBounds(975, 594, 150, 78);
-        btnVerde.setContentAreaFilled(false);
-        btnVerde.setBorderPainted(true);
-        ImageIcon iVio = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnVioleta = new JButton(iVio);
-        btnVioleta.setBounds(728, 594, 180, 78);
-        btnVioleta.setContentAreaFilled(false);
-        btnVioleta.setBorderPainted(true);
-        ImageIcon iRoj = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnRojo = new JButton(iRoj);
-        btnRojo.setBounds(980, 520, 127, 70);
-        btnRojo.setContentAreaFilled(false);
-        btnRojo.setBorderPainted(true);
-        ImageIcon iNar = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
-        btnNaranja = new JButton(iNar);
-        btnNaranja.setBounds(945, 441, 202, 78);
-        btnNaranja.setContentAreaFilled(false);
-        btnNaranja.setBorderPainted(true);
-        
-        
-        digID = new JTextField();
-        digID.setBounds(535, 480, 130, 70);
-        digID.setEditable(true);
-        digID.setEnabled(true);
-        Font customFont1= new Font("Arial", Font.PLAIN, 50);
-        try {
-        	customFont1 = Font.createFont(Font.TRUETYPE_FONT, 
-            		new File("src/co/edu/unbosque/assets/fonts/Pixellari.ttf")).deriveFont(Font.PLAIN, 50);
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-        }
-        digID.setFont(customFont1);
-        digID.setBackground(new Color(159, 108, 63));
-        digID.setForeground(Color.white);
-        digID.setHorizontalAlignment(JTextField.CENTER);
-        
-        digNUM = new JTextField();
-        digNUM.setBounds(535, 620, 130, 70);
-        digNUM.setEditable(true);
-        digNUM.setEnabled(true);
-        Font customFont2= new Font("Arial", Font.PLAIN, 50);
-        try {
-        	customFont2 = Font.createFont(Font.TRUETYPE_FONT, 
-            		new File("src/co/edu/unbosque/assets/fonts/Pixellari.ttf")).deriveFont(Font.PLAIN, 50);
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-        }
-        digNUM.setFont(customFont2);
-        digNUM.setBackground(new Color(159, 108, 63));
-        digNUM.setForeground(Color.white);
-        digNUM.setHorizontalAlignment(JTextField.CENTER);
-        
-        
-        
-        bigCard = new JLabel();
-		bigCard.setBounds(60,462,216,256);
-		Image temporal0= new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/ReversoCartas.png").getImage();
-		ImageIcon imgRedimension0=new ImageIcon(
+		btnRand = new JButton(iRand);
+		btnRand.setBounds(346, 679, 180, 85);
+		btnRand.setContentAreaFilled(false);
+		btnRand.setBorderPainted(true);
+		
+		ImageIcon iSal = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+		btnSal = new JButton(iSal);
+		btnSal.setBounds(550, 679, 87, 85);
+		btnSal.setContentAreaFilled(false);
+		btnSal.setBorderPainted(true);
+
+		ImageIcon iCus = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+		btnCus = new JButton(iCus);
+		btnCus.setBounds(661, 679, 180, 85);
+		btnCus.setContentAreaFilled(false);
+		btnCus.setBorderPainted(true);
+
+		ImageIcon iAgu = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+		btnAgua = new JButton(iAgu);
+		btnAgua.setBounds(315, 399, 149, 85);
+		btnAgua.setContentAreaFilled(false);
+		btnAgua.setBorderPainted(true);
+		
+		ImageIcon iFue = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+		btnFuego = new JButton(iFue);
+		btnFuego.setBounds(303, 483, 174, 84);
+		btnFuego.setContentAreaFilled(false);
+		btnFuego.setBorderPainted(true);
+
+		ImageIcon iNie = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+		btnNieve = new JButton(iNie);
+		btnNieve.setBounds(309, 566, 161, 73);
+		btnNieve.setContentAreaFilled(false);
+		btnNieve.setBorderPainted(true);
+
+		ImageIcon iAma = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+		btnAmarillo = new JButton(iAma);
+		btnAmarillo.setBounds(710, 399, 205, 73);
+		btnAmarillo.setContentAreaFilled(false);
+		btnAmarillo.setBorderPainted(true);
+
+		ImageIcon iAzu = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+		btnAzul = new JButton(iAzu);
+		btnAzul.setBounds(747, 471, 125, 73);
+		btnAzul.setContentAreaFilled(false);
+		btnAzul.setBorderPainted(true);
+
+		ImageIcon iVio = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+		btnVioleta = new JButton(iVio);
+		btnVioleta.setBounds(716, 543, 186, 73);
+		btnVioleta.setContentAreaFilled(false);
+		btnVioleta.setBorderPainted(true);
+		
+		ImageIcon iNar = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+		btnNaranja = new JButton(iNar);
+		btnNaranja.setBounds(933, 399, 204, 73);
+		btnNaranja.setContentAreaFilled(false);
+		btnNaranja.setBorderPainted(true);
+
+		ImageIcon iRoj = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+		btnRojo = new JButton(iRoj);
+		btnRojo.setBounds(970, 471, 130, 73);
+		btnRojo.setContentAreaFilled(false);
+		btnRojo.setBorderPainted(true);
+		
+		ImageIcon iVer = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
+		btnVerde = new JButton(iVer);
+		btnVerde.setBounds(957, 543, 155, 73);
+		btnVerde.setContentAreaFilled(false);
+		btnVerde.setBorderPainted(true);
+
+		digID = new JTextField();
+		digID.setBounds(531, 435, 124, 72);
+		digID.setEditable(true);
+		digID.setEnabled(true);
+		Font customFont1 = new Font("Arial", Font.PLAIN, 50);
+
+		try {
+			customFont1 = Font
+					.createFont(Font.TRUETYPE_FONT, new File("src/co/edu/unbosque/assets/fonts/Pixellari.ttf"))
+					.deriveFont(Font.PLAIN, 50);
+		} catch (IOException | FontFormatException e) {
+			e.printStackTrace();
+		}
+		digID.setFont(customFont1);
+		digID.setBackground(new Color(159, 108, 63));
+		digID.setForeground(Color.white);
+		digID.setHorizontalAlignment(JTextField.CENTER);
+
+		digNUM = new JTextField();
+		digNUM.setBounds(531, 560, 124, 72);
+		digNUM.setEditable(true);
+		digNUM.setEnabled(true);
+		Font customFont2 = new Font("Arial", Font.PLAIN, 50);
+		try {
+			customFont2 = Font
+					.createFont(Font.TRUETYPE_FONT, new File("src/co/edu/unbosque/assets/fonts/Pixellari.ttf"))
+					.deriveFont(Font.PLAIN, 50);
+		} catch (IOException | FontFormatException e) {
+			e.printStackTrace();
+		}
+		digNUM.setFont(customFont2);
+		digNUM.setBackground(new Color(159, 108, 63));
+		digNUM.setForeground(Color.white);
+		digNUM.setHorizontalAlignment(JTextField.CENTER);
+
+		bigCard = new JLabel();
+		bigCard.setBounds(59, 418, 216, 256);
+		Image temporal0 = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/ReversoCartas.png").getImage();
+		ImageIcon imgRedimension0 = new ImageIcon(
 				temporal0.getScaledInstance(bigCard.getWidth(), bigCard.getHeight(), Image.SCALE_SMOOTH));
 		bigCard.setIcon(imgRedimension0);
-        
-        cards = new JLabel[30];
-        for(int i=0;i<3;i++) {
-        	for(int j=0;j<10;j++) {
-        		cards[(i*10)+j] = new JLabel();
-            	//cinturon[(i*10)+j].setBounds(12+(j*120),12+(i*120),162,192);
-        		cards[(i*10)+j].setBounds(12+(j*117),12+(i*135),80,100);
-        		Image temporal= new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png").getImage();
-        		ImageIcon imgRedimension1=new ImageIcon(
-        				temporal.getScaledInstance(cards[(i*10)+j].getWidth(), cards[(i*10)+j].getHeight(), Image.SCALE_SMOOTH));
-        		cards[(i*10)+j].setIcon(imgRedimension1);
-        	}
-        }
-        
-        Font customFont= new Font("Arial", Font.PLAIN, 50);
-        try {
-        	customFont = Font.createFont(Font.TRUETYPE_FONT, 
-            		new File("src/co/edu/unbosque/assets/fonts/Daydream.ttf")).deriveFont(Font.PLAIN, 30);
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-        }
-        ids = new JLabel[30];
-        for(int i=0;i<3;i++) {
-        	for(int j=0;j<10;j++) {
-        		ids[(i*10)+j] = new JLabel(String.valueOf((i*10)+j+1));
-        		ids[(i*10)+j].setBounds(28+((j*115)),(66+(i*130)),92,122);
-        		ids[(i*10)+j].setForeground(Color.WHITE);
-        		ids[(i*10)+j].setFont(customFont);
-        	}
-        }
-        for(int i=0;i<cards.length;i++) {
-        	add(ids[i]);
-        	add(cards[i]);
+
+		cards = new JLabel[30];
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 10; j++) {
+				cards[(i * 10) + j] = new JLabel();
+				cards[(i * 10) + j].setBounds(12 + (j * 117), 12 + (i * 135), 80, 100);
+				Image temporal = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png").getImage();
+				ImageIcon imgRedimension1 = new ImageIcon(temporal.getScaledInstance(cards[(i * 10) + j].getWidth(),
+						cards[(i * 10) + j].getHeight(), Image.SCALE_SMOOTH));
+				cards[(i * 10) + j].setIcon(imgRedimension1);
+			}
 		}
-        add(digNUM);
-        add(digID);
-        add(btnRand);
-        add(btnCus);
-        add(btnSal);
-        add(bigCard);
-        add(btnAgua);
-        add(btnNieve);
-        add(btnFuego);
-        add(btnAmarillo);
-        add(btnNaranja);
-        add(btnVioleta);
-        add(btnVerde);
-        add(btnRojo);
-        add(btnAzul);
-        add(panel);
+
+		Font customFont = new Font("Arial", Font.PLAIN, 50);
+		try {
+			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/co/edu/unbosque/assets/fonts/Daydream.ttf"))
+					.deriveFont(Font.PLAIN, 22);
+		} catch (IOException | FontFormatException e) {
+			e.printStackTrace();
+		}
+		ids = new JLabel[30];
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 10; j++) {
+				ids[(i * 10) + j] = new JLabel(String.valueOf((i * 10) + j + 1));
+				ids[(i * 10) + j].setBounds(74 + ((j * 105)), (68 + (i * 114)), 81, 96);
+				ids[(i * 10) + j].setForeground(Color.WHITE);
+				ids[(i * 10) + j].setFont(customFont);
+			}
+		}
+		for (int i = 0; i < cards.length; i++) {
+			add(ids[i]);
+			add(cards[i]);
+		}
+
+		add(digNUM);
+		add(digID);
+		add(btnRand);
+		add(btnCus);
+		add(btnSal);
+		add(bigCard);
+		add(btnAgua);
+		add(btnNieve);
+		add(btnFuego);
+		add(btnAmarillo);
+		add(btnNaranja);
+		add(btnVioleta);
+		add(btnVerde);
+		add(btnRojo);
+		add(btnAzul);
+		add(panel);
     }
     private static class InterfazPanel extends JPanel {
         private static final long serialVersionUID = 1L;
-        private ImageIcon iMenu;
+        private ImageIcon iMazo;
+
         public InterfazPanel() {
-            iMenu = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/Mazo.png"));
+            iMazo = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/Mazo.png"));
         }
+
         @Override
         protected void paintComponent(Graphics g) {
+            int screenWidth = getWidth();
+            int screenHeight = getHeight();
+
+            Image iMaz = iMazo.getImage();
+            double xMaz = (double) screenWidth / iMaz.getWidth(this);
+            double yMaz = (double) screenHeight / iMaz.getHeight(this);
+            int nAnchoMaz = (int) (iMaz.getWidth(this) * xMaz);
+            int nAltoMaz = (int) (iMaz.getHeight(this) * yMaz);
+            g.drawImage(iMaz, 0, 0, nAnchoMaz, nAltoMaz, this);
             super.paintComponents(g);
-            Image iMen = iMenu.getImage();
-            g.drawImage(iMen, 0, 0, 1200, 832, this);
         }
 	}
-    public void setCurrentMazo(Carta[] mazo){
-    	this.mazo = mazo;
-    	for(int i=0;i<3;i++) {
-        	for(int j=0;j<10;j++) {
-        		this.cards[(i*10)+j].setBounds(36+((j*115)),(18+(i*130)),92,122);
-        		Image temporal= new ImageIcon("src/co/edu/unbosque/assets/cards"+this.mazo[(i*10)+j].getElemento()+
-            			"/C"+this.mazo[(i*10)+j].getNumero()+this.mazo[(i*10)+j].getColor()+this.mazo[(i*10)+j].getElemento()+".png").getImage();
-        		ImageIcon imgRedimension1=new ImageIcon(
-        				temporal.getScaledInstance(this.cards[(i*10)+j].getWidth(), this.cards[(i*10)+j].getHeight(), Image.SCALE_SMOOTH));
-        		this.cards[(i*10)+j].setIcon(imgRedimension1);
-        	}
+    public void setCurrentMazo(Carta[] mazo) {
+        this.mazo = mazo;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 10; j++) {
+                this.cards[(i * 10) + j].setBounds(80 + ((j * 105)), (29 + (i * 114)), 81, 96);
+                Image temporal = new ImageIcon("src/co/edu/unbosque/assets/cards"
+                        + this.mazo[(i * 10) + j].getElemento() + "/C" + this.mazo[(i * 10) + j].getNumero()
+                        + this.mazo[(i * 10) + j].getColor() + this.mazo[(i * 10) + j].getElemento() + ".png")
+                        .getImage();
+                ImageIcon imgRedimension1 = new ImageIcon(temporal.getScaledInstance(
+                        this.cards[(i * 10) + j].getWidth(), this.cards[(i * 10) + j].getHeight(), Image.SCALE_SMOOTH));
+                this.cards[(i * 10) + j].setIcon(imgRedimension1);
+            }
         }
     }
     public void setBigCard(String num, String elemento, String color) {
