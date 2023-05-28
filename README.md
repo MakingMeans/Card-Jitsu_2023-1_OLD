@@ -22,6 +22,8 @@ Trabajen :) *los azota fuertemente*
   + VentanaSecundaria: Contiene las funciones secundarias.
 + VISTA
   + Interfaz (Aun no): Ambiente gráfico.
+ 
+ Falta actualizar Modelos y Vista :(
 
 ### Tablas
 | Obj  | Cantidad |
