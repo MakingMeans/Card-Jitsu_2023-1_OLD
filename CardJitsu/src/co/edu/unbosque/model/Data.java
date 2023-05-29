@@ -17,7 +17,6 @@ public class Data {
 			out.writeObject(this.usuarios);
 			out.close();
 			fileOut.close();
-			System.out.println("Los datos de los usuarios se han guardado correctamente.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -30,7 +29,6 @@ public class Data {
 			this.usuarios = (ArrayList<User>) in.readObject();
 			in.close();
 			fileIn.close();
-			System.out.println("Los datos de los usuarios se han cargado correctamente.");
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}

@@ -27,7 +27,7 @@ public class Musica {
         try {
             iniciarReproduccionMusica("src/co/edu/unbosque/assets/musica/"+rutaArchivo+".wav");
             // Guardar volumen
-            establecerVolumenInicial(0.7f);
+            establecerVolumenInicial(0.6f);
             //guardarVolumenOriginal();
             // Opcional: Reproducir en bucle continuo
             clipActual.loop(Clip.LOOP_CONTINUOUSLY);

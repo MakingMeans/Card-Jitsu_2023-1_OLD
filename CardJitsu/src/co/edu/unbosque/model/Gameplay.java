@@ -38,12 +38,14 @@ public class Gameplay {
 
 	Scanner sc = new Scanner(System.in);
 	
+	public Gameplay(User usuario) {
+		this.usuario = usuario;
+	}
+	
 	private Carta cincoCards[] = new Carta[5];
 	private Carta card[] = usuario.getMazo();
 
-    public Gameplay(User usuario) {
-		this.usuario = usuario;
-	}
+    
     public void partidaTEST(){
         System.out.println("Usuario: " + usuario.getName());
     }

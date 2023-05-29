@@ -12,8 +12,6 @@ public class FuncionesPrincipales {
     public void temporalData(){
         Data dat = new Data();
         this.usuarios = dat.loadData();
-        System.out.println("YES BRO IS LOADED");
-        System.out.println("DATA USUARIO ENTRA V2= "+this.usuarios);
         //test user ranking
         //this.usuarios.get(1).setPuntaje(this.usuarios.get(1).getPuntaje()+50);
     }
