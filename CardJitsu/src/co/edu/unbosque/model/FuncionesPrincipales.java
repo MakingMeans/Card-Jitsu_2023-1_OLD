@@ -12,7 +12,6 @@ public class FuncionesPrincipales {
     public void temporalData(){
         Data dat = new Data();
         this.usuarios = dat.loadData();
-        //test user ranking
         //this.usuarios.get(1).setPuntaje(this.usuarios.get(1).getPuntaje()+50);
     }
     public ArrayList<User> getTemporalData(){
@@ -73,5 +72,15 @@ public class FuncionesPrincipales {
 		temporalData();
 		User user=this.usuarios.get(this.id);
 		return user;
+    }
+	public void finishedGame(boolean win){
+		temporalData();
+		User user=this.usuarios.get(this.id);
+		int puntaje;
+		if(!win) puntaje = user.getPuntaje()-2;
+		else puntaje = user.getPuntaje()+5;
+		user.setPuntaje(puntaje);
+		Data dat = new Data();
+		dat.saveData(this.usuarios);
     }
 }

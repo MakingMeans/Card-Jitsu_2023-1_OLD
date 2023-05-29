@@ -9,10 +9,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-public class Ganaste extends JFrame{
-private JButton btnMenu;
+public class Results extends JFrame{
+	private static final long serialVersionUID = 1L;
+	private JButton btnMenu;
 	
-	public Ganaste() {
+	public Results() {
 		
 		setTitle("Retro Card-Jitsu");
 		setSize(1200, 800);
@@ -58,5 +59,8 @@ private JButton btnMenu;
 	}
 	public void setBtnMenu(JButton btnMenu) {
 		this.btnMenu = btnMenu;
+	}
+	public void screenChange(boolean win) {
+		
 	}
 }

@@ -342,111 +342,130 @@ public class Controller implements ActionListener{
 						case "btnCard1":{
 							if(!gameplay.getProhibited()) {
 								gameLogic.setSeleccion(1);
-								gameLogic.setRivalSelection(gameLogic.RivalSelection());
+								gameLogic.setRivalSelection(gameLogic.importRivalSelection());
 								gameLogic.partida(gameLogic.getCinco(),gameLogic.getRivalSelection());
+								cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
 								Runnable timeCallback = () -> {
-									cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
 						            gameplay.setCartasCinco(cinco);
 						            gameLogic.setCinco(cinco);
-						            
+						            if(gameLogic.getPerdedor()) {
+						            	gameplay.nonvisibleSelect();
+						            	gameplay.setVisible(false);
+							        	perdiste.setVisible(true);
+							        	funcionesPrimarias.finishedGame(false);
+							        	gameLogic.setPerdedor(false);
+							        }else if(gameLogic.getGanador()) {
+							        	gameplay.nonvisibleSelect();
+							        	gameplay.setVisible(false);
+							        	ganaste.setVisible(true);
+							        	funcionesPrimarias.finishedGame(true);
+							        	gameLogic.setGanador(false);
+							        }
 						        };
 						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 0, timeCallback);
-						        if(gameLogic.getPerdedor()) {
-						        	gameplay.setVisible(false);
-						        	perdiste.setVisible(true);
-						        }else if(gameLogic.getGanador()) {
-						        	gameplay.setVisible(false);
-						        	ganaste.setVisible(true); 	
-						        }
-						        
+						        if(gameLogic.getWinRound())gameplay.miniCard(cinco[0], true);
+						        else gameplay.miniCard(gameLogic.getRivalSelection(), false);
 							}
 							break;
 						}
 						case "btnCard2":{
 							if(!gameplay.getProhibited()) {
 								gameLogic.setSeleccion(2);
-								gameLogic.setRivalSelection(gameLogic.RivalSelection());
+								gameLogic.setRivalSelection(gameLogic.importRivalSelection());
 								gameLogic.partida(gameLogic.getCinco(),gameLogic.getRivalSelection());
 								Runnable timeCallback = () -> {
 									cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
 						            gameplay.setCartasCinco(cinco);
 						            gameLogic.setCinco(cinco);
+						            if(gameLogic.getPerdedor()) {
+							        	gameplay.setVisible(false);
+							        	perdiste.setVisible(true);
+							        	funcionesPrimarias.finishedGame(false);
+							        	gameLogic.setPerdedor(false);
+							        }else if(gameLogic.getGanador()) {
+							        	gameplay.setVisible(false);
+							        	ganaste.setVisible(true);
+							        	funcionesPrimarias.finishedGame(true);
+							        	gameLogic.setGanador(false);
+							        }
 						            
 						        };
 						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 1, timeCallback);
-						        if(gameLogic.getPerdedor()) {
-						        	gameplay.setVisible(false);
-						        	perdiste.setVisible(true);
-						        }else if(gameLogic.getGanador()) {
-						        	gameplay.setVisible(false);
-						        	ganaste.setVisible(true); 	
-						        }
 							}
 							break;
 						}
 						case "btnCard3":{
 							if(!gameplay.getProhibited()) {
 								gameLogic.setSeleccion(3);
-								gameLogic.setRivalSelection(gameLogic.RivalSelection());
+								gameLogic.setRivalSelection(gameLogic.importRivalSelection());
 								gameLogic.partida(gameLogic.getCinco(),gameLogic.getRivalSelection());
 								Runnable timeCallback = () -> {
 									cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
 						            gameplay.setCartasCinco(cinco);
 						            gameLogic.setCinco(cinco);
-						    
+						            if(gameLogic.getPerdedor()) {
+							        	gameplay.setVisible(false);
+							        	perdiste.setVisible(true);
+							        	funcionesPrimarias.finishedGame(false);
+							        	gameLogic.setPerdedor(false);
+							        }else if(gameLogic.getGanador()) {
+							        	gameplay.setVisible(false);
+							        	ganaste.setVisible(true);
+							        	funcionesPrimarias.finishedGame(true);
+							        	gameLogic.setGanador(false);
+							        }
 						        };
-						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 2, timeCallback);	
-						        if(gameLogic.getPerdedor()) {
-						        	gameplay.setVisible(false);
-						        	perdiste.setVisible(true);
-						        }else if(gameLogic.getGanador()) {
-						        	gameplay.setVisible(false);
-						        	ganaste.setVisible(true); 	
-						        }
+						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 2, timeCallback);
 							}
 							break;
 						}
 						case "btnCard4":{
 							if(!gameplay.getProhibited()) {
 								gameLogic.setSeleccion(4);
-								gameLogic.setRivalSelection(gameLogic.RivalSelection());
+								gameLogic.setRivalSelection(gameLogic.importRivalSelection());
 								gameLogic.partida(gameLogic.getCinco(),gameLogic.getRivalSelection());
 								Runnable timeCallback = () -> {
 									cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
 						            gameplay.setCartasCinco(cinco);
 						            gameLogic.setCinco(cinco);
-						   
+						            if(gameLogic.getPerdedor()) {
+							        	gameplay.setVisible(false);
+							        	perdiste.setVisible(true);
+							        	funcionesPrimarias.finishedGame(false);
+							        	gameLogic.setPerdedor(false);
+							        }else if(gameLogic.getGanador()) {
+							        	gameplay.setVisible(false);
+							        	ganaste.setVisible(true);
+							        	funcionesPrimarias.finishedGame(true);
+							        	gameLogic.setGanador(false);
+							        }
 						        };
 						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 3, timeCallback);	
-						        if(gameLogic.getPerdedor()) {
-						        	gameplay.setVisible(false);
-						        	perdiste.setVisible(true);
-						        }else if(gameLogic.getGanador()) {
-						        	gameplay.setVisible(false);
-						        	ganaste.setVisible(true); 	
-						        }
 							}
 							break;
 						}
 						case "btnCard5":{
 							if(!gameplay.getProhibited()) {
 								gameLogic.setSeleccion(5);
-								gameLogic.setRivalSelection(gameLogic.RivalSelection());
+								gameLogic.setRivalSelection(gameLogic.importRivalSelection());
 								gameLogic.partida(gameLogic.getCinco(),gameLogic.getRivalSelection());
 								Runnable timeCallback = () -> {
 									cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
 						            gameplay.setCartasCinco(cinco);
 						            gameLogic.setCinco(cinco);
-						 
+						            if(gameLogic.getPerdedor()) {
+							        	gameplay.setVisible(false);
+							        	perdiste.setVisible(true);
+							        	funcionesPrimarias.finishedGame(false);
+							        	gameLogic.setPerdedor(false);
+							        }else if(gameLogic.getGanador()) {
+							        	gameplay.setVisible(false);
+							        	ganaste.setVisible(true);
+							        	funcionesPrimarias.finishedGame(true);
+							        	gameLogic.setGanador(false);
+							        }
 						        };
 						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 4, timeCallback);
-						        if(gameLogic.getPerdedor()) {
-						        	gameplay.setVisible(false);
-						        	perdiste.setVisible(true);
-						        }else if(gameLogic.getGanador()) {
-						        	gameplay.setVisible(false);
-						        	ganaste.setVisible(true); 	
-						        }
 							}
 							break;
 						}

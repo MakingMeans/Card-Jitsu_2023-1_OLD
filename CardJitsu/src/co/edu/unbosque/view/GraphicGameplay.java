@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.util.Timer;
 import java.util.TimerTask;
+//import java.util.ArrayList;
 
 import co.edu.unbosque.model.Carta;
 
@@ -33,6 +34,14 @@ public class GraphicGameplay extends JFrame {
 	private JLabel rank;
 	private JLabel selectedPlayer;
 	private JLabel selectedRival;
+	private JLabel[] cardsPlayerList;
+	private JLabel[] cardsRivalList;
+	byte cardsPfuego;
+	byte cardsPagua;
+	byte cardsPnieve;
+	byte cardsRfuego;
+	byte cardsRagua;
+	byte cardsRnieve;
 	
 	private Carta[] cards;
 	private boolean prohibited=false;
@@ -152,6 +161,21 @@ public class GraphicGameplay extends JFrame {
 		rank.setForeground(Color.WHITE);
 		rank.setFont(customFont3);
 
+		/*cardsPlayerList = new JLabel[30];
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 10; j++) {
+				cardsPlayerList[(i * 10) + j] = new JLabel();
+				cardsPlayerList[(i * 10) + j].setBounds(696 + (i * 100), 585 + (j * 20), 70, 70);
+				Image tempor = new ImageIcon("/co/edu/unbosque/assets/miniCards/CFuegoRojo.png").getImage();
+				ImageIcon imgRedimension10 = new ImageIcon(tempor.getScaledInstance(cardsPlayerList[(i * 10) + j].getWidth(),
+						cardsPlayerList[(i * 10) + j].getHeight(), Image.SCALE_SMOOTH));
+				cardsPlayerList[(i * 10) + j].setIcon(imgRedimension10);
+			}
+		}
+		
+		for (int i = 0; i < 30; i++) {
+			add(cardsPlayerList[i]);
+		}*/
 		add(btnSal);
 		add(btnMus);
 		add(btnC1);
@@ -189,6 +213,24 @@ public class GraphicGameplay extends JFrame {
 			int nAltoCue = (int) (iCue.getHeight(this) * yCue);
 			g.drawImage(iCue, 0, 0, nAnchoCue, nAltoCue, this);
 			super.paintComponents(g);
+		}
+	}
+	public void miniCard(Carta card, boolean win) {
+		//cardsPlayerList = new ArrayList<>();
+		//cardsRivalList = new ArrayList<>();
+		if(win) {
+			for (int i = 0; i < 3; i++) {
+	            for (int j = 0; j < 10; j++) {
+	                Image temporal = new ImageIcon("src/co/edu/unbosque/assets/miniCards/C"+card.getElemento()+card.getColor()+".png")
+	                        .getImage();
+	                ImageIcon imgRedimension1 = new ImageIcon(temporal.getScaledInstance(
+	                        this.cardsPlayerList[(i * 10) + j].getWidth(), this.cardsPlayerList[(i * 10) + j].getHeight(), Image.SCALE_SMOOTH));
+	                this.cardsPlayerList[(i * 10) + j].setIcon(imgRedimension1);
+	            }
+	        }
+		}
+		else {
+			
 		}
 	}
 	public void visibleSelect(Carta cardRival, int seleccion, Runnable callback) {
@@ -248,13 +290,21 @@ public class GraphicGameplay extends JFrame {
         };
 
         // Programar la tarea para que se ejecute después de 5 segundos
-        timer.schedule(revelacion, 2500);
-        timer.schedule(hide, 5000);
+        timer.schedule(revelacion, 2000);
+        timer.schedule(hide, 4000);
         
 	}
 	public void nonvisibleSelect() {
 		selectedPlayer.setVisible(false);
 		selectedRival.setVisible(false);
+		cardsPlayerList = null;
+		cardsRivalList = null;
+		cardsPfuego=0;
+		cardsPagua=0;
+		cardsPnieve=0;
+		cardsRfuego=0;
+		cardsRagua=0;
+		cardsRnieve=0;
 	}
 	public void setCartasCinco(Carta[] cards) {
 			//btnC1.setBounds(135, 555, 162, 192);
