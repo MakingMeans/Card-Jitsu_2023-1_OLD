@@ -73,14 +73,19 @@ public class FuncionesPrincipales {
 		User user=this.usuarios.get(this.id);
 		return user;
     }
-	public void finishedGame(boolean win){
+	public boolean finishedGame(boolean win){
 		temporalData();
 		User user=this.usuarios.get(this.id);
 		int puntaje;
+		int puntajeAntes=user.getPuntaje();
 		if(!win) puntaje = user.getPuntaje()-2;
 		else puntaje = user.getPuntaje()+5;
 		user.setPuntaje(puntaje);
 		Data dat = new Data();
 		dat.saveData(this.usuarios);
+		System.out.println("SE GUARDO LA DATA LESTGO");
+		if(puntaje/10>puntajeAntes/10) return true;
+		else if(puntaje/10<puntajeAntes/10) return true;
+		else return false;
     }
 }

@@ -27,15 +27,15 @@ public class GraphicGameplay extends JFrame {
 	private JButton btnC3;
 	private JButton btnC4;
 	private JButton btnC5;
-	
+	private JLabel penguins;
 	private JLabel name;
 	private JLabel cinturon;
 	private JLabel puntaje;
 	private JLabel rank;
 	private JLabel selectedPlayer;
 	private JLabel selectedRival;
-	private JLabel[] cardsPlayerList;
-	private JLabel[] cardsRivalList;
+	//private JLabel[] cardsPlayerList;
+	//private JLabel[] cardsRivalList;
 	byte cardsPfuego;
 	byte cardsPagua;
 	byte cardsPnieve;
@@ -77,7 +77,15 @@ public class GraphicGameplay extends JFrame {
 		selectedRival = new JLabel();
 		selectedRival.setBounds(650, 200, 162, 192);
 		selectedRival.setIcon(imgRedimension0);
-		selectedRival.setVisible(false);	
+		selectedRival.setVisible(false);
+		
+		penguins = new JLabel();
+		penguins.setBounds(350, 200, 719, 539);
+		Image temporal10 = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/Pinguinos.png").getImage();
+		ImageIcon imgRedimension10 = new ImageIcon(
+				temporal10.getScaledInstance(penguins.getWidth(), penguins.getHeight(), Image.SCALE_SMOOTH));
+		penguins.setIcon(imgRedimension10);
+		penguins.setVisible(true);	
 		
 		ImageIcon iC = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnC1 = new JButton(iC);
@@ -185,6 +193,7 @@ public class GraphicGameplay extends JFrame {
 		add(btnC5);
 		add(selectedPlayer);
 		add(selectedRival);
+		add(penguins);
 		add(name);
 		add(cinturon);
 		add(puntaje);
@@ -218,7 +227,7 @@ public class GraphicGameplay extends JFrame {
 	public void miniCard(Carta card, boolean win) {
 		//cardsPlayerList = new ArrayList<>();
 		//cardsRivalList = new ArrayList<>();
-		if(win) {
+		/*if(win) {
 			for (int i = 0; i < 3; i++) {
 	            for (int j = 0; j < 10; j++) {
 	                Image temporal = new ImageIcon("src/co/edu/unbosque/assets/miniCards/C"+card.getElemento()+card.getColor()+".png")
@@ -231,7 +240,7 @@ public class GraphicGameplay extends JFrame {
 		}
 		else {
 			
-		}
+		}*/
 	}
 	public void visibleSelect(Carta cardRival, int seleccion, Runnable callback) {
 		this.prohibited = true;
@@ -290,15 +299,15 @@ public class GraphicGameplay extends JFrame {
         };
 
         // Programar la tarea para que se ejecute después de 5 segundos
-        timer.schedule(revelacion, 2000);
-        timer.schedule(hide, 4000);
+        timer.schedule(revelacion, 1000);
+        timer.schedule(hide, 1000);
         
 	}
 	public void nonvisibleSelect() {
 		selectedPlayer.setVisible(false);
 		selectedRival.setVisible(false);
-		cardsPlayerList = null;
-		cardsRivalList = null;
+		//cardsPlayerList = null;
+		//cardsRivalList = null;
 		cardsPfuego=0;
 		cardsPagua=0;
 		cardsPnieve=0;

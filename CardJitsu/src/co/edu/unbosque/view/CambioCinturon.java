@@ -6,21 +6,22 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
-public class Results extends JFrame{
+public class CambioCinturon extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton btnMenu;
+	private JLabel cinturon;
 	
-	public Results(String pagina) {
+	public CambioCinturon(String pagina) {
 		
 		setTitle("Retro Card-Jitsu");
 		setSize(1200, 800);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		InterfazWin panel = new InterfazWin("/co/edu/unbosque/assets/imagenesInterfaz/Pinguino"+pagina+".png");
+		InterfazWin panel = new InterfazWin("/co/edu/unbosque/assets/imagenesInterfaz/"+pagina+".png");
 		
 		ImageIcon iMen = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnMenu = new JButton(iMen);
@@ -28,6 +29,15 @@ public class Results extends JFrame{
 		btnMenu.setContentAreaFilled(false);
 		btnMenu.setBorderPainted(true);
 		
+		cinturon = new JLabel();
+		cinturon.setBounds(390, 300, 675, 125);
+		Image temporal = new ImageIcon("src/co/edu/unbosque/assets/cinturones/Transparente.png").getImage();
+		ImageIcon imgRedimension = new ImageIcon(
+				temporal.getScaledInstance(cinturon.getWidth(), cinturon.getHeight(), Image.SCALE_SMOOTH));
+		cinturon.setIcon(imgRedimension);
+		cinturon.setVisible(true);
+		
+		add(cinturon);
 		add(btnMenu);
 		add(panel);
 		
@@ -53,6 +63,12 @@ public class Results extends JFrame{
 			g.drawImage(iCue, 0, 0, nAnchoCue, nAltoCue, this);
 			super.paintComponents(g);
 		}
+	}
+	public void setCint(String cintColor) {
+		Image temporal = new ImageIcon("/co/edu/unbosque/assets/cinturones/" + cintColor + ".png").getImage();
+		ImageIcon imgRedimension1 = new ImageIcon(
+				temporal.getScaledInstance(this.cinturon.getWidth(), this.cinturon.getHeight(), Image.SCALE_SMOOTH));
+		this.cinturon.setIcon(imgRedimension1);
 	}
 	public JButton getBtnMenu() {
 		return btnMenu;

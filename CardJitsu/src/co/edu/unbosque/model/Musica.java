@@ -57,7 +57,7 @@ public class Musica {
     //posible futuro sound effect
     public void soundEffect(String rutaArchivo) {
         try {
-        	iniciarReproduccionMusica("src/co/edu/unbosque/assets/musica/"+rutaArchivo+".wav");
+        	iniciarReproduccionMusica("src/co/edu/unbosque/assets/soundEffects/"+rutaArchivo+".wav");
         	if(mute==false) establecerVolumenInicial(0.7f);
         	else establecerVolumenInicial(-1000f);
         	/*if(easterEgg==false)iniciarReproduccionMusica(rutaArchivo);
