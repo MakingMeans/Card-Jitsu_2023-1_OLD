@@ -28,6 +28,7 @@ public class GraphicGameplay extends JFrame {
 	private JButton btnC4;
 	private JButton btnC5;
 	private JLabel penguins;
+	private JLabel finish;
 	private JLabel name;
 	private JLabel cinturon;
 	private JLabel puntaje;
@@ -85,7 +86,15 @@ public class GraphicGameplay extends JFrame {
 		ImageIcon imgRedimension10 = new ImageIcon(
 				temporal10.getScaledInstance(penguins.getWidth(), penguins.getHeight(), Image.SCALE_SMOOTH));
 		penguins.setIcon(imgRedimension10);
-		penguins.setVisible(true);	
+		penguins.setVisible(true);
+		
+		finish = new JLabel();
+		finish.setBounds(375, 220, 450, 300);
+		Image tempor1 = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/FinJuego.png").getImage();
+		ImageIcon imgRedim1 = new ImageIcon(
+				tempor1.getScaledInstance(finish.getWidth(), finish.getHeight(), Image.SCALE_SMOOTH));
+		finish.setIcon(imgRedim1);
+		finish.setVisible(false);	
 		
 		ImageIcon iC = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnC1 = new JButton(iC);
@@ -189,6 +198,7 @@ public class GraphicGameplay extends JFrame {
 				cardsRivalList.get((i * 10) + j).setIcon(imgRedimen);
 			}
 		}
+		add(finish);
 		add(selectedPlayer);
 		add(selectedRival);
 		for (int i = 0; i < 300; i++) {
@@ -448,7 +458,9 @@ public class GraphicGameplay extends JFrame {
 			this.rank.setForeground(new Color(142,75,232));
 		}
 	}
-
+	public void visualFinish(boolean visual) {
+		this.finish.setVisible(visual);
+	}
 	public JButton getBtnSal() {
 		return btnSal;
 	}

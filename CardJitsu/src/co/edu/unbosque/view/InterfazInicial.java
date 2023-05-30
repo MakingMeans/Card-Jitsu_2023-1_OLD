@@ -68,7 +68,7 @@ public class InterfazInicial extends JFrame {
 		textExit.setForeground(new Color(57,36,12));
 		textExit.setFont(customFont);
 		
-        add(btnNueU);
+		add(btnNueU);
         add(btnIniS);
         add(btnSal);
         add(textSign);

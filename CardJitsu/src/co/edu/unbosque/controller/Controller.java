@@ -326,6 +326,7 @@ public class Controller implements ActionListener{
 						break;
 					}
 					case "btnJugarMain":{
+						gameplay.visualFinish(false);
 						String name = funcionesPrimarias.currentUser().getName();
 						int score = funcionesPrimarias.currentUser().getPuntaje();
 						gameLogic.setCinco(gameLogic.cincoCartas(funcionesPrimarias.currentUser()));
@@ -365,6 +366,7 @@ public class Controller implements ActionListener{
 						            gameLogic.setCinco(cinco);
 						            gameplay.setProhibited(false);
 						            if(gameLogic.getPerdedor()) {
+						            	gameplay.visualFinish(true);
 						            	Runnable coolCallback = () -> {
 						            		gameplay.nonvisibleSelect();
 							            	gameplay.setVisible(false);
@@ -377,6 +379,7 @@ public class Controller implements ActionListener{
 						            	else music.soundEffect("TimeIsUp");
 						            	gameplay.coolDown(coolCallback); 
 							        }else if(gameLogic.getGanador()) {
+							        	gameplay.visualFinish(true);
 							        	Runnable coolCallback = () -> {
 							        		gameplay.nonvisibleSelect();
 								        	gameplay.setVisible(false);
@@ -409,6 +412,7 @@ public class Controller implements ActionListener{
 						            gameLogic.setCinco(cinco);
 						            gameplay.setProhibited(false);
 						            if(gameLogic.getPerdedor()) {
+						            	gameplay.visualFinish(true);
 						            	Runnable coolCallback = () -> {
 						            		gameplay.nonvisibleSelect();
 							            	gameplay.setVisible(false);
@@ -421,6 +425,7 @@ public class Controller implements ActionListener{
 						            	else music.soundEffect("TimeIsUp");
 						            	gameplay.coolDown(coolCallback); 
 							        }else if(gameLogic.getGanador()) {
+							        	gameplay.visualFinish(true);
 							        	Runnable coolCallback = () -> {
 							        		gameplay.nonvisibleSelect();
 								        	gameplay.setVisible(false);
@@ -453,6 +458,7 @@ public class Controller implements ActionListener{
 						            gameLogic.setCinco(cinco);
 						            gameplay.setProhibited(false);
 						            if(gameLogic.getPerdedor()) {
+						            	gameplay.visualFinish(true);
 						            	Runnable coolCallback = () -> {
 						            		gameplay.nonvisibleSelect();
 							            	gameplay.setVisible(false);
@@ -465,6 +471,7 @@ public class Controller implements ActionListener{
 						            	else music.soundEffect("TimeIsUp");
 						            	gameplay.coolDown(coolCallback); 
 							        }else if(gameLogic.getGanador()) {
+							        	gameplay.visualFinish(true);
 							        	Runnable coolCallback = () -> {
 							        		gameplay.nonvisibleSelect();
 								        	gameplay.setVisible(false);
@@ -497,6 +504,7 @@ public class Controller implements ActionListener{
 						            gameLogic.setCinco(cinco);
 						            gameplay.setProhibited(false);
 						            if(gameLogic.getPerdedor()) {
+						            	gameplay.visualFinish(true);
 						            	Runnable coolCallback = () -> {
 						            		gameplay.nonvisibleSelect();
 							            	gameplay.setVisible(false);
@@ -509,6 +517,7 @@ public class Controller implements ActionListener{
 						            	else music.soundEffect("TimeIsUp");
 						            	gameplay.coolDown(coolCallback); 
 							        }else if(gameLogic.getGanador()) {
+							        	gameplay.visualFinish(true);
 							        	Runnable coolCallback = () -> {
 							        		gameplay.nonvisibleSelect();
 								        	gameplay.setVisible(false);
@@ -541,6 +550,7 @@ public class Controller implements ActionListener{
 						            gameLogic.setCinco(cinco);
 						            gameplay.setProhibited(false);
 						            if(gameLogic.getPerdedor()) {
+						            	gameplay.visualFinish(true);
 						            	Runnable coolCallback = () -> {
 						            		gameplay.nonvisibleSelect();
 							            	gameplay.setVisible(false);
@@ -553,6 +563,7 @@ public class Controller implements ActionListener{
 						            	else music.soundEffect("TimeIsUp");
 						            	gameplay.coolDown(coolCallback); 
 							        }else if(gameLogic.getGanador()) {
+							        	gameplay.visualFinish(true);
 							        	Runnable coolCallback = () -> {
 							        		gameplay.nonvisibleSelect();
 								        	gameplay.setVisible(false);

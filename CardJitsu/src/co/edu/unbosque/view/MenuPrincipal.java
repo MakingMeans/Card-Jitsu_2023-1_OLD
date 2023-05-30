@@ -89,7 +89,7 @@ public class MenuPrincipal extends JFrame {
         private JLabel textExit;
 
         public InterfazPanel() {
-            iMenu = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/MenuAnimation.gif"));
+            iMenu = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/animaciones/MenuAnimation.gif"));
             iMaeFue = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/MaestroFuego.png"));
             iMaeAgu = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/MaestroAgua.png"));
             iMaeNie = new ImageIcon(getClass().getResource("/co/edu/unbosque/assets/imagenesInterfaz/MaestroNieve.png"));
