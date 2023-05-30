@@ -37,7 +37,7 @@ public class GameplayLogic {
 	private int seleccion;
 	private Carta rivalSelection;
 	private Carta[] cinco;
-	private boolean ganador,perdedor, winRound;
+	private boolean ganador,perdedor, winRound, loseRound;
 
 	Random rand = new Random();
 	
@@ -83,6 +83,8 @@ public class GameplayLogic {
 	}
 	
 	public void ronda(Carta[] cartasCinco, Carta getRivalSelection) {
+		this.winRound=false;
+		this.loseRound=false;
 		int i = getSeleccion()-1;
 		String playerElement = cartasCinco[i].getElemento(), playerColor = cartasCinco[i].getColor();
 		byte playerNumber = cartasCinco[i].getNumero();
@@ -105,7 +107,7 @@ public class GameplayLogic {
 					nieveWinP.add(playerColor);
 				}
 			} else if (playerNumber < rivalNumber) {
-				this.winRound=false;
+				this.loseRound=true;
 				if(rivalElement.equals("Fuego")) {
 					winsRival.add(getRivalSelection);
 					fuegoWinR.add(rivalColor);
@@ -139,7 +141,7 @@ public class GameplayLogic {
 				nieveWinP.add(playerColor);
 			}
 		} else {
-			this.winRound=false;
+			this.loseRound=true;
 			if(rivalElement.equals("Fuego")) {
 				winsRival.add(getRivalSelection);
 				fuegoWinR.add(rivalColor);
@@ -301,5 +303,11 @@ public class GameplayLogic {
 	}
 	public void setWinRound(boolean winRound) {
 		this.winRound = winRound;
+	}
+	public boolean getLoseRound() {
+		return loseRound;
+	}
+	public void setLoseRound(boolean loseRound) {
+		this.loseRound = loseRound;
 	}
 }

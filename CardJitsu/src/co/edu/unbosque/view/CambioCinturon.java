@@ -25,13 +25,13 @@ public class CambioCinturon extends JFrame{
 		
 		ImageIcon iMen = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnMenu = new JButton(iMen);
-		btnMenu.setBounds(550, 300, 100, 60);
+		btnMenu.setBounds(100, 85, 220, 75);
 		btnMenu.setContentAreaFilled(false);
-		btnMenu.setBorderPainted(true);
+		btnMenu.setBorderPainted(false);
 		
 		cinturon = new JLabel();
-		cinturon.setBounds(390, 300, 675, 125);
-		Image temporal = new ImageIcon("src/co/edu/unbosque/assets/cinturones/Transparente.png").getImage();
+		cinturon.setBounds(330, 300, 675, 125);
+		Image temporal = new ImageIcon("src/co/edu/unbosque/assets/cinturones/NEGRO.png").getImage();
 		ImageIcon imgRedimension = new ImageIcon(
 				temporal.getScaledInstance(cinturon.getWidth(), cinturon.getHeight(), Image.SCALE_SMOOTH));
 		cinturon.setIcon(imgRedimension);
@@ -65,7 +65,7 @@ public class CambioCinturon extends JFrame{
 		}
 	}
 	public void setCint(String cintColor) {
-		Image temporal = new ImageIcon("/co/edu/unbosque/assets/cinturones/" + cintColor + ".png").getImage();
+		Image temporal = new ImageIcon("src/co/edu/unbosque/assets/cinturones/" + cintColor + ".png").getImage();
 		ImageIcon imgRedimension1 = new ImageIcon(
 				temporal.getScaledInstance(this.cinturon.getWidth(), this.cinturon.getHeight(), Image.SCALE_SMOOTH));
 		this.cinturon.setIcon(imgRedimension1);

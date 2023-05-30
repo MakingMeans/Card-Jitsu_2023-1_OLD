@@ -83,9 +83,11 @@ public class FuncionesPrincipales {
 		user.setPuntaje(puntaje);
 		Data dat = new Data();
 		dat.saveData(this.usuarios);
-		System.out.println("SE GUARDO LA DATA LESTGO");
-		if(puntaje/10>puntajeAntes/10) return true;
-		else if(puntaje/10<puntajeAntes/10) return true;
+		if(puntaje<100&&puntajeAntes<100) {
+			if(puntaje/10>puntajeAntes/10) return true;
+			else if(puntaje/10<puntajeAntes/10) return true;
+			else return false;
+		}
 		else return false;
     }
 }

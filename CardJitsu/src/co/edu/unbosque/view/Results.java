@@ -25,8 +25,10 @@ public class Results extends JFrame{
 		ImageIcon iMen = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnMenu = new JButton(iMen);
 		btnMenu.setBounds(550, 300, 100, 60);
+		if(pagina.equals("Feliz")) btnMenu.setBounds(1030, 680+1/4, 135, 65);
+		else if(pagina.equals("Troste")) btnMenu.setBounds(530, 290, 130, 70);
 		btnMenu.setContentAreaFilled(false);
-		btnMenu.setBorderPainted(true);
+		btnMenu.setBorderPainted(false);
 		
 		add(btnMenu);
 		add(panel);

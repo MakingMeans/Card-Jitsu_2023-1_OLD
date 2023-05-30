@@ -33,6 +33,7 @@ public class Controller implements ActionListener{
 	private FuncionesSecundarias funcionesSecundarias;
 	private GameplayLogic gameLogic;
 	private Musica music;
+	private Carta ogCard;
 	private Carta[] cinco;
 	private Results resultsWin;
 	private Results resultsLoss;
@@ -254,7 +255,7 @@ public class Controller implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case "btnCrear":{
-				userCreate.setYesTxt("SingUp", 35f,190,110);
+				userCreate.setYesTxt("SignUp", 35f,190,110);
 				userCreate.setNoTxt("Volver", 35f,40,110);
 				inicial.setVisible(false);
 				userCreate.setVisible(true);
@@ -350,165 +351,222 @@ public class Controller implements ActionListener{
 					}
 					//in-game
 						case "btnCard1":{
-							if(!gameplay.getProhibited()) {
+							if(!gameplay.getProhibited()&&!gameLogic.getPerdedor()&&!gameLogic.getGanador()) {
 								gameLogic.setSeleccion(1);
 								gameLogic.setRivalSelection(gameLogic.importRivalSelection());
+								ogCard=gameLogic.getCinco()[0];
 								gameLogic.partida(gameLogic.getCinco(),gameLogic.getRivalSelection());
 								cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
-								//
 								//gameLogic.setGanador(true);
 								Runnable timeCallback = () -> {
+									if(gameLogic.getWinRound())gameplay.miniCard(ogCard, true);
+							        else if(gameLogic.getLoseRound()) gameplay.miniCard(gameLogic.getRivalSelection(), false);
 						            gameplay.setCartasCinco(cinco);
 						            gameLogic.setCinco(cinco);
+						            gameplay.setProhibited(false);
 						            if(gameLogic.getPerdedor()) {
-						            	gameplay.nonvisibleSelect();
-						            	gameplay.setVisible(false);
-						            	boolean level=funcionesPrimarias.finishedGame(false);
-						            	levelDown.setCint(funcionesPrimarias.currentUser().getCinturon());
-						            	music.shutUp();
-						            	if(!level) {
-						            		resultsLoss.setVisible(true);
+						            	Runnable coolCallback = () -> {
+						            		gameplay.nonvisibleSelect();
+							            	gameplay.setVisible(false);
+							            	music.shutUp();
+							            	resultsLoss.setVisible(true);
 							            	music.soundEffect("Defeat");
-						            	}
-						            	else {
-						            		levelDown.setVisible(true);
-							            	music.soundEffect("LvDown");
-						            	}
+						            	};
+						            	music.shutUp();
+						            	if(funcionesPrimarias.currentUser().getName().equals("rickroll69")) music.soundEffect("Meme");
+						            	else music.soundEffect("TimeIsUp");
+						            	gameplay.coolDown(coolCallback); 
 							        }else if(gameLogic.getGanador()) {
-							        	gameplay.nonvisibleSelect();
-							        	gameplay.setVisible(false);
-							        	boolean level=funcionesPrimarias.finishedGame(true);
-							        	levelUp.setCint(funcionesPrimarias.currentUser().getCinturon());
-							        	music.shutUp();
-							        	if(!level) {
-							        		resultsWin.setVisible(true);
+							        	Runnable coolCallback = () -> {
+							        		gameplay.nonvisibleSelect();
+								        	gameplay.setVisible(false);
+								        	music.shutUp();
+								        	resultsWin.setVisible(true);
 							        		music.soundEffect("Victory");
-							        	}
-						            	else {
-						            		levelUp.setVisible(true);
-						            		music.soundEffect("LvUp");
-						            	}
+						            	};
+						            	music.shutUp();
+						            	if(funcionesPrimarias.currentUser().getName().equals("rickroll69")) music.soundEffect("Meme");
+						            	else music.soundEffect("TimeIsUp");
+							        	gameplay.coolDown(coolCallback); 
 							        }
 						        };
-						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 0, timeCallback);
-						        if(gameLogic.getWinRound())gameplay.miniCard(cinco[0], true);
-						        else gameplay.miniCard(gameLogic.getRivalSelection(), false);
+						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 0, timeCallback); 
 							}
 							break;
 						}
 						case "btnCard2":{
-							if(!gameplay.getProhibited()) {
+							if(!gameplay.getProhibited()&&!gameLogic.getPerdedor()&&!gameLogic.getGanador()) {
 								gameLogic.setSeleccion(2);
 								gameLogic.setRivalSelection(gameLogic.importRivalSelection());
+								ogCard=gameLogic.getCinco()[1];
 								gameLogic.partida(gameLogic.getCinco(),gameLogic.getRivalSelection());
+								cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
+								//gameLogic.setGanador(true);
 								Runnable timeCallback = () -> {
-									cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
+									if(gameLogic.getWinRound())gameplay.miniCard(ogCard, true);
+							        else if(gameLogic.getLoseRound()) gameplay.miniCard(gameLogic.getRivalSelection(), false);
 						            gameplay.setCartasCinco(cinco);
 						            gameLogic.setCinco(cinco);
+						            gameplay.setProhibited(false);
 						            if(gameLogic.getPerdedor()) {
-						            	gameplay.nonvisibleSelect();
-						            	gameplay.setVisible(false);
-						            	boolean level=funcionesPrimarias.finishedGame(false);
-						            	levelDown.setCint(funcionesPrimarias.currentUser().getCinturon());
-						            	if(!level) resultsLoss.setVisible(true);
-						            	else levelDown.setVisible(true);
+						            	Runnable coolCallback = () -> {
+						            		gameplay.nonvisibleSelect();
+							            	gameplay.setVisible(false);
+							            	music.shutUp();
+							            	resultsLoss.setVisible(true);
+							            	music.soundEffect("Defeat");
+						            	};
+						            	music.shutUp();
+						            	if(funcionesPrimarias.currentUser().getName().equals("rickroll69")) music.soundEffect("Meme");
+						            	else music.soundEffect("TimeIsUp");
+						            	gameplay.coolDown(coolCallback); 
 							        }else if(gameLogic.getGanador()) {
-							        	gameplay.nonvisibleSelect();
-							        	gameplay.setVisible(false);
-							        	boolean level=funcionesPrimarias.finishedGame(true);
-							        	levelUp.setCint(funcionesPrimarias.currentUser().getCinturon());
-							        	if(!level) resultsWin.setVisible(true);
-						            	else levelUp.setVisible(true);
+							        	Runnable coolCallback = () -> {
+							        		gameplay.nonvisibleSelect();
+								        	gameplay.setVisible(false);
+								        	music.shutUp();
+								        	resultsWin.setVisible(true);
+							        		music.soundEffect("Victory");
+						            	};
+						            	music.shutUp();
+						            	if(funcionesPrimarias.currentUser().getName().equals("rickroll69")) music.soundEffect("Meme");
+						            	else music.soundEffect("TimeIsUp");
+							        	gameplay.coolDown(coolCallback); 
 							        }
 						        };
-						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 1, timeCallback);
+						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 1, timeCallback); 
 							}
 							break;
 						}
 						case "btnCard3":{
-							if(!gameplay.getProhibited()) {
+							if(!gameplay.getProhibited()&&!gameLogic.getPerdedor()&&!gameLogic.getGanador()) {
 								gameLogic.setSeleccion(3);
 								gameLogic.setRivalSelection(gameLogic.importRivalSelection());
+								ogCard=gameLogic.getCinco()[2];
 								gameLogic.partida(gameLogic.getCinco(),gameLogic.getRivalSelection());
+								cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
+								//gameLogic.setGanador(true);
 								Runnable timeCallback = () -> {
-									cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
+									if(gameLogic.getWinRound())gameplay.miniCard(ogCard, true);
+							        else if(gameLogic.getLoseRound()) gameplay.miniCard(gameLogic.getRivalSelection(), false);
 						            gameplay.setCartasCinco(cinco);
 						            gameLogic.setCinco(cinco);
+						            gameplay.setProhibited(false);
 						            if(gameLogic.getPerdedor()) {
-						            	gameplay.nonvisibleSelect();
-						            	gameplay.setVisible(false);
-						            	boolean level=funcionesPrimarias.finishedGame(false);
-						            	levelDown.setCint(funcionesPrimarias.currentUser().getCinturon());
-						            	if(!level) resultsLoss.setVisible(true);
-						            	else levelDown.setVisible(true);
+						            	Runnable coolCallback = () -> {
+						            		gameplay.nonvisibleSelect();
+							            	gameplay.setVisible(false);
+							            	music.shutUp();
+							            	resultsLoss.setVisible(true);
+							            	music.soundEffect("Defeat");
+						            	};
+						            	music.shutUp();
+						            	if(funcionesPrimarias.currentUser().getName().equals("rickroll69")) music.soundEffect("Meme");
+						            	else music.soundEffect("TimeIsUp");
+						            	gameplay.coolDown(coolCallback); 
 							        }else if(gameLogic.getGanador()) {
-							        	gameplay.nonvisibleSelect();
-							        	gameplay.setVisible(false);
-							        	boolean level=funcionesPrimarias.finishedGame(true);
-							        	levelUp.setCint(funcionesPrimarias.currentUser().getCinturon());
-							        	if(!level) resultsWin.setVisible(true);
-						            	else levelUp.setVisible(true);
+							        	Runnable coolCallback = () -> {
+							        		gameplay.nonvisibleSelect();
+								        	gameplay.setVisible(false);
+								        	music.shutUp();
+								        	resultsWin.setVisible(true);
+							        		music.soundEffect("Victory");
+						            	};
+						            	music.shutUp();
+						            	if(funcionesPrimarias.currentUser().getName().equals("rickroll69")) music.soundEffect("Meme");
+						            	else music.soundEffect("TimeIsUp");
+							        	gameplay.coolDown(coolCallback); 
 							        }
 						        };
-						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 2, timeCallback);
+						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 2, timeCallback); 
 							}
 							break;
 						}
 						case "btnCard4":{
-							if(!gameplay.getProhibited()) {
+							if(!gameplay.getProhibited()&&!gameLogic.getPerdedor()&&!gameLogic.getGanador()) {
 								gameLogic.setSeleccion(4);
 								gameLogic.setRivalSelection(gameLogic.importRivalSelection());
+								ogCard=gameLogic.getCinco()[3];
 								gameLogic.partida(gameLogic.getCinco(),gameLogic.getRivalSelection());
+								cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
+								//gameLogic.setGanador(true);
 								Runnable timeCallback = () -> {
-									cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
+									if(gameLogic.getWinRound())gameplay.miniCard(ogCard, true);
+							        else if(gameLogic.getLoseRound()) gameplay.miniCard(gameLogic.getRivalSelection(), false);
 						            gameplay.setCartasCinco(cinco);
 						            gameLogic.setCinco(cinco);
+						            gameplay.setProhibited(false);
 						            if(gameLogic.getPerdedor()) {
-						            	gameplay.nonvisibleSelect();
-						            	gameplay.setVisible(false);
-						            	boolean level=funcionesPrimarias.finishedGame(false);
-						            	levelDown.setCint(funcionesPrimarias.currentUser().getCinturon());
-						            	if(!level) resultsLoss.setVisible(true);
-						            	else levelDown.setVisible(true);
+						            	Runnable coolCallback = () -> {
+						            		gameplay.nonvisibleSelect();
+							            	gameplay.setVisible(false);
+							            	music.shutUp();
+							            	resultsLoss.setVisible(true);
+							            	music.soundEffect("Defeat");
+						            	};
+						            	music.shutUp();
+						            	if(funcionesPrimarias.currentUser().getName().equals("rickroll69")) music.soundEffect("Meme");
+						            	else music.soundEffect("TimeIsUp");
+						            	gameplay.coolDown(coolCallback); 
 							        }else if(gameLogic.getGanador()) {
-							        	gameplay.nonvisibleSelect();
-							        	gameplay.setVisible(false);
-							        	boolean level=funcionesPrimarias.finishedGame(true);
-							        	levelUp.setCint(funcionesPrimarias.currentUser().getCinturon());
-							        	if(!level) resultsWin.setVisible(true);
-						            	else levelUp.setVisible(true);
+							        	Runnable coolCallback = () -> {
+							        		gameplay.nonvisibleSelect();
+								        	gameplay.setVisible(false);
+								        	music.shutUp();
+								        	resultsWin.setVisible(true);
+							        		music.soundEffect("Victory");
+						            	};
+						            	music.shutUp();
+						            	if(funcionesPrimarias.currentUser().getName().equals("rickroll69")) music.soundEffect("Meme");
+						            	else music.soundEffect("TimeIsUp");
+							        	gameplay.coolDown(coolCallback); 
 							        }
 						        };
-						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 3, timeCallback);	
+						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 3, timeCallback); 
 							}
 							break;
 						}
 						case "btnCard5":{
-							if(!gameplay.getProhibited()) {
+							if(!gameplay.getProhibited()&&!gameLogic.getPerdedor()&&!gameLogic.getGanador()) {
 								gameLogic.setSeleccion(5);
 								gameLogic.setRivalSelection(gameLogic.importRivalSelection());
+								ogCard=gameLogic.getCinco()[4];
 								gameLogic.partida(gameLogic.getCinco(),gameLogic.getRivalSelection());
+								cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
+								//gameLogic.setGanador(true);
 								Runnable timeCallback = () -> {
-									cinco = gameLogic.cincoCartas(funcionesPrimarias.currentUser());
+									if(gameLogic.getWinRound())gameplay.miniCard(ogCard, true);
+							        else if(gameLogic.getLoseRound()) gameplay.miniCard(gameLogic.getRivalSelection(), false);
 						            gameplay.setCartasCinco(cinco);
 						            gameLogic.setCinco(cinco);
+						            gameplay.setProhibited(false);
 						            if(gameLogic.getPerdedor()) {
-						            	gameplay.nonvisibleSelect();
-						            	gameplay.setVisible(false);
-						            	boolean level=funcionesPrimarias.finishedGame(false);
-						            	levelDown.setCint(funcionesPrimarias.currentUser().getCinturon());
-						            	if(!level) resultsLoss.setVisible(true);
-						            	else levelDown.setVisible(true);
+						            	Runnable coolCallback = () -> {
+						            		gameplay.nonvisibleSelect();
+							            	gameplay.setVisible(false);
+							            	music.shutUp();
+							            	resultsLoss.setVisible(true);
+							            	music.soundEffect("Defeat");
+						            	};
+						            	music.shutUp();
+						            	if(funcionesPrimarias.currentUser().getName().equals("rickroll69")) music.soundEffect("Meme");
+						            	else music.soundEffect("TimeIsUp");
+						            	gameplay.coolDown(coolCallback); 
 							        }else if(gameLogic.getGanador()) {
-							        	gameplay.nonvisibleSelect();
-							        	gameplay.setVisible(false);
-							        	boolean level=funcionesPrimarias.finishedGame(true);
-							        	levelUp.setCint(funcionesPrimarias.currentUser().getCinturon());
-							        	if(!level) resultsWin.setVisible(true);
-						            	else levelUp.setVisible(true);
+							        	Runnable coolCallback = () -> {
+							        		gameplay.nonvisibleSelect();
+								        	gameplay.setVisible(false);
+								        	music.shutUp();
+								        	resultsWin.setVisible(true);
+							        		music.soundEffect("Victory");
+						            	};
+						            	music.shutUp();
+						            	if(funcionesPrimarias.currentUser().getName().equals("rickroll69")) music.soundEffect("Meme");
+						            	else music.soundEffect("TimeIsUp");
+							        	gameplay.coolDown(coolCallback); 
 							        }
 						        };
-						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 4, timeCallback);
+						        gameplay.visibleSelect(gameLogic.getRivalSelection(), 4, timeCallback); 
 							}
 							break;
 						}
@@ -540,30 +598,48 @@ public class Controller implements ActionListener{
 							preventLostGame.setVisible(false);
 						    break;
 						}
-						case "btnByeChangeUp":{
-							levelUp.setVisible(false);
-				        	resultsWin.setVisible(true);
-				        	music.soundEffect("Victory");
-							break;
-						}
-						case "btnByeChangeDown":{
-							levelDown.setVisible(false);
-				        	resultsLoss.setVisible(true);
-				        	music.soundEffect("Defeat");
-							break;
-						}
 						case "btnByeGameWon":{
-							gameLogic.setPerdedor(false);
+							music.shutUp();
 							gameLogic.setGanador(false);
+							boolean level=funcionesPrimarias.finishedGame(true);
+							levelUp.setCint(funcionesPrimarias.currentUser().getCinturon());
 							resultsWin.setVisible(false);
+							if(!level) {
+			            		mainMenu.setVisible(true);
+								music.cambiarMusica("DojoMenu");
+			            	}
+			            	else {
+			            		levelUp.setVisible(true);
+				            	music.soundEffect("LvUp");
+			            	}
+							break;
+						}
+						case "btnByeGameLose":{
+							music.shutUp();
+							gameLogic.setPerdedor(false);
+							boolean level=funcionesPrimarias.finishedGame(false);
+							levelDown.setCint(funcionesPrimarias.currentUser().getCinturon());
+							resultsLoss.setVisible(false);
+			            	if(!level) {
+			            		mainMenu.setVisible(true);
+								music.cambiarMusica("DojoMenu");
+			            	}
+			            	else {
+			            		levelDown.setVisible(true);
+				            	music.soundEffect("LvDown");
+			            	}
+							break;
+						}
+						case "btnByeChangeUp":{
+							music.shutUp();
+							levelUp.setVisible(false);
 							mainMenu.setVisible(true);
 							music.cambiarMusica("DojoMenu");
 							break;
 						}
-						case "btnByeGameLose":{
-							gameLogic.setPerdedor(false);
-							gameLogic.setGanador(false);
-							resultsLoss.setVisible(false);
+						case "btnByeChangeDown":{
+							music.shutUp();
+							levelDown.setVisible(false);
 							mainMenu.setVisible(true);
 							music.cambiarMusica("DojoMenu");
 							break;

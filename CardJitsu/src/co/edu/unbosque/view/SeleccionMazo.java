@@ -2,19 +2,13 @@ package co.edu.unbosque.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
-//import java.awt.Color;
-//import java.awt.Font;
-//import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Image;
-//import java.io.File;
-//import java.io.IOException;
 import java.io.File;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-//import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -60,73 +54,73 @@ public class SeleccionMazo extends JFrame {
 		btnRand = new JButton(iRand);
 		btnRand.setBounds(346, 679, 180, 85);
 		btnRand.setContentAreaFilled(false);
-		btnRand.setBorderPainted(true);
+		btnRand.setBorderPainted(false);
 		
 		ImageIcon iSal = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnSal = new JButton(iSal);
 		btnSal.setBounds(550, 679, 87, 85);
 		btnSal.setContentAreaFilled(false);
-		btnSal.setBorderPainted(true);
+		btnSal.setBorderPainted(false);
 
 		ImageIcon iCus = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnCus = new JButton(iCus);
 		btnCus.setBounds(661, 679, 180, 85);
 		btnCus.setContentAreaFilled(false);
-		btnCus.setBorderPainted(true);
+		btnCus.setBorderPainted(false);
 
 		ImageIcon iAgu = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnAgua = new JButton(iAgu);
 		btnAgua.setBounds(315, 399, 149, 85);
 		btnAgua.setContentAreaFilled(false);
-		btnAgua.setBorderPainted(true);
+		btnAgua.setBorderPainted(false);
 		
 		ImageIcon iFue = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnFuego = new JButton(iFue);
 		btnFuego.setBounds(303, 483, 174, 84);
 		btnFuego.setContentAreaFilled(false);
-		btnFuego.setBorderPainted(true);
+		btnFuego.setBorderPainted(false);
 
 		ImageIcon iNie = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnNieve = new JButton(iNie);
 		btnNieve.setBounds(309, 566, 161, 73);
 		btnNieve.setContentAreaFilled(false);
-		btnNieve.setBorderPainted(true);
+		btnNieve.setBorderPainted(false);
 
 		ImageIcon iAma = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnAmarillo = new JButton(iAma);
 		btnAmarillo.setBounds(710, 399, 205, 73);
 		btnAmarillo.setContentAreaFilled(false);
-		btnAmarillo.setBorderPainted(true);
+		btnAmarillo.setBorderPainted(false);
 
 		ImageIcon iAzu = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnAzul = new JButton(iAzu);
 		btnAzul.setBounds(747, 471, 125, 73);
 		btnAzul.setContentAreaFilled(false);
-		btnAzul.setBorderPainted(true);
+		btnAzul.setBorderPainted(false);
 
 		ImageIcon iVio = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnVioleta = new JButton(iVio);
 		btnVioleta.setBounds(716, 543, 186, 73);
 		btnVioleta.setContentAreaFilled(false);
-		btnVioleta.setBorderPainted(true);
+		btnVioleta.setBorderPainted(false);
 		
 		ImageIcon iNar = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnNaranja = new JButton(iNar);
 		btnNaranja.setBounds(933, 399, 204, 73);
 		btnNaranja.setContentAreaFilled(false);
-		btnNaranja.setBorderPainted(true);
+		btnNaranja.setBorderPainted(false);
 
 		ImageIcon iRoj = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnRojo = new JButton(iRoj);
 		btnRojo.setBounds(970, 471, 130, 73);
 		btnRojo.setContentAreaFilled(false);
-		btnRojo.setBorderPainted(true);
+		btnRojo.setBorderPainted(false);
 		
 		ImageIcon iVer = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnVerde = new JButton(iVer);
 		btnVerde.setBounds(957, 543, 155, 73);
 		btnVerde.setContentAreaFilled(false);
-		btnVerde.setBorderPainted(true);
+		btnVerde.setBorderPainted(false);
 
 		digID = new JTextField();
 		digID.setBounds(531, 435, 124, 72);
