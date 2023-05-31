@@ -3,7 +3,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Mazo {
-	//mazo como tal solo crea la lista de cartas SIN REPETIR y las maneja
 	private Carta card[] = new Carta[30];
 	Scanner sc = new Scanner(System.in);
 	Random rand = new Random();
@@ -12,7 +11,6 @@ public class Mazo {
 	String[] barajaC = {"Amarillo", "Azul", "Verde", "Rojo", "Morado", "Naranja"};
 	String[] barajaE = {"Fuego", "Nieve", "Agua"};
 
-	private int[] randomCards;
 	int randomCard;
 	byte randomN, customN;
 	String randomE, randomC, customE, customC;
@@ -39,42 +37,6 @@ public class Mazo {
 			}
 		}
 		return this.card;
-	}
-	//eliminar cinco cards
-	public int[] cincoCartas(int seleccion){
-		//if(seleccion>5||seleccion<1) seleccion = rand.nextInt(5)+1;
-		if(randomCards==null){
-			randomCards = new int[5];
-			for(int i = 0; i < randomCards.length; i++){
-				randomCard = rand.nextInt(card.length);
-				boolean repetida = false;
-				for(int j = 0; j < i; j++){
-					if(randomCards[j] == randomCard){
-						repetida = true;
-						break;
-					}
-				}
-				if(repetida) i--;
-				else randomCards[i] = randomCard;
-			}
-		}else{
-			boolean done = false;
-			while(done==false){
-				randomCard=rand.nextInt(card.length);
-				boolean repetida = false;
-				for(int j = 0; j < randomCards.length; j++){
-					if(randomCards[j] == randomCard){
-						repetida = true;
-						break;
-					}
-				}
-				if(!repetida){
-					randomCards[seleccion-1]=randomCard;
-					done = true;
-				}
-			}
-		}
-		return randomCards;
 	}
 	public Carta rivalCard(){
 		String senseiElement = barajaE[rand.nextInt(barajaE.length)];

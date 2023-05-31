@@ -4,23 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameplayLogic {
-	public GameplayLogic() {
-		
-	}
-	//private User usuario;
-	//private Carta cartasMazo[];
-	//private Carta cartasCinco[];
-	//
-	ArrayList<String> fuegoWinP = new ArrayList<String>();
-	ArrayList<String> aguaWinP = new ArrayList<String>();
-	ArrayList<String> nieveWinP = new ArrayList<String>();
-	ArrayList<String> allWinP = new ArrayList<String>();
-
-	ArrayList<String> fuegoWinR = new ArrayList<String>();
-	ArrayList<String> aguaWinR = new ArrayList<String>();
-	ArrayList<String> nieveWinR = new ArrayList<String>();
-	ArrayList<String> allWinR = new ArrayList<String>();
-	//
 	ArrayList<Carta> winsPlayer = new ArrayList<Carta>();
 	ArrayList<Carta> winsRival = new ArrayList<Carta>();
 	
@@ -33,11 +16,14 @@ public class GameplayLogic {
 	ArrayList<String> rivalAgua = new ArrayList<String>();
 	ArrayList<String> rivalNieve = new ArrayList<String>();
 	ArrayList<String> rivalElementoDiferente = new ArrayList<String>();
+	
 	private int[] randomCards;
 	private int seleccion;
 	private Carta rivalSelection;
 	private Carta[] cinco;
 	private boolean ganador,perdedor, winRound, loseRound;
+	private String[] colorsWins = {"0","0","0"};
+	private String wayToWin = "No";
 
 	Random rand = new Random();
 	
@@ -86,74 +72,28 @@ public class GameplayLogic {
 		this.winRound=false;
 		this.loseRound=false;
 		int i = getSeleccion()-1;
-		String playerElement = cartasCinco[i].getElemento(), playerColor = cartasCinco[i].getColor();
+		String playerElement = cartasCinco[i].getElemento();
 		byte playerNumber = cartasCinco[i].getNumero();
-		String rivalElement = getRivalSelection.getElemento(), rivalColor = getRivalSelection.getColor();
+		String rivalElement = getRivalSelection.getElemento();
 		byte rivalNumber = getRivalSelection.getNumero();
 		//En caso que ambos jugadores sacaran mismo elemento
 		if (playerElement.equals(rivalElement)) {
 			if (playerNumber > rivalNumber) {
 				this.winRound=true;
-			    if(playerElement.equals("Fuego")) {
-					winsPlayer.add(cartasCinco[i]);
-					fuegoWinP.add(playerColor);
-				}
-				if(playerElement.equals("Agua")) {
-					winsPlayer.add(cartasCinco[i]);
-					aguaWinP.add(playerColor);
-				}
-				if(playerElement.equals("Nieve")) {
-					winsPlayer.add(cartasCinco[i]);
-					nieveWinP.add(playerColor);
-				}
+				winsPlayer.add(cartasCinco[i]);
 			} else if (playerNumber < rivalNumber) {
 				this.loseRound=true;
-				if(rivalElement.equals("Fuego")) {
-					winsRival.add(getRivalSelection);
-					fuegoWinR.add(rivalColor);
-				}
-				if(rivalElement.equals("Agua")) {
-					winsRival.add(getRivalSelection);
-					aguaWinR.add(rivalColor);
-				}
-				if(rivalElement.equals("Nieve")) {
-					winsRival.add(getRivalSelection);
-					nieveWinR.add(rivalColor);
-				}
-			} else {
-				System.out.println("Empate!");
+				winsRival.add(getRivalSelection);
 			}
 		//En caso que sean elementos diferentes
 		} else if ((playerElement.equals("Fuego") && rivalElement.equals("Nieve"))
 				|| (playerElement.equals("Agua") && rivalElement.equals("Fuego"))
 				|| (playerElement.equals("Nieve") && rivalElement.equals("Agua"))) {
 			this.winRound=true;
-			if(playerElement.equals("Fuego")) {
-				winsPlayer.add(cartasCinco[i]);
-				fuegoWinP.add(playerColor);
-			}
-			if(playerElement.equals("Agua")) {
-				winsPlayer.add(cartasCinco[i]);
-				aguaWinP.add(playerColor);
-			}
-			if(playerElement.equals("Nieve")) {
-				winsPlayer.add(cartasCinco[i]);
-				nieveWinP.add(playerColor);
-			}
+			winsPlayer.add(cartasCinco[i]);
 		} else {
 			this.loseRound=true;
-			if(rivalElement.equals("Fuego")) {
-				winsRival.add(getRivalSelection);
-				fuegoWinR.add(rivalColor);
-			}
-			if(rivalElement.equals("Agua")) {
-				winsRival.add(getRivalSelection);
-				aguaWinR.add(rivalColor);
-			}
-			if(rivalElement.equals("Nieve")) {
-				winsRival.add(getRivalSelection);
-				nieveWinR.add(rivalColor);
-			}
+			winsRival.add(getRivalSelection);
 		}
 	}
 	public boolean ganador(boolean hayGanador) {
@@ -205,8 +145,30 @@ public class GameplayLogic {
 				}
 				//verificar si ya hay alguna victoria
 				if(playerFuego.size()>=3 ||playerAgua.size()>=3 || playerNieve.size()>=3 || playerElementoDiferente.size()>=3) {
-					System.out.println("¡Felicidades, ganaste el juego!");
-					System.out.println();
+					if(playerFuego.size()>=3) {
+						for(int i=0;i<3;i++) {
+							colorsWins[i] = playerFuego.get(i);
+							wayToWin = "Fuego";
+						}
+					}
+					else if(playerAgua.size()>=3) {
+						for(int i=0;i<3;i++) {
+							colorsWins[i] = playerAgua.get(i);
+							wayToWin = "Agua";
+						}
+					}
+					else if(playerNieve.size()>=3) {
+						for(int i=0;i<3;i++) {
+							colorsWins[i] = playerNieve.get(i);
+							wayToWin = "Nieve";
+						}
+					}
+					else if(playerElementoDiferente.size()>=3) {
+						for(int i=0;i<3;i++) {
+							colorsWins[i] = playerElementoDiferente.get(i);
+							wayToWin = "All";
+						}
+					}
 					hayGanador = true;
 					setGanador(true);
 					winsPlayer.clear();
@@ -222,9 +184,31 @@ public class GameplayLogic {
 					rivalNieve.clear();
 					rivalElementoDiferente.clear();
 				}
-				if(rivalFuego.size()>=3 ||rivalAgua.size()>=3 || rivalNieve.size()>=3 || rivalElementoDiferente.size()>=3) {
-					System.out.println("¡Lo sentimos, perdiste el juego!");
-					System.out.println();
+				else if(rivalFuego.size()>=3 ||rivalAgua.size()>=3 || rivalNieve.size()>=3 || rivalElementoDiferente.size()>=3) {
+					if(rivalFuego.size()>=3) {
+						for(int i=0;i<3;i++) {
+							colorsWins[i] = rivalFuego.get(i);
+							wayToWin = "Fuego";
+						}
+					}
+					else if(rivalAgua.size()>=3) {
+						for(int i=0;i<3;i++) {
+							colorsWins[i] = rivalAgua.get(i);
+							wayToWin = "Agua";
+						}
+					}
+					else if(rivalNieve.size()>=3) {
+						for(int i=0;i<3;i++) {
+							colorsWins[i] = rivalNieve.get(i);
+							wayToWin = "Nieve";
+						}
+					}
+					else if(rivalElementoDiferente.size()>=3) {
+						for(int i=0;i<3;i++) {
+							colorsWins[i] = rivalElementoDiferente.get(i);
+							wayToWin = "All";
+						}
+					}
 					hayGanador = true;
 					setPerdedor(true);
 					winsPlayer.clear();
@@ -243,19 +227,9 @@ public class GameplayLogic {
 				return hayGanador;
 	}
 	public void partida(Carta[] cartasCinco, Carta getRivalSelection) {
-		int i = getSeleccion()-1;
 		boolean hayGanador = false;
-		
-			System.out.println("Tu carta: "+cartasCinco[i].getElemento()+" - "+cartasCinco[i].getColor()+" - "+cartasCinco[i].getNumero()+"\n");
-			System.out.println("Carta del sensei: "+getRivalSelection.getElemento()+" - "+getRivalSelection.getColor()+" - "+getRivalSelection.getNumero()+"\n");
-
-			ronda(getCinco(),getRivalSelection);
-			System.out.println("Fuego: -> Jugador: "+fuegoWinP+" <-  ---------------  -> Sensei: "+fuegoWinR);
-			System.out.println("Agua: -> Jugador: "+aguaWinP+" <-  ---------------  -> Sensei: "+aguaWinR);
-			System.out.println("Nieve: -> Jugador: "+nieveWinP+" <-  ---------------  -> Sensei: "+nieveWinR);
-			System.out.println();
-			hayGanador=ganador(hayGanador);
-		
+		ronda(getCinco(),getRivalSelection);
+		hayGanador=ganador(hayGanador);
 	}
 	public Carta importRivalSelection() {
 		Mazo mz = new Mazo();
@@ -309,5 +283,17 @@ public class GameplayLogic {
 	}
 	public void setLoseRound(boolean loseRound) {
 		this.loseRound = loseRound;
+	}
+	public String[] getColorsWins() {
+		return colorsWins;
+	}
+	public void setColorsWins(String[] colorsWins) {
+		this.colorsWins = colorsWins;
+	}
+	public String getWayToWin() {
+		return wayToWin;
+	}
+	public void setWayToWin(String wayToWin) {
+		this.wayToWin = wayToWin;
 	}
 }

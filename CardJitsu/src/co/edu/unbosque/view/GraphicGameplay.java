@@ -37,6 +37,7 @@ public class GraphicGameplay extends JFrame {
 	private JLabel selectedRival;
 	private ArrayList<JLabel> cardsPlayerList = new ArrayList<>();
 	private ArrayList<JLabel> cardsRivalList = new ArrayList<>();
+	private JLabel[] winerCards;
 	byte cardsPfuego;
 	byte cardsPagua;
 	byte cardsPnieve;
@@ -81,7 +82,7 @@ public class GraphicGameplay extends JFrame {
 		selectedRival.setVisible(false);
 		
 		penguins = new JLabel();
-		penguins.setBounds(65, 30, 919, 739);
+		penguins.setBounds(65, 20, 919, 739);
 		Image temporal10 = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/Pinguinos.png").getImage();
 		ImageIcon imgRedimension10 = new ImageIcon(
 				temporal10.getScaledInstance(penguins.getWidth(), penguins.getHeight(), Image.SCALE_SMOOTH));
@@ -178,8 +179,18 @@ public class GraphicGameplay extends JFrame {
 		rank.setForeground(Color.WHITE);
 		rank.setFont(customFont3);
 
+		winerCards = new JLabel[3];
 		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 100; j++) {
+			winerCards[i] = new JLabel();
+			winerCards[i].setBounds(486 + (i * 70), 400, 70, 70);
+			Image tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/ReversoCartas.png").getImage();
+			ImageIcon imgRedimen = new ImageIcon(tempor.getScaledInstance(winerCards[i].getWidth(),
+					winerCards[i].getHeight(), Image.SCALE_SMOOTH));
+			winerCards[i].setIcon(imgRedimen);
+			winerCards[i].setVisible(false);
+		}
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 30; j++) {
 				cardsPlayerList.add(new JLabel());
 				cardsPlayerList.get((i * 10) + j).setBounds(335 + (i * 70), 35 + (j * 40), 70, 70);
 				Image tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/Transparente.png").getImage();
@@ -189,7 +200,7 @@ public class GraphicGameplay extends JFrame {
 			}
 		}
 		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 100; j++) {
+			for (int j = 0; j < 30; j++) {
 				cardsRivalList.add(new JLabel());
 				cardsRivalList.get((i * 10) + j).setBounds(637+1/2 + (i * 70), 35 + (j * 40), 70, 70);
 				Image tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/Transparente.png").getImage();
@@ -198,10 +209,14 @@ public class GraphicGameplay extends JFrame {
 				cardsRivalList.get((i * 10) + j).setIcon(imgRedimen);
 			}
 		}
+		
+		for (int i = 0; i < 3; i++) {
+			add(winerCards[i]);
+		}
 		add(finish);
 		add(selectedPlayer);
 		add(selectedRival);
-		for (int i = 0; i < 300; i++) {
+		for (int i = 0; i < 90; i++) {
 			add(cardsPlayerList.get(i));
 			add(cardsRivalList.get(i));
 		}
@@ -242,6 +257,27 @@ public class GraphicGameplay extends JFrame {
 			g.drawImage(iCue, 0, 0, nAnchoCue, nAltoCue, this);
 			super.paintComponents(g);
 		}
+	}
+	public void penguinAnime(Carta card, String Win, Runnable callback) {
+		Timer timer = new Timer();
+        TimerTask anim = new TimerTask() {
+            @Override
+            public void run() {
+            	penguinNormal();
+        		callback.run();
+            }
+        };
+        Image temporal = new ImageIcon("src/co/edu/unbosque/assets/animaciones/"+card.getElemento()+Win+"P.png").getImage();
+		ImageIcon imgRedimension1 = new ImageIcon(
+				temporal.getScaledInstance(this.penguins.getWidth(), this.penguins.getHeight(), Image.SCALE_SMOOTH));
+		this.penguins.setIcon(imgRedimension1);
+		timer.schedule(anim, 1500);
+	}
+	public void penguinNormal() {
+		Image temporal = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/Pinguinos.png").getImage();
+		ImageIcon imgRedimension1 = new ImageIcon(
+				temporal.getScaledInstance(this.penguins.getWidth(), this.penguins.getHeight(), Image.SCALE_SMOOTH));
+		this.penguins.setIcon(imgRedimension1);
 	}
 	public void miniCard(Carta card, boolean win) {
 		if(win) {
@@ -365,7 +401,7 @@ public class GraphicGameplay extends JFrame {
 		selectedPlayer.setVisible(false);
 		selectedRival.setVisible(false);
 		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 100; j++) {
+			for (int j = 0; j < 30; j++) {
 				Image tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/Transparente.png").getImage();
 				ImageIcon imgRedimen = new ImageIcon(tempor.getScaledInstance(cardsPlayerList.get((i * 10) + j).getWidth(),
 						cardsPlayerList.get((i * 10) + j).getHeight(), Image.SCALE_SMOOTH));
@@ -458,8 +494,26 @@ public class GraphicGameplay extends JFrame {
 			this.rank.setForeground(new Color(142,75,232));
 		}
 	}
-	public void visualFinish(boolean visual) {
+	public void visualFinish(boolean visual, String colors[], String way) {
 		this.finish.setVisible(visual);
+		if(visual) {
+			for (int i = 0; i < 3; i++) {
+				Image tempor;
+				if(way.equals("All")) {
+					String[] list={"Fuego","Agua","Nieve"};
+					tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/C"+list[i]+colors[i]+".png").getImage();
+				}else if(way.equals("Hide")) tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/Transparente.png").getImage();
+				else tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/C"+way+colors[i]+".png").getImage();
+				ImageIcon imgRedimen = new ImageIcon(tempor.getScaledInstance(winerCards[i].getWidth(),
+						winerCards[i].getHeight(), Image.SCALE_SMOOTH));
+				winerCards[i].setIcon(imgRedimen);
+				winerCards[i].setVisible(true);
+			}
+		}else {
+			for (int i = 0; i < 3; i++) {
+				winerCards[i].setVisible(false);
+			}
+		}
 	}
 	public JButton getBtnSal() {
 		return btnSal;

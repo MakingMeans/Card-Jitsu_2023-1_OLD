@@ -12,6 +12,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Musica {
 	private static Clip clipActual;
+	private static Clip clipFondo;
     private static boolean mute=false;
     @SuppressWarnings("unused")
 	private boolean preMute;
@@ -23,12 +24,17 @@ public class Musica {
         clipActual.open(audioStream);
         clipActual.start(); // Inicia la reproducción de la música
     }
+    private void iniciarReproduccionSonido(String rutaArchivo) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        File audioFile = new File(rutaArchivo);
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+        clipFondo = AudioSystem.getClip();
+        clipFondo.open(audioStream);
+        clipFondo.start(); // Inicia la reproducción de efectos
+    }
     public void reproducirMusica(String rutaArchivo) {
         try {
             iniciarReproduccionMusica("src/co/edu/unbosque/assets/musica/"+rutaArchivo+".wav");
-            // Guardar volumen
-            establecerVolumenInicial(0.6f);
-            //guardarVolumenOriginal();
+            establecerVolumenInicial(0.7f);
             // Opcional: Reproducir en bucle continuo
             clipActual.loop(Clip.LOOP_CONTINUOUSLY);
             // Espera un tiempo para que la música se reproduzca antes de que el programa termine
@@ -47,21 +53,16 @@ public class Musica {
         	iniciarReproduccionMusica("src/co/edu/unbosque/assets/musica/"+rutaArchivo+".wav");
         	if(mute==false) establecerVolumenInicial(0.7f);
         	else establecerVolumenInicial(-1000f);
-        	/*if(easterEgg==false)iniciarReproduccionMusica(rutaArchivo);
-        	else iniciarReproduccionMusica("src/co/edu/unbosque/assets/musica/Roll.wav");*/
         	clipActual.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             e.printStackTrace();
         }
     }
-    //posible futuro sound effect
     public void soundEffect(String rutaArchivo) {
         try {
-        	iniciarReproduccionMusica("src/co/edu/unbosque/assets/soundEffects/"+rutaArchivo+".wav");
-        	if(mute==false) establecerVolumenInicial(0.7f);
+        	iniciarReproduccionSonido("src/co/edu/unbosque/assets/soundEffects/"+rutaArchivo+".wav");
+        	if(mute==false) establecerVolumenInicialSound(0.7f);
         	else establecerVolumenInicial(-1000f);
-        	/*if(easterEgg==false)iniciarReproduccionMusica(rutaArchivo);
-        	else iniciarReproduccionMusica("src/co/edu/unbosque/assets/musica/Roll.wav");*/
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             e.printStackTrace();
         }
@@ -70,10 +71,23 @@ public class Musica {
     	clipActual.stop();
         clipActual.close();
     }
-    
+    public void shutUpSound() {
+    	clipFondo.stop();
+        clipFondo.close();
+    }
     public static void establecerVolumenInicial(float volumen) {
         if (clipActual.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
             FloatControl control = (FloatControl) clipActual.getControl(FloatControl.Type.MASTER_GAIN);
+            float gainRange = control.getMaximum() - control.getMinimum();
+            float desiredGain = gainRange * volumen + control.getMinimum();
+            control.setValue(desiredGain);
+            if(volumen>=0) mute=false;
+            else if (volumen<0) mute=true;
+        }
+    }
+    public static void establecerVolumenInicialSound(float volumen) {
+        if (clipFondo.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+            FloatControl control = (FloatControl) clipFondo.getControl(FloatControl.Type.MASTER_GAIN);
             float gainRange = control.getMaximum() - control.getMinimum();
             float desiredGain = gainRange * volumen + control.getMinimum();
             control.setValue(desiredGain);

@@ -1,30 +1,24 @@
 package co.edu.unbosque.model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class FuncionesPrincipales {
     private byte id;
     private ArrayList<User> usuarios = new ArrayList<User>();
 	String name;
 
-    Scanner sc = new Scanner(System.in);
     public void temporalData(){
         Data dat = new Data();
         this.usuarios = dat.loadData();
-        //this.usuarios.get(1).setPuntaje(this.usuarios.get(1).getPuntaje()+50);
     }
     public ArrayList<User> getTemporalData(){
     	temporalData();
-    	System.out.println("Devuelve="+this.usuarios);
         return this.usuarios;
     }
     public byte loginId(){
     	temporalData();
-    	System.out.println("Devuelve="+this.id);
         return this.id;
     }
-   
     public boolean crearUsuario(String name){
 		temporalData();
         int puntaje=0;
@@ -32,7 +26,6 @@ public class FuncionesPrincipales {
 		if(this.usuarios.size()>0){
 			for(int j=0;j<this.usuarios.size();j++){
 				if(this.usuarios.get(j).getName().equals(name)) {
-					System.out.println("ERROR-->USUARIOS REPETIDOS");
 					return true;
 				}
 			}
@@ -56,15 +49,12 @@ public class FuncionesPrincipales {
 		boolean success = false;
         for(byte i=0;i<this.usuarios.size();i++){
 	        if(this.usuarios.get(i).getName().equals(name)) {
-	        	System.out.println("Bienvenido "+name+"\n");
 	        	this.id=i;
-	        	System.out.println("ID="+this.id);
 	        	success = true;
 				break;
 	        }
         }
 		if(!success){
-			System.out.println("Su usuario es incorrecto");
 			return stop=true;
 		}else return stop=false;
     }

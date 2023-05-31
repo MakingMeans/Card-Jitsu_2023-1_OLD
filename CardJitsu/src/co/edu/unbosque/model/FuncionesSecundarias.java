@@ -1,15 +1,12 @@
 package co.edu.unbosque.model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class FuncionesSecundarias {
 
 	FuncionesPrincipales v1 = new FuncionesPrincipales();
     ArrayList<User> usuarios = new ArrayList<User>();;
     byte id;
-
-    Scanner sc = new Scanner(System.in);
     
 	public void asignarMazoAleatorio(String names) {
 		this.usuarios=v1.getTemporalData();
@@ -20,7 +17,6 @@ public class FuncionesSecundarias {
 		}
 		Mazo mazo = new Mazo();
 		this.usuarios.get(id).setMazo(mazo.crearMazoAl());
-		System.out.println("Se ha asignado un mazo aleatorio al usuario " + this.usuarios.get(this.id).getName()+"\n"); 
 		Data dat = new Data();
 		dat.saveData(this.usuarios);
 	}
@@ -52,7 +48,6 @@ public class FuncionesSecundarias {
 				return cartaExistente;
 			}
 		this.usuarios.get(id).setMazo(card);
-		System.out.println("Se ha asignado un mazo custom al usuario " + this.usuarios.get(id).getName()+"\n"); 
 		Data dat = new Data();
 		dat.saveData(this.usuarios);
 		return 0;
