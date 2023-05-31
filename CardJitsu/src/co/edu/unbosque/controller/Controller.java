@@ -359,21 +359,28 @@ public class Controller implements ActionListener {
 				int score = funcionesPrimarias.currentUser().getPuntaje();
 				gameLogic.setCinco(gameLogic.cincoCartas(funcionesPrimarias.currentUser()));
 				gameplay.setCartasCinco(gameLogic.getCinco());
-				if (score < 45) {
+				if (score < 10) {
 					if (name.equals("rickroll69"))
 						music.cambiarMusica("PizzaTheme");
 					else
 						music.cambiarMusica("BattleTheme");
-				} else if (score < 60 && score >= 45)
+				} else if (score < 20 && score >= 10)
 					music.cambiarMusica("MidWayTheme");
-				else if (score < 85 && score >= 60) {
-					if (name.equals("rickroll69"))
-						music.cambiarMusica("PizzaTheme");
-					else
-						music.cambiarMusica("BattleTheme");
-				} else if (score < 100 && score >= 85)
+				else if (score < 30 && score >= 20)
+					music.cambiarMusica("YellowRevenge");
+				else if (score < 40 && score >= 30)
+					music.cambiarMusica("OrangeLava");
+				else if (score < 50 && score >= 40)
+					music.cambiarMusica("GreenZone");
+				else if (score < 60 && score >= 50)
+					music.cambiarMusica("SmartBlue");
+				else if (score < 70 && score >= 60)
+					music.cambiarMusica("GrazeTheRedTheme");
+				else if (score < 80 && score >= 70)
+					music.cambiarMusica("PurpleMySelf");
+				else if (score < 90 && score >= 80)
 					music.cambiarMusica("FinaleTheme");
-				else if (score >= 100)
+				else if (score >= 90)
 					music.cambiarMusica("PerfectRanking");
 
 				gameplay.setUserStats(funcionesPrimarias.currentUser().getName(),
@@ -405,6 +412,7 @@ public class Controller implements ActionListener {
 							Runnable coolCallback = () -> {
 								gameplay.nonvisibleSelect();
 								gameplay.setVisible(false);
+								gameLogic.setRandomCards(null);
 								music.shutUpSound();
 								resultsLoss.setVisible(true);
 								music.soundEffect("Defeat");
@@ -420,6 +428,7 @@ public class Controller implements ActionListener {
 							Runnable coolCallback = () -> {
 								gameplay.nonvisibleSelect();
 								gameplay.setVisible(false);
+								gameLogic.setRandomCards(null);
 								music.shutUpSound();
 								resultsWin.setVisible(true);
 								music.soundEffect("Victory");
@@ -466,6 +475,7 @@ public class Controller implements ActionListener {
 							Runnable coolCallback = () -> {
 								gameplay.nonvisibleSelect();
 								gameplay.setVisible(false);
+								gameLogic.setRandomCards(null);
 								music.shutUpSound();
 								resultsLoss.setVisible(true);
 								music.soundEffect("Defeat");
@@ -481,6 +491,7 @@ public class Controller implements ActionListener {
 							Runnable coolCallback = () -> {
 								gameplay.nonvisibleSelect();
 								gameplay.setVisible(false);
+								gameLogic.setRandomCards(null);
 								music.shutUpSound();
 								resultsWin.setVisible(true);
 								music.soundEffect("Victory");
@@ -527,6 +538,7 @@ public class Controller implements ActionListener {
 							Runnable coolCallback = () -> {
 								gameplay.nonvisibleSelect();
 								gameplay.setVisible(false);
+								gameLogic.setRandomCards(null);
 								music.shutUpSound();
 								resultsLoss.setVisible(true);
 								music.soundEffect("Defeat");
@@ -542,6 +554,7 @@ public class Controller implements ActionListener {
 							Runnable coolCallback = () -> {
 								gameplay.nonvisibleSelect();
 								gameplay.setVisible(false);
+								gameLogic.setRandomCards(null);
 								music.shutUpSound();
 								resultsWin.setVisible(true);
 								music.soundEffect("Victory");
@@ -588,6 +601,7 @@ public class Controller implements ActionListener {
 							Runnable coolCallback = () -> {
 								gameplay.nonvisibleSelect();
 								gameplay.setVisible(false);
+								gameLogic.setRandomCards(null);
 								music.shutUpSound();
 								resultsLoss.setVisible(true);
 								music.soundEffect("Defeat");
@@ -603,6 +617,7 @@ public class Controller implements ActionListener {
 							Runnable coolCallback = () -> {
 								gameplay.nonvisibleSelect();
 								gameplay.setVisible(false);
+								gameLogic.setRandomCards(null);
 								music.shutUpSound();
 								resultsWin.setVisible(true);
 								music.soundEffect("Victory");
@@ -649,6 +664,7 @@ public class Controller implements ActionListener {
 							Runnable coolCallback = () -> {
 								gameplay.nonvisibleSelect();
 								gameplay.setVisible(false);
+								gameLogic.setRandomCards(null);
 								music.shutUpSound();
 								resultsLoss.setVisible(true);
 								music.soundEffect("Defeat");
@@ -664,6 +680,7 @@ public class Controller implements ActionListener {
 							Runnable coolCallback = () -> {
 								gameplay.nonvisibleSelect();
 								gameplay.setVisible(false);
+								gameLogic.setRandomCards(null);
 								music.shutUpSound();
 								resultsWin.setVisible(true);
 								music.soundEffect("Victory");
