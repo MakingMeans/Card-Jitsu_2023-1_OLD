@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.ArrayList;
-
 import co.edu.unbosque.model.Carta;
 
 public class GraphicGameplay extends JFrame {
@@ -44,9 +43,9 @@ public class GraphicGameplay extends JFrame {
 	byte cardsRfuego;
 	byte cardsRagua;
 	byte cardsRnieve;
-	
+
 	private Carta[] cards;
-	private boolean prohibited=false;
+	private boolean prohibited = false;
 
 	public GraphicGameplay() {
 		setTitle("Retro Card-Jitsu");
@@ -55,32 +54,32 @@ public class GraphicGameplay extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		InterfazPanel panel = new InterfazPanel();
-		
+
 		ImageIcon iSal = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnSal = new JButton(iSal);
-		btnSal.setBounds(1127+1/2, 0, 55, 50);
+		btnSal.setBounds(1127 + 1 / 2, 0, 55, 50);
 		btnSal.setContentAreaFilled(false);
 		btnSal.setBorderPainted(false);
-		
+
 		ImageIcon iMus = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnMus = new JButton(iMus);
-		btnMus.setBounds(2+1/2, 0, 55, 50);
+		btnMus.setBounds(2 + 1 / 2, 0, 55, 50);
 		btnMus.setContentAreaFilled(false);
 		btnMus.setBorderPainted(false);
-		
+
 		selectedPlayer = new JLabel();
 		selectedPlayer.setBounds(350, 200, 162, 192);
 		Image temporal0 = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/ReversoCartas.png").getImage();
 		ImageIcon imgRedimension0 = new ImageIcon(
 				temporal0.getScaledInstance(selectedPlayer.getWidth(), selectedPlayer.getHeight(), Image.SCALE_SMOOTH));
 		selectedPlayer.setIcon(imgRedimension0);
-		selectedPlayer.setVisible(false);		
-		
+		selectedPlayer.setVisible(false);
+
 		selectedRival = new JLabel();
 		selectedRival.setBounds(650, 200, 162, 192);
 		selectedRival.setIcon(imgRedimension0);
 		selectedRival.setVisible(false);
-		
+
 		penguins = new JLabel();
 		penguins.setBounds(65, 20, 919, 739);
 		Image temporal10 = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/Pinguinos.png").getImage();
@@ -88,41 +87,41 @@ public class GraphicGameplay extends JFrame {
 				temporal10.getScaledInstance(penguins.getWidth(), penguins.getHeight(), Image.SCALE_SMOOTH));
 		penguins.setIcon(imgRedimension10);
 		penguins.setVisible(true);
-		
+
 		finish = new JLabel();
 		finish.setBounds(375, 220, 450, 300);
 		Image tempor1 = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/FinJuego.png").getImage();
 		ImageIcon imgRedim1 = new ImageIcon(
 				tempor1.getScaledInstance(finish.getWidth(), finish.getHeight(), Image.SCALE_SMOOTH));
 		finish.setIcon(imgRedim1);
-		finish.setVisible(false);	
-		
+		finish.setVisible(false);
+
 		ImageIcon iC = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnC1 = new JButton(iC);
-		btnC1.setBounds(135, 585, 162, 162); //(883, 555, 162, 192);
+		btnC1.setBounds(135, 585, 162, 162); // (883, 555, 162, 192);
 		btnC1.setContentAreaFilled(false);
 		btnC1.setBorderPainted(false);
-		
+
 		btnC2 = new JButton(iC);
 		btnC2.setBounds(322, 585, 162, 162);
 		btnC2.setContentAreaFilled(false);
 		btnC2.setBorderPainted(false);
-		
+
 		btnC3 = new JButton(iC);
 		btnC3.setBounds(509, 585, 162, 162);
 		btnC3.setContentAreaFilled(false);
 		btnC3.setBorderPainted(false);
-		
+
 		btnC4 = new JButton(iC);
 		btnC4.setBounds(696, 585, 162, 162);
 		btnC4.setContentAreaFilled(false);
 		btnC4.setBorderPainted(false);
-		
+
 		btnC5 = new JButton(iC);
 		btnC5.setBounds(883, 585, 162, 162);
 		btnC5.setContentAreaFilled(false);
 		btnC5.setBorderPainted(false);
-		
+
 		Font customFont = new Font("Arial", Font.PLAIN, 10);
 		try {
 			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/co/edu/unbosque/assets/fonts/Pixellari.ttf"))
@@ -158,24 +157,24 @@ public class GraphicGameplay extends JFrame {
 		name.setBounds(100, 550, 400, 50);
 		name.setForeground(Color.WHITE);
 		name.setFont(customFont);
-		
+
 		cinturon = new JLabel("Default!");
-		cinturon.setBounds(705, 547+1/2, 400, 50);
+		cinturon.setBounds(705, 547 + 1 / 2, 400, 50);
 		cinturon.setForeground(Color.WHITE);
 		cinturon.setFont(customFont2);
 
 		puntaje = new JLabel("Default!");
-		puntaje.setBounds(895, 547+1/2, 400, 50);
+		puntaje.setBounds(895, 547 + 1 / 2, 400, 50);
 		puntaje.setForeground(Color.WHITE);
 		puntaje.setFont(customFont2);
-		
+
 		JLabel ranking = new JLabel("RANK");
-		ranking.setBounds(2+3/4, 725, 400, 50);
+		ranking.setBounds(2 + 3 / 4, 725, 400, 50);
 		ranking.setForeground(Color.WHITE);
 		ranking.setFont(customFont4);
 
 		rank = new JLabel("Default!");
-		rank.setBounds(10, 687+1/2, 400, 50);
+		rank.setBounds(10, 687 + 1 / 2, 400, 50);
 		rank.setForeground(Color.WHITE);
 		rank.setFont(customFont3);
 
@@ -184,8 +183,8 @@ public class GraphicGameplay extends JFrame {
 			winerCards[i] = new JLabel();
 			winerCards[i].setBounds(486 + (i * 70), 400, 70, 70);
 			Image tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/ReversoCartas.png").getImage();
-			ImageIcon imgRedimen = new ImageIcon(tempor.getScaledInstance(winerCards[i].getWidth(),
-					winerCards[i].getHeight(), Image.SCALE_SMOOTH));
+			ImageIcon imgRedimen = new ImageIcon(
+					tempor.getScaledInstance(winerCards[i].getWidth(), winerCards[i].getHeight(), Image.SCALE_SMOOTH));
 			winerCards[i].setIcon(imgRedimen);
 			winerCards[i].setVisible(false);
 		}
@@ -194,22 +193,24 @@ public class GraphicGameplay extends JFrame {
 				cardsPlayerList.add(new JLabel());
 				cardsPlayerList.get((i * 10) + j).setBounds(335 + (i * 70), 35 + (j * 40), 70, 70);
 				Image tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/Transparente.png").getImage();
-				ImageIcon imgRedimen = new ImageIcon(tempor.getScaledInstance(cardsPlayerList.get((i * 10) + j).getWidth(),
-						cardsPlayerList.get((i * 10) + j).getHeight(), Image.SCALE_SMOOTH));
+				ImageIcon imgRedimen = new ImageIcon(
+						tempor.getScaledInstance(cardsPlayerList.get((i * 10) + j).getWidth(),
+								cardsPlayerList.get((i * 10) + j).getHeight(), Image.SCALE_SMOOTH));
 				cardsPlayerList.get((i * 10) + j).setIcon(imgRedimen);
 			}
 		}
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 30; j++) {
 				cardsRivalList.add(new JLabel());
-				cardsRivalList.get((i * 10) + j).setBounds(637+1/2 + (i * 70), 35 + (j * 40), 70, 70);
+				cardsRivalList.get((i * 10) + j).setBounds(637 + 1 / 2 + (i * 70), 35 + (j * 40), 70, 70);
 				Image tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/Transparente.png").getImage();
-				ImageIcon imgRedimen = new ImageIcon(tempor.getScaledInstance(cardsRivalList.get((i * 10) + j).getWidth(),
-						cardsRivalList.get((i * 10) + j).getHeight(), Image.SCALE_SMOOTH));
+				ImageIcon imgRedimen = new ImageIcon(
+						tempor.getScaledInstance(cardsRivalList.get((i * 10) + j).getWidth(),
+								cardsRivalList.get((i * 10) + j).getHeight(), Image.SCALE_SMOOTH));
 				cardsRivalList.get((i * 10) + j).setIcon(imgRedimen);
 			}
 		}
-		
+
 		for (int i = 0; i < 3; i++) {
 			add(winerCards[i]);
 		}
@@ -258,308 +259,336 @@ public class GraphicGameplay extends JFrame {
 			super.paintComponents(g);
 		}
 	}
+
 	public void penguinAnime(Carta card, String Win, Runnable callback) {
 		Timer timer = new Timer();
-        TimerTask anim = new TimerTask() {
-            @Override
-            public void run() {
-            	penguinNormal();
-        		callback.run();
-            }
-        };
-        Image temporal = new ImageIcon("src/co/edu/unbosque/assets/animaciones/"+card.getElemento()+Win+"P.png").getImage();
+		TimerTask anim = new TimerTask() {
+			@Override
+			public void run() {
+				penguinNormal();
+				callback.run();
+			}
+		};
+		Image temporal = new ImageIcon("src/co/edu/unbosque/assets/animaciones/" + card.getElemento() + Win + "P.png")
+				.getImage();
+		if (Win.equals("Empate")) {
+			temporal = new ImageIcon("src/co/edu/unbosque/assets/animaciones/AllEmpate.png").getImage();
+		}
 		ImageIcon imgRedimension1 = new ImageIcon(
 				temporal.getScaledInstance(this.penguins.getWidth(), this.penguins.getHeight(), Image.SCALE_SMOOTH));
 		this.penguins.setIcon(imgRedimension1);
 		timer.schedule(anim, 1500);
 	}
+
 	public void penguinNormal() {
 		Image temporal = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/Pinguinos.png").getImage();
 		ImageIcon imgRedimension1 = new ImageIcon(
 				temporal.getScaledInstance(this.penguins.getWidth(), this.penguins.getHeight(), Image.SCALE_SMOOTH));
 		this.penguins.setIcon(imgRedimension1);
 	}
+
 	public void miniCard(Carta card, boolean win) {
-		if(win) {
-			byte i=0, j=0;
-			if(card.getElemento().equals("Fuego")) {
-				i=0;
+		if (win) {
+			byte i = 0, j = 0;
+			if (card.getElemento().equals("Fuego")) {
+				i = 0;
 				cardsPfuego++;
-				j=(byte)(cardsPfuego-1);
-			}
-			else if(card.getElemento().equals("Agua")) {
-				i=1;
+				j = (byte) (cardsPfuego - 1);
+			} else if (card.getElemento().equals("Agua")) {
+				i = 1;
 				cardsPagua++;
-				j=(byte)(cardsPagua-1);
-			}
-			else if(card.getElemento().equals("Nieve")) {
-				i=2;
+				j = (byte) (cardsPagua - 1);
+			} else if (card.getElemento().equals("Nieve")) {
+				i = 2;
 				cardsPnieve++;
-				j=(byte)(cardsPnieve-1);
+				j = (byte) (cardsPnieve - 1);
 			}
-	        Image temporal = new ImageIcon("src/co/edu/unbosque/assets/miniCards/C"+card.getElemento()+card.getColor()+".png")
-	                  .getImage();
-	        ImageIcon imgRedimension1 = new ImageIcon(temporal.getScaledInstance(
-	                  this.cardsPlayerList.get((i * 10) + j).getWidth(), this.cardsPlayerList.get((i * 10) + j).getHeight(), Image.SCALE_SMOOTH));
-	        this.cardsPlayerList.get((i * 10) + j).setIcon(imgRedimension1);
-		}
-		else {
-			byte i=0, j=0;
-			if(card.getElemento().equals("Fuego")) {
-				i=0;
+			Image temporal = new ImageIcon(
+					"src/co/edu/unbosque/assets/miniCards/C" + card.getElemento() + card.getColor() + ".png")
+					.getImage();
+			ImageIcon imgRedimension1 = new ImageIcon(
+					temporal.getScaledInstance(this.cardsPlayerList.get((i * 10) + j).getWidth(),
+							this.cardsPlayerList.get((i * 10) + j).getHeight(), Image.SCALE_SMOOTH));
+			this.cardsPlayerList.get((i * 10) + j).setIcon(imgRedimension1);
+		} else {
+			byte i = 0, j = 0;
+			if (card.getElemento().equals("Fuego")) {
+				i = 0;
 				cardsRfuego++;
-				j=(byte)(cardsRfuego-1);
-			}
-			else if(card.getElemento().equals("Agua")) {
-				i=1;
+				j = (byte) (cardsRfuego - 1);
+			} else if (card.getElemento().equals("Agua")) {
+				i = 1;
 				cardsRagua++;
-				j=(byte)(cardsRagua-1);
-			}
-			else if(card.getElemento().equals("Nieve")) {
-				i=2;
+				j = (byte) (cardsRagua - 1);
+			} else if (card.getElemento().equals("Nieve")) {
+				i = 2;
 				cardsRnieve++;
-				j=(byte)(cardsRnieve-1);
+				j = (byte) (cardsRnieve - 1);
 			}
-	        Image temporal = new ImageIcon("src/co/edu/unbosque/assets/miniCards/C"+card.getElemento()+card.getColor()+".png")
-	                  .getImage();
-	        ImageIcon imgRedimension1 = new ImageIcon(temporal.getScaledInstance(
-	                  this.cardsRivalList.get((i * 10) + j).getWidth(), this.cardsRivalList.get((i * 10) + j).getHeight(), Image.SCALE_SMOOTH));
-	        this.cardsRivalList.get((i * 10) + j).setIcon(imgRedimension1);
+			Image temporal = new ImageIcon(
+					"src/co/edu/unbosque/assets/miniCards/C" + card.getElemento() + card.getColor() + ".png")
+					.getImage();
+			ImageIcon imgRedimension1 = new ImageIcon(
+					temporal.getScaledInstance(this.cardsRivalList.get((i * 10) + j).getWidth(),
+							this.cardsRivalList.get((i * 10) + j).getHeight(), Image.SCALE_SMOOTH));
+			this.cardsRivalList.get((i * 10) + j).setIcon(imgRedimension1);
 		}
 	}
+
 	public void visibleSelect(Carta cardRival, int seleccion, Runnable callback) {
 		this.prohibited = true;
-		Image temp= new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/ReversoCartas.png").getImage();
-		ImageIcon imgRedimension=new ImageIcon(
+		Image temp = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/ReversoCartas.png").getImage();
+		ImageIcon imgRedimension = new ImageIcon(
 				temp.getScaledInstance(btnC1.getWidth(), btnC1.getHeight(), Image.SCALE_SMOOTH));
-		if(seleccion==0) {
+		if (seleccion == 0) {
 			this.btnC1.setIcon(imgRedimension);
-		}
-		else if(seleccion==1) {
+		} else if (seleccion == 1) {
 			this.btnC2.setIcon(imgRedimension);
-		}
-		else if(seleccion==2) {
+		} else if (seleccion == 2) {
 			this.btnC3.setIcon(imgRedimension);
-		}
-		else if(seleccion==3) {
+		} else if (seleccion == 3) {
 			this.btnC4.setIcon(imgRedimension);
-		}
-		else if(seleccion==4) {
+		} else if (seleccion == 4) {
 			this.btnC5.setIcon(imgRedimension);
 		}
 		Carta cardPlayer = this.cards[seleccion];
-		Image temporal= new ImageIcon("src/co/edu/unbosque/assets/cards"+cardPlayer.getElemento()+
-    			"/C"+cardPlayer.getNumero()+cardPlayer.getColor()+cardPlayer.getElemento()+".png").getImage();
-		ImageIcon imgRedimension1=new ImageIcon(
+		Image temporal = new ImageIcon("src/co/edu/unbosque/assets/cards" + cardPlayer.getElemento() + "/C"
+				+ cardPlayer.getNumero() + cardPlayer.getColor() + cardPlayer.getElemento() + ".png").getImage();
+		ImageIcon imgRedimension1 = new ImageIcon(
 				temporal.getScaledInstance(selectedPlayer.getWidth(), selectedPlayer.getHeight(), Image.SCALE_SMOOTH));
 		selectedPlayer.setIcon(imgRedimension1);
 		selectedPlayer.setVisible(true);
 		selectedRival.setVisible(true);
-		
-		Timer timer = new Timer();
-        TimerTask revelacion = new TimerTask() {
-            @Override
-            public void run() {
-            	Image temporal = new ImageIcon("src/co/edu/unbosque/assets/cards"+cardRival.getElemento()+
-            			"/C"+cardRival.getNumero()+cardRival.getColor()+cardRival.getElemento()+".png").getImage();
-        		ImageIcon imgRedimension1=new ImageIcon(
-        				temporal.getScaledInstance(selectedRival.getWidth(), selectedRival.getHeight(), Image.SCALE_SMOOTH));
-        		selectedRival.setIcon(imgRedimension1);
-            }
-        };
-        TimerTask hide = new TimerTask() {
-            @Override
-            public void run() {
-            	selectedPlayer.setVisible(false);
-        		selectedRival.setVisible(false);
-        		Image temporal = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/ReversoCartas.png").getImage();
-        		ImageIcon imgRedimension1=new ImageIcon(
-        				temporal.getScaledInstance(selectedRival.getWidth(), selectedRival.getHeight(), Image.SCALE_SMOOTH));
-        		selectedRival.setIcon(imgRedimension1);
-        		selectedPlayer.setIcon(imgRedimension1);
-        		//prohibited = false;
-        		callback.run();
-            }
-        };
 
-        // Programar la tarea para que se ejecute después de 5 segundos
-        timer.schedule(revelacion, 2000);
-        timer.schedule(hide, 4750);
-        
+		Timer timer = new Timer();
+		TimerTask revelacion = new TimerTask() {
+			@Override
+			public void run() {
+				Image temporal = new ImageIcon("src/co/edu/unbosque/assets/cards" + cardRival.getElemento() + "/C"
+						+ cardRival.getNumero() + cardRival.getColor() + cardRival.getElemento() + ".png").getImage();
+				ImageIcon imgRedimension1 = new ImageIcon(temporal.getScaledInstance(selectedRival.getWidth(),
+						selectedRival.getHeight(), Image.SCALE_SMOOTH));
+				selectedRival.setIcon(imgRedimension1);
+			}
+		};
+		TimerTask hide = new TimerTask() {
+			@Override
+			public void run() {
+				selectedPlayer.setVisible(false);
+				selectedRival.setVisible(false);
+				Image temporal = new ImageIcon("src/co/edu/unbosque/assets/imagenesInterfaz/ReversoCartas.png")
+						.getImage();
+				ImageIcon imgRedimension1 = new ImageIcon(temporal.getScaledInstance(selectedRival.getWidth(),
+						selectedRival.getHeight(), Image.SCALE_SMOOTH));
+				selectedRival.setIcon(imgRedimension1);
+				selectedPlayer.setIcon(imgRedimension1);
+				// prohibited = false;
+				callback.run();
+			}
+		};
+
+		// Programar la tarea para que se ejecute después de 5 segundos
+		timer.schedule(revelacion, 2000);
+		timer.schedule(hide, 4750);
+
 	}
+
 	public void coolDown(Runnable callback) {
 		Timer timer = new Timer();
 		TimerTask calm = new TimerTask() {
-            @Override
-            public void run() {
-        		callback.run();
-            }
-        };
-        timer.schedule(calm, 3500);
+			@Override
+			public void run() {
+				callback.run();
+			}
+		};
+		timer.schedule(calm, 3500);
 	}
+
 	public void nonvisibleSelect() {
 		selectedPlayer.setVisible(false);
 		selectedRival.setVisible(false);
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 30; j++) {
 				Image tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/Transparente.png").getImage();
-				ImageIcon imgRedimen = new ImageIcon(tempor.getScaledInstance(cardsPlayerList.get((i * 10) + j).getWidth(),
-						cardsPlayerList.get((i * 10) + j).getHeight(), Image.SCALE_SMOOTH));
+				ImageIcon imgRedimen = new ImageIcon(
+						tempor.getScaledInstance(cardsPlayerList.get((i * 10) + j).getWidth(),
+								cardsPlayerList.get((i * 10) + j).getHeight(), Image.SCALE_SMOOTH));
 				cardsPlayerList.get((i * 10) + j).setIcon(imgRedimen);
 				cardsRivalList.get((i * 10) + j).setIcon(imgRedimen);
 			}
 		}
-		cardsPfuego=0;
-		cardsPagua=0;
-		cardsPnieve=0;
-		cardsRfuego=0;
-		cardsRagua=0;
-		cardsRnieve=0;
+		cardsPfuego = 0;
+		cardsPagua = 0;
+		cardsPnieve = 0;
+		cardsRfuego = 0;
+		cardsRagua = 0;
+		cardsRnieve = 0;
 	}
+
 	public void setCartasCinco(Carta[] cards) {
-			//btnC1.setBounds(135, 555, 162, 192);
-			this.cards = cards;
-			Image[] temporal=new Image[5];
-			ImageIcon[] imgRedimension=new ImageIcon[5];
-			for(int i=0;i<cards.length;i++) {
-				temporal[i] = new ImageIcon("src/co/edu/unbosque/assets/cards"
-	                    + cards[i].getElemento() + "/C" + cards[i].getNumero()
-	                    + cards[i].getColor() + cards[i].getElemento() + ".png")
-	                    .getImage();
-	            imgRedimension[i] = new ImageIcon(temporal[i].getScaledInstance(
-	                    this.btnC1.getWidth(), this.btnC1.getHeight(), Image.SCALE_SMOOTH));
-			}
-            this.btnC1.setIcon(imgRedimension[0]);
-            this.btnC2.setIcon(imgRedimension[1]);
-            this.btnC3.setIcon(imgRedimension[2]);
-            this.btnC4.setIcon(imgRedimension[3]);
-            this.btnC5.setIcon(imgRedimension[4]);
+		// btnC1.setBounds(135, 555, 162, 192);
+		this.cards = cards;
+		Image[] temporal = new Image[5];
+		ImageIcon[] imgRedimension = new ImageIcon[5];
+		for (int i = 0; i < cards.length; i++) {
+			temporal[i] = new ImageIcon("src/co/edu/unbosque/assets/cards" + cards[i].getElemento() + "/C"
+					+ cards[i].getNumero() + cards[i].getColor() + cards[i].getElemento() + ".png").getImage();
+			imgRedimension[i] = new ImageIcon(
+					temporal[i].getScaledInstance(this.btnC1.getWidth(), this.btnC1.getHeight(), Image.SCALE_SMOOTH));
+		}
+		this.btnC1.setIcon(imgRedimension[0]);
+		this.btnC2.setIcon(imgRedimension[1]);
+		this.btnC3.setIcon(imgRedimension[2]);
+		this.btnC4.setIcon(imgRedimension[3]);
+		this.btnC5.setIcon(imgRedimension[4]);
 	}
+
 	public void setUserStats(String user, String cinturon, int puntaje) {
-		this.name.setText("USUARIO: "+user);
-		this.cinturon.setText("LV: "+cinturon);
-		this.puntaje.setText(String.valueOf("XP: "+puntaje));
+		this.name.setText("USUARIO: " + user);
+		this.cinturon.setText("LV: " + cinturon);
+		this.puntaje.setText(String.valueOf("XP: " + puntaje));
 		if (cinturon == "NINGUNO")
-			this.cinturon.setForeground(new Color(239,239,239));
+			this.cinturon.setForeground(new Color(239, 239, 239));
 		;
 		if (cinturon == "BLANCO")
-			this.cinturon.setForeground(new Color(239,239,239));
+			this.cinturon.setForeground(new Color(239, 239, 239));
 		;
 		if (cinturon == "AMARILLO")
-			this.cinturon.setForeground(new Color(252,249,56));
+			this.cinturon.setForeground(new Color(252, 249, 56));
 		;
 		if (cinturon == "NARANJA")
-			this.cinturon.setForeground(new Color(255,123,71));
+			this.cinturon.setForeground(new Color(255, 123, 71));
 		;
 		if (cinturon == "VERDE")
-			this.cinturon.setForeground(new Color(62,237,149));
+			this.cinturon.setForeground(new Color(62, 237, 149));
 		;
 		if (cinturon == "AZUL")
-			this.cinturon.setForeground(new Color(62,214,237));
+			this.cinturon.setForeground(new Color(62, 214, 237));
 		;
 		if (cinturon == "ROJO")
-			this.cinturon.setForeground(new Color(235,86,75));
+			this.cinturon.setForeground(new Color(235, 86, 75));
 		;
 		if (cinturon == "VIOLETA")
-			this.cinturon.setForeground(new Color(171,91,245));
+			this.cinturon.setForeground(new Color(171, 91, 245));
 		;
 		if (cinturon == "MARRON")
-			this.cinturon.setForeground(new Color(155,130,48));
+			this.cinturon.setForeground(new Color(155, 130, 48));
 		;
 		if (cinturon == "NEGRO")
-			this.cinturon.setForeground(new Color(76,69,69));
+			this.cinturon.setForeground(new Color(76, 69, 69));
 		;
 		if (puntaje < 20) {
 			this.rank.setText("D");
-			this.rank.setForeground(new Color(0,0,0));
+			this.rank.setForeground(new Color(0, 0, 0));
 		}
 		if (puntaje < 40 && puntaje >= 20) {
 			this.rank.setText("C");
-			this.rank.setForeground(new Color(85,186,0));
+			this.rank.setForeground(new Color(85, 186, 0));
 		}
 		if (puntaje < 60 && puntaje >= 40) {
 			this.rank.setText("B");
-			this.rank.setForeground(new Color(48,168,248));
+			this.rank.setForeground(new Color(48, 168, 248));
 		}
 		if (puntaje < 80 && puntaje >= 60) {
 			this.rank.setText("A");
-			this.rank.setForeground(new Color(248,0,0));
+			this.rank.setForeground(new Color(248, 0, 0));
 		}
 		if (puntaje < 100 && puntaje >= 80) {
 			this.rank.setText("S");
-			this.rank.setForeground(new Color(224,144,0));
+			this.rank.setForeground(new Color(224, 144, 0));
 		}
 		if (puntaje >= 100) {
 			this.rank.setText("P");
-			this.rank.setForeground(new Color(142,75,232));
+			this.rank.setForeground(new Color(142, 75, 232));
 		}
 	}
+
 	public void visualFinish(boolean visual, String colors[], String way) {
 		this.finish.setVisible(visual);
-		if(visual) {
+		if (visual) {
 			for (int i = 0; i < 3; i++) {
 				Image tempor;
-				if(way.equals("All")) {
-					String[] list={"Fuego","Agua","Nieve"};
-					tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/C"+list[i]+colors[i]+".png").getImage();
-				}else if(way.equals("Hide")) tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/Transparente.png").getImage();
-				else tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/C"+way+colors[i]+".png").getImage();
+				if (way.equals("All")) {
+					String[] list = { "Fuego", "Agua", "Nieve" };
+					tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/C" + list[i] + colors[i] + ".png")
+							.getImage();
+				} else if (way.equals("Hide"))
+					tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/Transparente.png").getImage();
+				else
+					tempor = new ImageIcon("src/co/edu/unbosque/assets/miniCards/C" + way + colors[i] + ".png")
+							.getImage();
 				ImageIcon imgRedimen = new ImageIcon(tempor.getScaledInstance(winerCards[i].getWidth(),
 						winerCards[i].getHeight(), Image.SCALE_SMOOTH));
 				winerCards[i].setIcon(imgRedimen);
 				winerCards[i].setVisible(true);
 			}
-		}else {
+		} else {
 			for (int i = 0; i < 3; i++) {
 				winerCards[i].setVisible(false);
 			}
 		}
 	}
+
 	public JButton getBtnSal() {
 		return btnSal;
 	}
+
 	public void setBtnSal(JButton btnSal) {
 		this.btnSal = btnSal;
 	}
+
 	public JButton getBtnMus() {
 		return btnMus;
 	}
+
 	public void setBtnMus(JButton btnMus) {
 		this.btnMus = btnMus;
 	}
+
 	public JButton getBtnC1() {
 		return btnC1;
 	}
+
 	public void setBtnC1(JButton btnC1) {
 		this.btnC1 = btnC1;
 	}
+
 	public JButton getBtnC2() {
 		return btnC2;
 	}
+
 	public void setBtnC2(JButton btnC2) {
 		this.btnC2 = btnC2;
 	}
+
 	public JButton getBtnC3() {
 		return btnC3;
 	}
+
 	public void setBtnC3(JButton btnC3) {
 		this.btnC3 = btnC3;
 	}
+
 	public JButton getBtnC4() {
 		return btnC4;
 	}
+
 	public void setBtnC4(JButton btnC4) {
 		this.btnC4 = btnC4;
 	}
+
 	public JButton getBtnC5() {
 		return btnC5;
 	}
+
 	public void setBtnC5(JButton btnC5) {
 		this.btnC5 = btnC5;
 	}
+
 	public boolean getProhibited() {
 		return prohibited;
 	}
+
 	public void setProhibited(boolean prohibited) {
 		this.prohibited = prohibited;
 	}

@@ -148,58 +148,58 @@ public class Stats extends JFrame {
 		if (puntaje >= 90)
 			this.restante.setText("COMPLETE!");
 		if (cinturon == "NINGUNO")
-			this.puntaje.setForeground(new Color(239,239,239));
+			this.puntaje.setForeground(new Color(239, 239, 239));
 		;
 		if (cinturon == "BLANCO")
-			this.puntaje.setForeground(new Color(239,239,239));
+			this.puntaje.setForeground(new Color(239, 239, 239));
 		;
 		if (cinturon == "AMARILLO")
-			this.puntaje.setForeground(new Color(252,249,56));
+			this.puntaje.setForeground(new Color(252, 249, 56));
 		;
 		if (cinturon == "NARANJA")
-			this.puntaje.setForeground(new Color(255,123,71));
+			this.puntaje.setForeground(new Color(255, 123, 71));
 		;
 		if (cinturon == "VERDE")
-			this.puntaje.setForeground(new Color(62,237,149));
+			this.puntaje.setForeground(new Color(62, 237, 149));
 		;
 		if (cinturon == "AZUL")
-			this.puntaje.setForeground(new Color(62,214,237));
+			this.puntaje.setForeground(new Color(62, 214, 237));
 		;
 		if (cinturon == "ROJO")
-			this.puntaje.setForeground(new Color(235,86,75));
+			this.puntaje.setForeground(new Color(235, 86, 75));
 		;
 		if (cinturon == "VIOLETA")
-			this.puntaje.setForeground(new Color(171,91,245));
+			this.puntaje.setForeground(new Color(171, 91, 245));
 		;
 		if (cinturon == "MARRON")
-			this.puntaje.setForeground(new Color(155,130,48));
+			this.puntaje.setForeground(new Color(155, 130, 48));
 		;
 		if (cinturon == "NEGRO")
-			this.puntaje.setForeground(new Color(76,69,69));
+			this.puntaje.setForeground(new Color(76, 69, 69));
 		;
 		if (puntaje < 20) {
 			this.rank.setText("D");
-			this.rank.setForeground(new Color(0,0,0));
+			this.rank.setForeground(new Color(0, 0, 0));
 		}
 		if (puntaje < 40 && puntaje >= 20) {
 			this.rank.setText("C");
-			this.rank.setForeground(new Color(85,186,0));
+			this.rank.setForeground(new Color(85, 186, 0));
 		}
 		if (puntaje < 60 && puntaje >= 40) {
 			this.rank.setText("B");
-			this.rank.setForeground(new Color(48,168,248));
+			this.rank.setForeground(new Color(48, 168, 248));
 		}
 		if (puntaje < 80 && puntaje >= 60) {
 			this.rank.setText("A");
-			this.rank.setForeground(new Color(248,0,0));
+			this.rank.setForeground(new Color(248, 0, 0));
 		}
 		if (puntaje < 100 && puntaje >= 80) {
 			this.rank.setText("S");
-			this.rank.setForeground(new Color(224,144,0));
+			this.rank.setForeground(new Color(224, 144, 0));
 		}
 		if (puntaje >= 100) {
 			this.rank.setText("P");
-			this.rank.setForeground(new Color(142,75,232));
+			this.rank.setForeground(new Color(142, 75, 232));
 		}
 		Image temporal = new ImageIcon("src/co/edu/unbosque/assets/cinturones/" + cintColor + ".png").getImage();
 		ImageIcon imgRedimension1 = new ImageIcon(

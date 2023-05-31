@@ -8,8 +8,9 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class Data {
-    private ArrayList<User> usuarios = new ArrayList<User>();
-    public void saveData(ArrayList<User> usuarios){
+	private ArrayList<User> usuarios = new ArrayList<User>();
+
+	public void saveData(ArrayList<User> usuarios) {
 		try {
 			this.usuarios = usuarios;
 			FileOutputStream fileOut = new FileOutputStream("usersData.txt");
@@ -21,9 +22,10 @@ public class Data {
 			e.printStackTrace();
 		}
 	}
+
 	@SuppressWarnings("unchecked")
-    public ArrayList<User> loadData(){
-        try {
+	public ArrayList<User> loadData() {
+		try {
 			FileInputStream fileIn = new FileInputStream("usersData.txt");
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			this.usuarios = (ArrayList<User>) in.readObject();
@@ -32,6 +34,6 @@ public class Data {
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-        return this.usuarios;		
-    }
+		return this.usuarios;
+	}
 }

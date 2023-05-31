@@ -2,38 +2,39 @@ package co.edu.unbosque.view;
 
 import java.awt.Graphics;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-public class Results extends JFrame{
+public class Results extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JButton btnMenu;
-	
+
 	public Results(String pagina) {
-		
+
 		setTitle("Retro Card-Jitsu");
 		setSize(1200, 800);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		InterfazWin panel = new InterfazWin("/co/edu/unbosque/assets/imagenesInterfaz/Pinguino"+pagina+".png");
-		
+		InterfazWin panel = new InterfazWin("/co/edu/unbosque/assets/imagenesInterfaz/Pinguino" + pagina + ".png");
+
 		ImageIcon iMen = new ImageIcon("/co/edu/unbosque/assets/imagenesInterfaz/Transparente.png");
 		btnMenu = new JButton(iMen);
 		btnMenu.setBounds(550, 300, 100, 60);
-		if(pagina.equals("Feliz")) btnMenu.setBounds(1030, 680+1/4, 135, 65);
-		else if(pagina.equals("Troste")) btnMenu.setBounds(530, 290, 130, 70);
+		if (pagina.equals("Feliz"))
+			btnMenu.setBounds(1030, 680 + 1 / 4, 135, 65);
+		else if (pagina.equals("Troste"))
+			btnMenu.setBounds(530, 290, 130, 70);
 		btnMenu.setContentAreaFilled(false);
 		btnMenu.setBorderPainted(false);
-		
+
 		add(btnMenu);
 		add(panel);
-		
+
 	}
+
 	private static class InterfazWin extends JPanel {
 		private static final long serialVersionUID = 1L;
 		private ImageIcon iCuenta;
@@ -56,9 +57,11 @@ public class Results extends JFrame{
 			super.paintComponents(g);
 		}
 	}
+
 	public JButton getBtnMenu() {
 		return btnMenu;
 	}
+
 	public void setBtnMenu(JButton btnMenu) {
 		this.btnMenu = btnMenu;
 	}
